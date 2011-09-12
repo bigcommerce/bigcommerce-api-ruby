@@ -1,6 +1,7 @@
+
 Gem::Specification.new do |s|
   s.name     = "bigcommerce"
-  s.version  = "0.0.1"
+  s.version  = "0.0.2"
   s.date     = "2011-09-12"
   s.summary  = "Enables Ruby applications to communicate with the BigCommerce API"
   s.email    = "dev-accounts@bigcommerce.com"
