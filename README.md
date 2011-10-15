@@ -4,6 +4,12 @@ BigCommerce API V2 - Ruby Client
 This library provides a wrapper around the BigCommerce REST API for use within
 Ruby apps or via the console.
 
+Note
+----
+
+**The Ruby Client is still in alpha and core features of the API may be
+unsupported and undocumented.**
+
 Requirements
 ------------
 
