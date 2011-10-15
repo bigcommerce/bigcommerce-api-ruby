@@ -1,10 +1,12 @@
 
+require 'lib/bigcommerce'
+
 task :build do
   sh "gem build bigcommerce.gemspec"
 end
 
 task :publish => :build do
-  sh "gem push bigcommerce"
+  puts "gem push bigcommerce-#{BigCommerce::VERSION}.gem"
 end
 
 task :clean do
