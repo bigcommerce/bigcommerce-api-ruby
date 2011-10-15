@@ -1,8 +1,28 @@
 module BigCommerce
 	class Api
 
-		def initialize(configuration)
+		def initialize(configuration={})
 			@connection = Connection.new(configuration)
+		end
+		
+		def store_url=(store_url)
+		  @connection.store_url = store_url
+		end
+		
+		def username=(username)
+		  @connection.username = username
+		end
+		
+		def api_key=(api_key)
+		  @connection.api_key = api_key
+		end
+		
+		def verify_peer=(verify=true)
+		  @connection.verify_peer = verify
+		end
+		
+		def ca_file=(path)
+		  @connection.ca_file = path
 		end
 
 		def get_time
@@ -58,6 +78,14 @@ module BigCommerce
 			def get_count(result)
 				result["count"]
 			end
+			
+			def get_resource(result)
+			  
+			end
+
+      def get_collection(result)
+        
+      end
 
 	end
 end

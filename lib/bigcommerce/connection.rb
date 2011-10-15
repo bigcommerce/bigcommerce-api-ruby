@@ -4,6 +4,26 @@ module BigCommerce
 		def initialize(configuration)
 			@configuration = configuration
 		end
+		
+		def store_url=(store_url)
+		  @configuration[:store_url] = store_url
+		end
+		
+		def username=(username)
+		  @configuration[:username] = username
+		end
+		
+		def api_key=(api_key)
+		  @configuration[:api_key] = api_key
+		end
+		
+		def verify_peer=(verify)
+		  @configuration[:verify_peer] = verify
+		end
+		
+		def ca_file=(path)
+		  @configuration.ca_file = path
+		end		
 
 		def get(path)
 			request(:get, path)
@@ -29,6 +49,14 @@ module BigCommerce
 
 			http = Net::HTTP.new(uri.host, uri.port)
       http.use_ssl = true
+      
+      if @configuration.has_key?(:verify_peer) && @configuration[:verify_peer]
+        http.verify_mode =  OpenSSL::SSL::VERIFY_PEER
+      else
+        http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+      end
+      
+      http.ca_file = @configuration[:ca_path] if @configuration.has_key?(:ca_path)
 
 			request = case method
 				when :get    then Net::HTTP::Get.new(uri.request_uri)
