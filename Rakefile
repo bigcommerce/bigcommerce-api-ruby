@@ -6,7 +6,7 @@ task :build do
 end
 
 task :publish => :build do
-  puts "gem push bigcommerce-#{BigCommerce::VERSION}.gem"
+  sh "gem push bigcommerce-#{BigCommerce::VERSION}.gem"
 end
 
 task :clean do
