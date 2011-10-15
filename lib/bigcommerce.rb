@@ -9,5 +9,5 @@ require File.join(File.dirname(__FILE__), 'bigcommerce', 'api')
 require File.join(File.dirname(__FILE__), 'bigcommerce', 'connection')
 
 module BigCommerce
-  VERSION = "0.0.4"
+  VERSION = "0.0.5"
 end
