@@ -17,7 +17,7 @@ module BigCommerce
 		  @connection.api_key = api_key
 		end
 		
-		def verify_peer=(verify=true)
+		def verify_peer=(verify)
 		  @connection.verify_peer = verify
 		end
 		
