@@ -2,7 +2,7 @@ require 'rubygems'
 require 'test/unit'
 require 'fakeweb'
 require 'mocha'
-require 'lib/bigcommerce'
+require "bigcommerce"
 
 FakeWeb.allow_net_connect = false
 
