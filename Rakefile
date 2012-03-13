@@ -1,16 +1,11 @@
-
 require 'lib/bigcommerce'
+require 'rake/testtask'
+require 'bundler'
+Bundler::GemHelper.install_tasks
 
-task :build do
-  sh "gem build bigcommerce.gemspec"
+desc 'Test BigCommerceApi'
+Rake::TestTask.new(:test) do |t|
+  t.libs << 'test'
+  t.pattern = 'test/**/*_test.rb'
+  t.verbose = true
 end
-
-task :publish => :build do
-  sh "gem push bigcommerce-#{BigCommerce::VERSION}.gem"
-end
-
-task :clean do
-  sh "rm *.gem"
-end
-
-task :release => [:publish, :clean]
