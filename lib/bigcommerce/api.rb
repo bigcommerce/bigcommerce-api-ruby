@@ -40,7 +40,7 @@ module BigCommerce
       @connection.get '/time'
     end
 
-    def get_products
+    def get_products(params={})
       @connection.get '/products'
     end
 
@@ -56,16 +56,16 @@ module BigCommerce
       @connection.get '/categories/' + id.to_s
     end
 
-    def get_orders
-      @connection.get('/orders')
+    def get_orders(params={})
+      @connection.get('/orders', params)
     end
 
-    def get_orders_by_date(date)
+    def get_orders_by_date(date, params={})
       if date.is_a?(String)
         date = DateTime.parse(date)
       end
       date = to_rfc2822(date)
-      @connection.get '/orders?min_date_created=' + CGI::escape(date)
+      @connection.get('/orders', params.merge!(:min_date_created => CGI::escape(date)))
     end
 
     def get_orders_count
