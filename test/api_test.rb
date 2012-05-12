@@ -29,19 +29,40 @@ class ApiTest < Test::Unit::TestCase
   def test_get_order
     @api.connection.expects(:get).with("/orders/100")
     @api.get_order(100)
-
   end
 
-
   def test_get_orders
-    @api.connection.expects(:get).with("/orders")
+    @api.connection.expects(:get).with("/orders", {})
     @api.get_orders
   end
 
+  def test_get_orders_with_pagination
+    @api.connection.expects(:get).with("/orders", {:page=>2})
+    @api.get_orders(:page => 2)
+  end
+
+  def test_get_orders_with_limit
+    @api.connection.expects(:get).with("/orders", {:limit => 10})
+    @api.get_orders(:limit => 10)
+  end
+
+  def test_get_orders_with_pagination_and_limit
+    @api.connection.expects(:get).with("/orders", {:limit=>10, :page=>2})
+     @api.get_orders(:limit => 10, :page => 2)
+  end
+
+  def test_get_orders_by_date_with_pagination
+    # RFC 2822 format is required
+    @api.connection.expects(:get).with("/orders", {:min_date_created => CGI::escape(@rfc2822_datetime), :page => 2})
+
+    # Test DateTime
+    @api.get_orders_by_date(DateTime.parse('2012-03-13 12:45:26 GMT'), :page => 2)
+
+  end
 
   def test_get_orders_by_date_with_date_time
     # RFC 2822 format is required
-    @api.connection.expects(:get).with("/orders?min_date_created=#{CGI::escape(@rfc2822_datetime)}")
+    @api.connection.expects(:get).with("/orders", {:min_date_created => CGI::escape(@rfc2822_datetime)})
 
     # Test DateTime
     @api.get_orders_by_date(DateTime.parse('2012-03-13 12:45:26 GMT'))
@@ -50,7 +71,7 @@ class ApiTest < Test::Unit::TestCase
 
   def test_get_orders_by_date_with_date
     # RFC 2822 format is required
-    @api.connection.expects(:get).with("/orders?min_date_created=#{CGI::escape(@rfc2822_date)}")
+    @api.connection.expects(:get).with("/orders", {:min_date_created => CGI::escape(@rfc2822_date)})
 
     # Test Date
     @api.get_orders_by_date(Date.parse("2012-03-12"))
@@ -59,8 +80,8 @@ class ApiTest < Test::Unit::TestCase
 
   def test_get_orders_by_date_with_string
     # RFC 2822 format is required
-    @api.connection.expects(:get).with("/orders?min_date_created=#{CGI::escape(@rfc2822_datetime)}")
-    @api.connection.expects(:get).with("/orders?min_date_created=#{CGI::escape(@rfc2822_date)}")
+    @api.connection.expects(:get).with("/orders", {:min_date_created=> CGI::escape(@rfc2822_datetime)})
+    @api.connection.expects(:get).with("/orders", {:min_date_created=> CGI::escape(@rfc2822_date)})
 
     # Test String
     @api.get_orders_by_date('2012-03-13 12:45:26 GMT')
