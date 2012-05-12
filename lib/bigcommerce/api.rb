@@ -45,7 +45,7 @@ module BigCommerce
     end
 
     def get_product(id)
-      @connection.get '/products/' + id
+      @connection.get '/products/' + id.to_s
     end
 
     def get_categories
@@ -53,7 +53,7 @@ module BigCommerce
     end
 
     def get_category(id)
-      @connection.get '/categories/' + id
+      @connection.get '/categories/' + id.to_s
     end
 
     def get_orders
@@ -73,11 +73,11 @@ module BigCommerce
     end
 
     def get_order(id)
-      @connection.get '/orders/' + id
+      @connection.get '/orders/' + id.to_s
     end
 
     def get_order_products(id)
-      @connection.get '/orders/' + id + '/products'
+      @connection.get '/orders/' + id.to_s + '/products'
     end
 
     def get_customers
@@ -85,7 +85,7 @@ module BigCommerce
     end
 
     def get_customer(id)
-      @connection.get '/customers/' + id
+      @connection.get '/customers/' + id.to_s
     end
 
     private

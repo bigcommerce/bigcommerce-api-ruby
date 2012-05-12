@@ -26,6 +26,12 @@ class ApiTest < Test::Unit::TestCase
     @api.get_time
   end
 
+  def test_get_order
+    @api.connection.expects(:get).with("/orders/100")
+    @api.get_order(100)
+
+  end
+
 
   def test_get_orders
     @api.connection.expects(:get).with("/orders")
