@@ -48,6 +48,10 @@ module BigCommerce
 		def get_orders
 			@connection.get('/orders')
 		end
+		
+		def get_orders_paged(page)
+  			@connection.get '/orders?limit=50&page=' + page.to_s
+		end
 
 		def get_orders_by_date(date)
 			@connection.get '/orders?min_date_created=' + CGI::escape(date)
