@@ -1,6 +1,6 @@
-#require 'lib/bigcommerce'
-require 'rake/testtask'
+require 'rubygems'
 require 'bundler'
+require 'rake/testtask'
 Bundler::GemHelper.install_tasks
 
 Rake::TestTask.new(:test) do |t|
