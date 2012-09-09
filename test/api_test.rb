@@ -9,7 +9,6 @@ class ApiTest < Test::Unit::TestCase
 
     @rfc2822_datetime = "Tue, 13 Mar 2012 12:45:26 +0000"
     @rfc2822_date = "Mon, 12 Mar 2012 00:00:00 +0000"
-
   end
 
   def teardown
@@ -48,7 +47,7 @@ class ApiTest < Test::Unit::TestCase
 
   def test_get_orders_with_pagination_and_limit
     @api.connection.expects(:get).with("/orders", {:limit=>10, :page=>2})
-     @api.get_orders(:limit => 10, :page => 2)
+    @api.get_orders(:limit => 10, :page => 2)
   end
 
   def test_get_orders_by_date_with_pagination
@@ -57,7 +56,6 @@ class ApiTest < Test::Unit::TestCase
 
     # Test DateTime
     @api.get_orders_by_date(DateTime.parse('2012-03-13 12:45:26 GMT'), :page => 2)
-
   end
 
   def test_get_orders_by_date_with_date_time
@@ -66,7 +64,6 @@ class ApiTest < Test::Unit::TestCase
 
     # Test DateTime
     @api.get_orders_by_date(DateTime.parse('2012-03-13 12:45:26 GMT'))
-
   end
 
   def test_get_orders_by_date_with_date
@@ -75,7 +72,6 @@ class ApiTest < Test::Unit::TestCase
 
     # Test Date
     @api.get_orders_by_date(Date.parse("2012-03-12"))
-
   end
 
   def test_get_orders_by_date_with_string
@@ -86,9 +82,6 @@ class ApiTest < Test::Unit::TestCase
     # Test String
     @api.get_orders_by_date('2012-03-13 12:45:26 GMT')
     @api.get_orders_by_date('2012-03-12')
-
-
   end
-
 
 end
