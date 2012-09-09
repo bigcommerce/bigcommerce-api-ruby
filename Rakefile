@@ -1,12 +1,10 @@
-#require 'lib/bigcommerce'
-require 'rake/testtask'
+require 'rubygems'
 require 'bundler'
 Bundler::GemHelper.install_tasks
+require 'rspec/core/rake_task'
 
-Rake::TestTask.new(:test) do |t|
-  t.libs << 'test'
-  t.pattern = 'test/**/*_test.rb'
-  t.verbose = true
+RSpec::Core::RakeTask.new(:spec) do |spec|
+  spec.pattern = 'spec/**/*_spec.rb'
 end
 
-task :default => :test
+task :default => :spec
