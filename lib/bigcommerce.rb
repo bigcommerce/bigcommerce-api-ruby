@@ -1,13 +1,9 @@
+require "rubygems"
 require "cgi"
 require "uri"
 require "net/https"
-
-require "rubygems"
 require "json"
 
-require File.join(File.dirname(__FILE__), 'bigcommerce', 'api')
-require File.join(File.dirname(__FILE__), 'bigcommerce', 'connection')
-
-module BigCommerce
-  VERSION = "0.0.5"
-end
+require File.expand_path('../bigcommerce/version', __FILE__)
+require File.expand_path('../bigcommerce/api', __FILE__)
+require File.expand_path('../bigcommerce/connection', __FILE__)

@@ -1,5 +1,5 @@
-$:.push File.expand_path("../lib", __FILE__)
-require "bigcommerce"
+# -*- encoding: utf-8 -*-
+require File.expand_path('../lib/bigcommerce/version', __FILE__)
 
 Gem::Specification.new do |s|
   s.name     = "bigcommerce"
@@ -11,9 +11,10 @@ Gem::Specification.new do |s|
   s.description = "Enables Ruby applications to communicate with the BigCommerce API V2 (currently in beta trial)."
   s.has_rdoc = false
   s.authors  = ["BigCommerce"]
-  s.files = ["LICENSE", "Rakefile", "README.md", "bigcommerce.gemspec"] + Dir['**/*.rb'] + Dir['**/*.crt']
+  s.files = ["LICENSE", "Rakefile", "README.md", "bigcommerce.gemspec"] + Dir['./**/*.rb'] + Dir['./**/*.crt']
   s.add_dependency('json')
+  s.add_development_dependency("rake")
   s.add_development_dependency("fakeweb")
   s.add_development_dependency("mocha")
-
+  s.add_development_dependency("rspec", '~> 2.11')
 end
