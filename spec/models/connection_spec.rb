@@ -20,13 +20,18 @@ describe BigCommerce::Connection do
     end
 
     it "sends requests with no params" do
-      connection.should_receive(:request).once.with(:get, "/orders", nil, nil)
+      connection.should_receive(:request).once.with(:get, "/orders", nil, nil, {})
       connection.get("/orders")
     end
 
     it "sends requests with with params" do
-      connection.should_receive(:request).once.with(:get, "/orders", nil, {:page => 3})
+      connection.should_receive(:request).once.with(:get, "/orders", nil, {:page => 3}, {})
       connection.get("/orders", {:page => 3})
+    end
+
+    it "sends requests with headers" do
+      connection.should_receive(:request).once.with(:get, "/orders", nil, {:page => 3}, {'Some-Header' => 'abc'})
+      connection.get("/orders", {:page => 3}, {'Some-Header' => 'abc'})
     end
   end
 
@@ -40,6 +45,45 @@ describe BigCommerce::Connection do
     end
     it "leaves nil as nil" do
       connection.hash_to_params(nil).should be_nil
+    end
+  end
+
+  describe '#request' do
+    context "when GET" do
+      before do
+        Net::HTTP::Get.stub(:new) { request }
+        Net::HTTP.stub(:new) { stub.as_null_object }
+      end
+      let(:args) { [:get, path, body, params, headers] }
+      let(:path) { '/orders' }
+      let(:body) { nil }
+      let(:params) { {} }
+      let(:headers) { {} }
+      let(:request) { stub.as_null_object }
+
+      it "performs GET request to path with API prefix" do
+        Net::HTTP::Get.should_receive(:new).with("/api/v2#{path}")
+        connection.request(*args)
+      end
+
+      context "with querystring" do
+        let(:params) { {:foo => 'bar'} }
+
+        it "includes querystring" do
+          Net::HTTP::Get.should_receive(:new).with("/api/v2#{path}?foo=bar")
+          connection.request(*args)
+        end
+      end
+
+      context "with custom header present" do
+        let(:headers) { {'Some-Header' => 'abc'} }
+
+        it "includes custom header" do
+          request.should_receive(:add_field).with('Some-Header', 'abc')
+          request.stub(:add_field) # ignoring other headers
+          connection.request(*args)
+        end
+      end
     end
   end
 end

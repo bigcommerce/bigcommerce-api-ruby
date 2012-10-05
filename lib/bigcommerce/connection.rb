@@ -25,8 +25,8 @@ module BigCommerce
       @configuration.ca_file = path
     end
 
-    def get(path, params=nil)
-      request(:get, path, nil, params)
+    def get(path, params=nil, headers = {})
+      request(:get, path, nil, params, headers)
     end
 
     def post(path)
@@ -41,7 +41,7 @@ module BigCommerce
       request(:delete, path)
     end
 
-    def request(method, path, body = nil, params = {})
+    def request(method, path, body = nil, params = {}, headers = {})
 
       url = @configuration[:store_url] + '/api/v2' + path
 
@@ -79,6 +79,7 @@ module BigCommerce
       request.basic_auth(@configuration[:username], @configuration[:api_key])
       request.add_field 'Accept', 'application/json'
       request.add_field 'Content-Type', 'application/json'
+      headers.each { |key, value| request.add_field(key, value) }
 
       response = http.request(request)
 
