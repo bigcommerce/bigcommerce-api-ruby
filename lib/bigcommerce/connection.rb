@@ -25,26 +25,24 @@ module BigCommerce
       @configuration.ca_file = path
     end
 
-    def get(path, params=nil)
-      request(:get, path, nil, params)
+    def get(path, params=nil, headers = {})
+      request(:get, path, nil, params, headers)
     end
 
-    def post(path)
-      request(:post, path)
+    def post(path, params=nil, headers = {})
+      request(:post, path, nil, params, headers)
     end
 
-    def put(path)
-      request(:put, path)
+    def put(path, params=nil, headers = {})
+      request(:put, path, nil, params, headers)
     end
 
-    def delete(path)
-      request(:delete, path)
+    def delete(path, params=nil, headers = {})
+      request(:delete, path, nil, params, headers)
     end
 
-    def request(method, path, body = nil, params = {})
-
+    def request(method, path, body = nil, params = {}, headers = {})
       url = @configuration[:store_url] + '/api/v2' + path
-
       param_string = hash_to_params(params) unless params.nil? || params.empty?
 
       unless (param_string.nil? || param_string.empty?)
@@ -52,7 +50,6 @@ module BigCommerce
       else
         uri = URI.parse(url)
       end
-
 
       http = Net::HTTP.new(uri.host, uri.port)
       http.use_ssl = true
@@ -79,6 +76,7 @@ module BigCommerce
       request.basic_auth(@configuration[:username], @configuration[:api_key])
       request.add_field 'Accept', 'application/json'
       request.add_field 'Content-Type', 'application/json'
+      headers.each { |k,v| request.add_field(k, v) }
 
       response = http.request(request)
 
