@@ -96,6 +96,10 @@ module BigCommerce
       @connection.post('/products', :body => attributes.to_xml(:root => 'product'))
     end
 
+    def update_product(id, attributes)
+      @connection.put("/products/#{id}", :body => attributes.to_xml(:root => 'product'))
+    end
+
     private
 
     def get_count(result)

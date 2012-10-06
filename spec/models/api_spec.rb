@@ -98,6 +98,15 @@ describe BigCommerce::Api do
           api.create_product(attributes)
         end
       end
+
+      describe '#update_product' do
+        before { attributes.stub(:to_xml).with(:root => 'product') { 'product_xml' } }
+        let(:attributes) { stub(:attributes) }
+        it "updates product with passed attributes" do
+          api.connection.should_receive(:put).with('/products/123', :body => 'product_xml')
+          api.update_product(123, attributes)
+        end
+      end
     end
   end
 end
