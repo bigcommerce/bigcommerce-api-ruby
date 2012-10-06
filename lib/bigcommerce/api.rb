@@ -57,7 +57,7 @@ module BigCommerce
     end
 
     def get_orders(params={})
-      @connection.get('/orders', params)
+      @connection.get('/orders', :params => params)
     end
 
     def get_orders_by_date(date, params={})
@@ -65,7 +65,7 @@ module BigCommerce
         date = DateTime.parse(date)
       end
       date = to_rfc2822(date)
-      @connection.get('/orders', params.merge!(:min_date_created => CGI::escape(date)))
+      @connection.get('/orders', :params => params.merge!(:min_date_created => CGI::escape(date)))
     end
 
     def get_orders_count
@@ -80,12 +80,24 @@ module BigCommerce
       @connection.get '/orders/' + id.to_s + '/products'
     end
 
+    def get_orders_modified_since(datetime)
+      @connection.get('/orders', :headers => {'If-Modified-Since' => CGI::escape(to_rfc2822(datetime))})
+    end
+
     def get_customers
       @connection.get '/customers'
     end
 
     def get_customer(id)
       @connection.get '/customers/' + id.to_s
+    end
+
+    def create_product(attributes)
+      @connection.post('/products', :body => attributes.to_xml(:root => 'product'))
+    end
+
+    def update_product(id, attributes)
+      @connection.put("/products/#{id}", :body => attributes.to_xml(:root => 'product'))
     end
 
     private
