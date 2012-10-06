@@ -92,6 +92,10 @@ module BigCommerce
       @connection.get '/customers/' + id.to_s
     end
 
+    def create_product(attributes)
+      @connection.post('/products', :body => attributes.to_xml(:root => 'product'))
+    end
+
     private
 
     def get_count(result)
