@@ -81,6 +81,12 @@ describe BigCommerce::Api do
       api.get_orders_by_date('2012-03-13 12:45:26 GMT')
       api.get_orders_by_date('2012-03-12')
     end
-  end
 
+    describe '#get_orders_modified_since' do
+      it "retrieves orders modified since date-time" do
+        api.connection.should_receive(:get).with('/orders', :headers => {'If-Modified-Since' => CGI::escape(rfc2822_datetime)})
+        api.get_orders_modified_since(DateTime.parse(rfc2822_datetime))
+      end
+    end
+  end
 end
