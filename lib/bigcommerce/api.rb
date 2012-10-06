@@ -80,6 +80,10 @@ module BigCommerce
       @connection.get '/orders/' + id.to_s + '/products'
     end
 
+    def get_orders_modified_since(datetime)
+      @connection.get '/orders', nil, 'If-Modified-Since' => CGI::escape(to_rfc2822(datetime))
+    end
+
     def get_customers
       @connection.get '/customers'
     end
