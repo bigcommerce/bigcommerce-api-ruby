@@ -40,43 +40,43 @@ describe BigCommerce::Api do
     end
 
     it "retrieves orders" do
-      api.connection.should_receive(:get).once.with("/orders", {})
+      api.connection.should_receive(:get).once.with("/orders", :params => {})
       api.get_orders
     end
 
     it "retrieves orders with pagination" do
-      api.connection.should_receive(:get).once.with("/orders", {:page=>2})
+      api.connection.should_receive(:get).once.with("/orders", :params => {:page => 2})
       api.get_orders(:page => 2)
     end
 
     it "retrieves orders with limit" do
-      api.connection.should_receive(:get).once.with("/orders", {:limit => 10})
+      api.connection.should_receive(:get).once.with("/orders", :params => {:limit => 10})
       api.get_orders(:limit => 10)
     end
 
     it "retrieves orders with pagination and limit" do
-      api.connection.should_receive(:get).once.with("/orders", {:limit=>10, :page=>2})
+      api.connection.should_receive(:get).once.with("/orders", :params => {:limit => 10, :page => 2})
       api.get_orders(:limit => 10, :page => 2)
     end
 
     it "converts from DateTime when retrieving orders by date" do
-      api.connection.should_receive(:get).once.with("/orders", {:min_date_created => CGI::escape(rfc2822_datetime)})
+      api.connection.should_receive(:get).once.with("/orders", :params => {:min_date_created => CGI::escape(rfc2822_datetime)})
       api.get_orders_by_date(DateTime.parse('2012-03-13 12:45:26 GMT'))
     end
 
     it "converts from DateTime when retrieving orders by date with pagination" do
-      api.connection.should_receive(:get).once.with("/orders", {:min_date_created => CGI::escape(rfc2822_datetime), :page => 2})
+      api.connection.should_receive(:get).once.with("/orders", :params => {:min_date_created => CGI::escape(rfc2822_datetime), :page => 2})
       api.get_orders_by_date(DateTime.parse('2012-03-13 12:45:26 GMT'), :page => 2)
     end
 
     it "converts from Date when retrieving orders by date" do
-      api.connection.should_receive(:get).once.with("/orders", {:min_date_created => CGI::escape(rfc2822_date)})
+      api.connection.should_receive(:get).once.with("/orders", :params => {:min_date_created => CGI::escape(rfc2822_date)})
       api.get_orders_by_date(Date.parse("2012-03-12"))
     end
 
     it "converts from a date-time string when retrieving orders by date" do
-      api.connection.should_receive(:get).once.with("/orders", {:min_date_created=> CGI::escape(rfc2822_datetime)})
-      api.connection.should_receive(:get).once.with("/orders", {:min_date_created=> CGI::escape(rfc2822_date)})
+      api.connection.should_receive(:get).once.with("/orders", :params => {:min_date_created=> CGI::escape(rfc2822_datetime)})
+      api.connection.should_receive(:get).once.with("/orders", :params => {:min_date_created=> CGI::escape(rfc2822_date)})
 
       api.get_orders_by_date('2012-03-13 12:45:26 GMT')
       api.get_orders_by_date('2012-03-12')

@@ -57,7 +57,7 @@ module BigCommerce
     end
 
     def get_orders(params={})
-      @connection.get('/orders', params)
+      @connection.get('/orders', :params => params)
     end
 
     def get_orders_by_date(date, params={})
@@ -65,7 +65,7 @@ module BigCommerce
         date = DateTime.parse(date)
       end
       date = to_rfc2822(date)
-      @connection.get('/orders', params.merge!(:min_date_created => CGI::escape(date)))
+      @connection.get('/orders', :params => params.merge!(:min_date_created => CGI::escape(date)))
     end
 
     def get_orders_count
