@@ -44,6 +44,10 @@ module BigCommerce
       @connection.get '/products'
     end
 
+    def get_brands
+      @connection.get '/brands'
+    end
+
     def get_product(id)
       @connection.get '/products/' + id.to_s
     end
