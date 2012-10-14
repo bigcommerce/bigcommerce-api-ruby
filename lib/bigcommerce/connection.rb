@@ -42,7 +42,8 @@ module BigCommerce
     end
 
     def request(method, path, options = {})
-      body, params, headers = options.values_at(:body, :params, :headers)
+      body, params = options.values_at(:body, :params)
+      headers = options[:headers] || {}
       url = @configuration[:store_url] + '/api/v2' + path
       param_string = hash_to_params(params) unless params.nil? || params.empty?
 
