@@ -88,6 +88,10 @@ module BigCommerce
       @connection.get '/customers/' + id.to_s
     end
 
+
+    def get_product_images(id)
+      @connection.get '/products/' + id.to_s + '/images'
+    end
     private
 
     def get_count(result)

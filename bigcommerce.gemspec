@@ -13,6 +13,7 @@ Gem::Specification.new do |s|
   s.authors  = ["BigCommerce"]
   s.files = ["LICENSE", "Rakefile", "README.md", "bigcommerce.gemspec"] + Dir['**/*.rb'] + Dir['**/*.crt']
   s.add_dependency('json')
+  s.add_dependency('savon')
   s.add_development_dependency("fakeweb")
   s.add_development_dependency("mocha")
 
