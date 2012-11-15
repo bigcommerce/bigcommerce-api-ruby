@@ -17,11 +17,11 @@ shared_examples_for "request method accepting optional params and headers" do
   end
 end
 
-describe BigCommerce::Connection do
+describe Bigcommerce::Connection do
   before { FakeWeb.allow_net_connect = false }
   after { FakeWeb.clean_registry }
   subject(:connection) do
-    BigCommerce::Connection.new(
+    Bigcommerce::Connection.new(
       :store_url => "https://store-12345.mybigcommerce.com",
       :username => "test",
       :api_key => "12345"

@@ -1,4 +1,4 @@
-module BigCommerce
+module Bigcommerce
   class Api
 
     def initialize(configuration={})
