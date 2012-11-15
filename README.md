@@ -1,7 +1,7 @@
-BigCommerce API V2 - Ruby Client
+Bigcommerce API V2 - Ruby Client
 ================================
 
-This library provides a wrapper around the BigCommerce REST API for use within
+This library provides a wrapper around the Bigcommerce REST API for use within
 Ruby apps or via the console.
 
 Note
@@ -19,7 +19,7 @@ Requirements
 
 To connect to the API, you need the following credentials:
 
-- Secure URL pointing to a BigCommerce store
+- Secure URL pointing to a Bigcommerce store
 - Username of an authorized admin user of the store
 - API key for the user
 
@@ -46,7 +46,7 @@ follows:
 ```
 require 'bigcommerce'
 
-api = BigCommerce::Api.new({
+api = Bigcommerce::Api.new({
 	:store_url => "https://store.mybigcommerce.com",
 	:username  => "admin",
 	:api_key   => "d81aada4c19c34d913e18f07fd7f36ca"
@@ -71,7 +71,7 @@ The API object acts as a gateway to all top level resources in the V2 API.
 ```
 $ irb
 >
-> api = BigCommerce::Api.new(...)
+> api = Bigcommerce::Api.new(...)
 >
 > api.get_products.each { |product| puts product.name }
 >
@@ -83,7 +83,7 @@ $ irb
 > category.name = "Laptops"
 > category.update
 >
-> brand = BigCommerce::Api::Brand.new
+> brand = Bigcommerce::Api::Brand.new
 > brand.name = "Samsung"
 > brand.create
 >

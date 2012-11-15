@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe BigCommerce::Api do
+describe Bigcommerce::Api do
   before do
     FakeWeb.allow_net_connect = false
     FakeWeb.register_uri(:get, %r|https://test:12345@store-12345.mybigcommerce.com/api/v2/orders|, :body => load_json_fixture('order'), :status => 200, :content_type => "text/json")
@@ -11,7 +11,7 @@ describe BigCommerce::Api do
   end
 
   let(:api) do
-    BigCommerce::Api.new({
+    Bigcommerce::Api.new({
       :store_url => "https://store-12345.mybigcommerce.com",
       :username => "test", :api_key => "12345"
     })
@@ -74,7 +74,7 @@ describe BigCommerce::Api do
       api.get_orders_by_date(Date.parse("2012-03-12"))
     end
 
-    it "converts from a date-time string when retrieving orders by date" do
+    it "converts from a datetime string when retrieving orders by date" do
       api.connection.should_receive(:get).once.with("/orders", :params => {:min_date_created=> CGI::escape(rfc2822_datetime)})
       api.connection.should_receive(:get).once.with("/orders", :params => {:min_date_created=> CGI::escape(rfc2822_date)})
 
