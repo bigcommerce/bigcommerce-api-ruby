@@ -1,6 +1,6 @@
 module Bigcommerce
-  MAJOR = 0 unless defined? Bigcommerce::MAJOR
-  MINOR = 0 unless defined? Bigcommerce::MINOR
-  PATCH = 6 unless defined? Bigcommerce::PATCH
-  VERSION = [MAJOR, MINOR, PATCH].join('.') unless defined? Bigcommerce::VERSION
+  major = 0
+  minor = 0
+  patch = 6
+  VERSION = [major, minor, patch].join('.') unless defined? Bigcommerce::VERSION
 end
