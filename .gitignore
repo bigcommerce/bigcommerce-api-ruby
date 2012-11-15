@@ -1,2 +1,7 @@
-.idea/
-*.rbc
+# Ignore bundler
+/.bundle
+/vendor/bundle
+/pkg
+
+# Ignore ci_reporter
+/spec/reports

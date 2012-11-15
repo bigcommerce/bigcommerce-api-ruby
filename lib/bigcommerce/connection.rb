@@ -1,4 +1,4 @@
-module BigCommerce
+module Bigcommerce
   class Connection
 
     def initialize(configuration)
