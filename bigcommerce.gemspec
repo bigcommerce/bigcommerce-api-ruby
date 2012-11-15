@@ -11,7 +11,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency("rspec", '~> 2.11')
   s.authors  = ["Bigcommerce"]
   s.date     = Time.now.strftime("%Y-%m-%d")
-  s.description = "Enables Ruby applications to communicate with the Bigcommerce API V2 (currently in beta trial)."
+  s.description = "Enables Ruby applications to communicate with the Bigcommerce API V2."
   s.email    = "dev-accounts@bigcommerce.com"
   s.files = ["LICENSE", "Rakefile", "README.md", "bigcommerce.gemspec"] + Dir['./**/*.rb'] + Dir['./**/*.crt']
   s.has_rdoc = false
