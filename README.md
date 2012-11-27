@@ -46,7 +46,7 @@ follows:
 ```
 require 'bigcommerce'
 
-api = Bigcommerce::Api.new({
+api = BigCommerce::Api.new({
 	:store_url => "https://store.mybigcommerce.com",
 	:username  => "admin",
 	:api_key   => "d81aada4c19c34d913e18f07fd7f36ca"
@@ -71,7 +71,7 @@ The API object acts as a gateway to all top level resources in the V2 API.
 ```
 $ irb
 >
-> api = Bigcommerce::Api.new(...)
+> api = BigCommerce::Api.new(...)
 >
 > api.get_products.each { |product| puts product.name }
 >
@@ -83,7 +83,7 @@ $ irb
 > category.name = "Laptops"
 > category.update
 >
-> brand = Bigcommerce::Api::Brand.new
+> brand = BigCommerce::Api::Brand.new
 > brand.name = "Samsung"
 > brand.create
 >
