@@ -51,7 +51,11 @@ module Bigcommerce
     end
 
     def create_brands(options={})
-       @connection.post("/categories",options)
+       @connection.post("/brands",options)
+    end
+
+    def update_brands(id,options={})
+       @connection.put("/brands/#{id}",options)
     end
 
     #category
@@ -68,6 +72,10 @@ module Bigcommerce
        @connection.post("/categories",options)
     end
 
+    def update_categories(id,options={})
+       @connection.put("/categories/#{id}",options)
+    end
+
     #country
 
     def get_countries(options={})
@@ -78,7 +86,36 @@ module Bigcommerce
       @connection.get("/countries/#{id}",{})
     end
 
-    #category
+    #states
+    def get_countries_states(options={})
+      @connection.get("/countries/states",options)
+    end
+
+    def get_countries_state(id,options={})
+      @connection.get("/countries/#{id}/states",{})
+    end
+
+     #customers
+
+    def get_customers(options = {})
+      @connection.get("/customers",options)
+    end
+
+    def get_customer(id)
+      @connection.get('/customers/' + id.to_s,{})
+    end
+
+     #customers/address
+
+    def get_customer_addresses(id,options = {})
+      @connection.get("/customers/#{id}/addresses",options)
+    end
+
+    def get_customer_address(customer_id,address_id,options)
+      @connection.get("/customers/#{customer_id}/addresses/#{address_id}",{})
+    end
+
+    #options
 
     def get_options(options={})
        @connection.get("/options",options)
@@ -86,6 +123,51 @@ module Bigcommerce
 
     def get_option(id)
       @connection.get("/options/#{id}",{})
+    end
+
+    def create_options(options={})
+      @connection.post("/options",options)
+    end
+
+    def update_options(id,options={})
+      @connection.put("/options/#{id}",options)
+    end
+
+    #options/values
+
+    def get_options_values(options={})
+       @connection.get("/options/values",options)
+    end
+
+    def get_options_value(id)
+      @connection.get("/options/#{id}/values",{})
+    end
+
+    def create_options_values(options_id,options={})
+      @connection.post("/options/#{options_id}/values",options)
+    end
+
+    def update_options_values(options_id,values_id,options={})
+      @connection.put("/options/#{options_id}/values/#{values_id}",options)
+    end
+
+    #optionset
+   
+
+    def get_optionsets(options={})
+       @connection.get("/optionsets",options)
+    end
+
+    def get_optionset(id)
+      @connection.get("/optionsets/#{id}",{})
+    end
+
+    def create_optionsets(options={})
+      @connection.post("/optionsets",options)
+    end
+
+    def update_optionsets(id,options={})
+      @connection.put("/optionsets/#{id}",options)
     end
 
     #products
@@ -105,15 +187,7 @@ module Bigcommerce
     def update_products(id, options={})
       @connection.put("/products/#{id}", options)
     end
-
-    #options
-    def get_options(options={})
-      @connection.get("/options",options)
-    end
-
-    def create_options(options={})
-      @connection.post("/options",options)
-    end
+    
 
     #order
 
@@ -134,19 +208,7 @@ module Bigcommerce
     end
 
 
-    #customers
-
-    def get_customers(options = {})
-      @connection.get("/customers",options)
-    end
-
-    def get_customer(id)
-      @connection.get('/customers/' + id.to_s,{})
-    end
-
-    def get_customer_count
-      @connection.get('/customers/count',{})
-    end
+   
 
     
 
