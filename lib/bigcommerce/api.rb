@@ -36,13 +36,6 @@ module Bigcommerce
       datetime.strftime("%a, %d %b %Y %H:%M:%S %z")
     end
 
-    def create_path(res,options)
-      params  = options.map { |k,v| "#{k}=#{CGI.escape(v)}" }.join("&")
-      path = res
-      path   += "?#{params}" if not params.empty?
-      return path
-    end
-
     def get_time
       @connection.get '/time'
     end
@@ -50,75 +43,82 @@ module Bigcommerce
     #brands
 
     def get_brands(options={})
-      @connection.get create_path("/brands",options)
+      @connection.get("/brands",options)
     end
 
     def get_brand(id)
-      @connection.get create_path("/brands/#{id}",{})
+      @connection.get("/brands/#{id}",{})
+    end
+
+    def create_brands(options={})
+       @connection.post("/categories",options)
     end
 
     #category
 
     def get_categories(options={})
-       @connection.get create_path("/categories",options)
+       @connection.get("/categories",options)
     end
 
     def get_category(id)
-      @connection.get create_path("/categories/#{id}",{})
+      @connection.get("/categories/#{id}",{})
+    end
+
+    def create_categories(options={})
+       @connection.post("/categories",options)
     end
 
     #country
 
     def get_countries(options={})
-      @connection.get create_path("/countries",options)
+      @connection.get("/countries",options)
     end
 
     def get_country(id)
-      @connection.get create_path("/countries/#{id}",{})
+      @connection.get("/countries/#{id}",{})
     end
 
     #category
 
     def get_options(options={})
-       @connection.get create_path("/options",options)
+       @connection.get("/options",options)
     end
 
     def get_option(id)
-      @connection.get create_path("/options/#{id}",{})
+      @connection.get("/options/#{id}",{})
     end
 
     #products
 
     def get_products(options={})
-      @connection.get create_path("/products",options)
+      @connection.get("/products",options)
     end
 
     def get_product(id)
-      @connection.get create_path("/products/#{id}",{})
+      @connection.get("/products/#{id}",{})
     end
 
-     def create_product(attributes)
-      @connection.post('/products', :body => attributes.to_xml(:root => 'product'))
+     def create_products(options={})
+      @connection.post('/products', options)
     end
 
-    def update_product(id, attributes)
-      @connection.put("/products/#{id}", :body => attributes.to_xml(:root => 'product'))
+    def update_products(id, options={})
+      @connection.put("/products/#{id}", options)
     end
 
-   
+    #options
+    def get_options(options={})
+      @connection.get("/options",options)
+    end
+
+    def create_options(options={})
+      @connection.post("/options",options)
+    end
 
     #order
 
     def get_orders(options={})
-      @connection.get create_path("/orders",options)
-    end
-
-    def get_orders_by_date(date, params={})
-      if date.is_a?(String)
-        date = DateTime.parse(date)
-      end
-      date = to_rfc2822(date)
-      @connection.get('/orders', :params => params.merge!(:min_date_created => CGI::escape(date)))
+      @connection.get("/orders",options)
     end
 
     def get_orders_count
@@ -126,30 +126,26 @@ module Bigcommerce
     end
 
     def get_order(id)
-      @connection.get create_path("/products/#{id}",{})
+      @connection.get("/products/#{id}",{})
     end
 
     def get_order_products(id)
-      @connection.get '/orders/' + id.to_s + '/products'
+      @connection.get('/orders/' + id.to_s + '/products',{})
     end
 
-    def get_orders_modified_since(datetime)
-      @connection.get('/orders', :headers => {'If-Modified-Since' => CGI::escape(to_rfc2822(datetime))})
-    end
 
     #customers
 
-    def get_customers(_filters = {})
-      url_filters = _filters.map{|k,v| "#{k}=#{v}"}.join("&")
-      @connection.get "/customers#{url_filters.present? ? ("?" + url_filters) : ""}"
+    def get_customers(options = {})
+      @connection.get("/customers",options)
     end
 
     def get_customer(id)
-      @connection.get '/customers/' + id.to_s
+      @connection.get('/customers/' + id.to_s,{})
     end
 
     def get_customer_count
-      @connection.get '/customers/count'
+      @connection.get('/customers/count',{})
     end
 
     
