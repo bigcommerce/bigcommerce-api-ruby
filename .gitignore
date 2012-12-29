@@ -1,7 +1,8 @@
-# Ignore bundler
+# bundler
 /.bundle
-/vendor/bundle
+/Gemfile.lock
 /pkg
+/vendor/bundle
 
-# Ignore ci_reporter
+# ci_reporter
 /spec/reports
