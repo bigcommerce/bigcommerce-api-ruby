@@ -111,7 +111,7 @@ module Bigcommerce
       @connection.get("/customers/#{id}/addresses",options)
     end
 
-    def get_customer_address(customer_id,address_id,options)
+    def get_customer_address(customer_id,address_id)
       @connection.get("/customers/#{customer_id}/addresses/#{address_id}",{})
     end
 
