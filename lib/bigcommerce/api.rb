@@ -22,8 +22,8 @@ module Bigcommerce
       @connection.api_key = api_key
     end
 
-    def verify_peer=(verify)
-      @connection.verify_peer = verify
+    def verify_ssl=(verify)
+      @connection.verify_ssl = verify
     end
 
     def ca_file=(path)

@@ -18,31 +18,54 @@ module Bigcommerce
     end
 
     def verify_peer=(verify)
-      @configuration[:verify_peer] = verify
+      @configuration[:verify_ssl] = verify
     end
 
-    def ca_file=(path)
-      @configuration.ca_file = path
+    def ssl_ca_file=(path)
+      @configuration.ssl_ca_file = path
     end
 
-    def get(path, options = {})
-      request(:get, path, options)
+    def ssl_client_key=(path,passphrase=nil)
+      if passphrase.nil?
+        @configuration.ssl_client_key = OpenSSL::PKey::RSA.new(File.read(path))
+      else
+        @configuration.ssl_client_key = OpenSSL::PKey::RSA.new(File.read(path), passphrase)
+      end
     end
 
-    def post(path, options = {})
-      request(:post, path, options)
+    def ssl_client_cert=(path)
+      @configuration.client_cert = OpenSSL::X509::Certificate.new(File.read(path))
     end
 
-    def put(path, options = {})
-      request(:put, path, options)
+    def get(path, options = {}, headers = {})
+      request(:get, path, options, headers)
     end
 
-    def delete(path, options = {})
-      request(:delete, path, options)
+    def post(path, options = {}, headers = {})
+      request(:post, path, options, headers)
     end
 
-    def request(method, path, options)
+    def put(path, options = {}, headers = {})
+      request(:put, path, options, headers)
+    end
+
+    def delete(path, options = {}, headers = {})
+      request(:delete, path, options, headers)
+    end
+
+    def request(method, path, options,headers={})
       restclient = RestClient::Resource.new "#{@configuration[:store_url]}/api/v2#{path}.json", @configuration[:username], @configuration[:api_key]
+      if @configuration[:ssl_client_key] && @configuration[:ssl_client_cert] && @configuration[:ssl_ca_file]
+        restclient = RestClient::Resource.new (
+          "#{@configuration[:store_url]}/api/v2#{path}.json",
+          :username => @configuration[:username], 
+          :password => @configuration[:api_key],
+          :ssl_client_cert  =>  @configuration[:ssl_client_cert],
+          :ssl_client_key   =>  @configuration[:ssl_client_key],
+          :ssl_ca_file      =>  @configuration[:ssl_ca_file],
+          :verify_ssl       =>  @configuration[:verify_ssl]
+        )
+      end
       begin
         response = case method
                     when :get then

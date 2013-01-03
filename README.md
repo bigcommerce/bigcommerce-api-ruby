@@ -6,16 +6,12 @@ Ruby apps or via the console.
 
 Note
 ----
-
-**The Ruby Client is still in alpha and core features of the API may be
-unsupported and undocumented.**
+If you find anything that is missing or needs clean up, please feel free to fork it and submit a changes with your pull request.
 
 Requirements
 ------------
 
-- Ruby 1.8.7+
-- Rubygems
-- JSON
+- Ruby 1.9+
 
 To connect to the API, you need the following credentials:
 
@@ -25,7 +21,7 @@ To connect to the API, you need the following credentials:
 
 A valid API key is required to authenticate requests. To grant API access for
 user, go to Control Panel > Users > Edit User and make sure that the
-'Enable the XML API?' checkbox is ticked.
+'Enable API access?' checkbox is ticked.
 
 Installation
 ------------
@@ -35,6 +31,13 @@ install the package directly from Rubygems:
 
 ```
 gem install bigcommerce
+```
+
+Note - the current gem version is 1.0. The Rubygems version might be older. You can install the gem directly from this repo. If you are using rails, you can point your gemfile to this git repo directly or do a local install of the gem by -
+
+```
+gem build bigcommerce
+gem install bigcommerce-1.0.gem
 ```
 
 Configuration
@@ -52,6 +55,22 @@ api = BigCommerce::Api.new({
 	:api_key   => "d81aada4c19c34d913e18f07fd7f36ca"
 })
 ```
+
+If you want to enable SSL certificates -
+
+```
+require 'bigcommerce'
+api = BigCommerce::Api.new({
+	:store_url => "https://store.mybigcommerce.com",
+	:username  => "admin",
+	:api_key   => "d81aada4c19c34d913e18f07fd7f36ca"
+	:ssl_client_cert  =>  OpenSSL::X509::Certificate.new(File.read("cert.pem")),
+  	:ssl_client_key   =>  OpenSSL::PKey::RSA.new(File.read("key.pem"), "passphrase, if any"),
+  	:ssl_ca_file      =>  "ca_certificate.pem",
+  	:verify_ssl       =>  OpenSSL::SSL::VERIFY_PEER 
+})
+```
+Remember that the fields :ssl_client_cert, :ssl_client_key, :ssl_ca_file and :verify_ssl are all requrired when enabling SSL certs.
 
 Connecting to the store
 -----------------------
