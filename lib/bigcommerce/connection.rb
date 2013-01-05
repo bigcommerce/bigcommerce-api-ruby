@@ -56,7 +56,7 @@ module Bigcommerce
     def request(method, path, options,headers={})
       restclient = RestClient::Resource.new "#{@configuration[:store_url]}/api/v2#{path}.json", @configuration[:username], @configuration[:api_key]
       if @configuration[:ssl_client_key] && @configuration[:ssl_client_cert] && @configuration[:ssl_ca_file]
-        restclient = RestClient::Resource.new (
+        restclient = RestClient::Resource.new(
           "#{@configuration[:store_url]}/api/v2#{path}.json",
           :username => @configuration[:username], 
           :password => @configuration[:api_key],
