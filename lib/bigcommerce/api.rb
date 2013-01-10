@@ -44,6 +44,10 @@ module Bigcommerce
       @connection.get '/products'
     end
 
+    def get_product_count
+      @connection.get '/products/count/'
+    end
+
     def get_brands
       @connection.get '/brands'
     end

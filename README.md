@@ -43,7 +43,7 @@ Configuration
 To use the API client in your Ruby code, provide the required credentials as
 follows:
 
-```
+```ruby
 require 'bigcommerce'
 
 api = Bigcommerce::Api.new({
@@ -59,7 +59,7 @@ Connecting to the store
 Ping the get_time method to check that your configuration is working and you
 can connect successfully to the store:
 
-```
+```ruby
 ping = api.get_time
 ```
 
@@ -68,27 +68,25 @@ Usage
 
 The API object acts as a gateway to all top level resources in the V2 API.
 
-```
-$ irb
->
-> api = Bigcommerce::Api.new(...)
->
-> api.get_products.each { |product| puts product.name }
->
-> api.get_customers.each { |customer| puts customer.email }
->
-> puts api.get_orders_count
->
-> category = api.get_category(11)
-> category.name = "Laptops"
-> category.update
->
-> brand = Bigcommerce::Api::Brand.new
-> brand.name = "Samsung"
-> brand.create
->
-> option = api.get_option(22)
-> option.delete
->
+```ruby
+ api = Bigcommerce::Api.new(...)
+
+ api.get_products.each { |product| puts product.name }
+
+ api.get_customers.each { |customer| puts customer.email }
+
+ puts api.get_orders_count
+
+ category = api.get_category(11)
+ category.name = "Laptops"
+ category.update
+
+ brand = Bigcommerce::Api::Brand.new
+ brand.name = "Samsung"
+ brand.create
+
+ option = api.get_option(22)
+ option.delete
+
 ```
 
