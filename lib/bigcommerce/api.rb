@@ -60,6 +60,10 @@ module Bigcommerce
       @connection.get '/categories'
     end
 
+    def get_categories_count
+      @connection.get '/categories/count/'
+    end
+
     def get_category(id)
       @connection.get '/categories/' + id.to_s
     end
