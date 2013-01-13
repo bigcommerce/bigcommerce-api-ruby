@@ -87,27 +87,35 @@ Usage
 
 The API object acts as a gateway to all top level resources in the V2 API.
 
+Fetch Data
 ```
-$ irb
->
-> api = BigCommerce::Api.new(...)
->
-> api.get_products.each { |product| puts product.name }
->
-> api.get_customers.each { |customer| puts customer.email }
->
-> puts api.get_orders_count
->
-> category = api.get_category(11)
-> category.name = "Laptops"
-> category.update
->
-> brand = BigCommerce::Api::Brand.new
-> brand.name = "Samsung"
-> brand.create
->
-> option = api.get_option(22)
-> option.delete
->
+orders = api.get_orders
+orders = api.get_orders({:min_id=>100,:max_id=>101})
+orders = api.get_orders(:is_deleted => true)
+
+products = api.get_products
+products = api.get_products(:description=>"iphone", :condition=>"New")
+
+options = api.get_options
+options = api.get_options(:type=>"MT")
+...
+
+```
+Create Data
+```
+api.create_products({:name => "Spiderman - The best return",:price => 9.99,:categories => [17],:type =>"physical",:availability => "available", :weight => 1})
+
+api.update_products(31,{:name => "marvel comics spiderman",:sku => "marvel-spidey-1", :inventory_tracking => "simple", :inventory_level => 500})
+
+api.update_orders(101,{:status_id => 12, :is_deleted => true})
+
+```
+Update Data
+
+```
+api.update_products(31,{:name => "marvel comics spiderman",:sku => "marvel-spidey-1", :inventory_tracking => "simple", :inventory_level => 500})
+
+api.update_optionsets(13,{:name => "Marvel toys"})
+
 ```
 
