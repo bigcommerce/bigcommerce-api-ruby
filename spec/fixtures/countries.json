@@ -1,0 +1,10 @@
+[{
+              "id": 226,
+              "country": "United States",
+              "country_iso2": "US",
+              "country_iso3": "USA",
+              "states": {
+                  "url": "https://store-bwvr466.mybigcommerce.com/api/v2/countries/226/states.json",
+                  "resource": "/countries/226/states"
+              }
+          }]
