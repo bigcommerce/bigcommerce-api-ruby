@@ -237,7 +237,7 @@ module Bigcommerce
       @connection.get("/orderstatuses", options)
     end
 
-    def get_orderstatuses(id)
+    def get_orderstatus(id)
       @connection.get("/orderstatuses/#{id}", {})
     end
 
