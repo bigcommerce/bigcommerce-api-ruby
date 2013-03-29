@@ -1,0 +1,20 @@
+[
+    {
+        "id": 1,
+        "parent_id": 0,
+        "name": "Shop Mac",
+        "description": "",
+        "sort_order": 0,
+        "page_title": "",
+        "meta_keywords": "",
+        "meta_description": "",
+        "layout_file": "category.html",
+        "parent_category_list": [
+            1
+        ],
+        "image_file": "",
+        "is_visible": true,
+        "search_keywords": "",
+        "url": "/shop-mac/"
+    }
+]
