@@ -173,6 +173,18 @@ module Bigcommerce
       @connection.get("/orders", options)
     end
 
+    def get_orders_by_date(date, options={})
+      if date.is_a?(String)
+        date = DateTime.parse(date)
+      end
+      date = to_rfc2822(date)
+      @connection.get('/orders', options.merge!(:min_date_created => CGI::escape(date)))
+    end
+
+    def get_orders_modified_since(date)
+      @connection.get('/orders', {}, {'If-Modified-Since' => CGI::escape(to_rfc2822(date))})
+    end
+
     def get_order(id)
       @connection.get("/orders/#{id}", {})
     end
