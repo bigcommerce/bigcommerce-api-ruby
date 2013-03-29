@@ -6,3 +6,7 @@
 
 # ci_reporter
 /spec/reports
+
+#Ignore compiled gems
+*.gem
+

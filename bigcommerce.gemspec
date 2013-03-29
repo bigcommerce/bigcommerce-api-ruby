@@ -4,6 +4,7 @@ require File.expand_path('../lib/bigcommerce/version', __FILE__)
 Gem::Specification.new do |s|
   s.add_dependency('activesupport')
   s.add_dependency('json')
+  s.add_dependency('rest-client')
   s.add_development_dependency("ci_reporter")
   s.add_development_dependency("fakeweb")
   s.add_development_dependency("mocha")
