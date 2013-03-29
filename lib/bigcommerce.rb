@@ -1,6 +1,5 @@
 require "cgi"
 require "json"
-# require "net/https"
 require 'rest-client'
 require "uri"
 require 'bigcommerce/api'

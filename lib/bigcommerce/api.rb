@@ -5,7 +5,6 @@ module Bigcommerce
       @connection = Connection.new(configuration)
     end
 
-    # Added getter to ensure configuration is correct
     def connection
       @connection
     end
@@ -30,8 +29,6 @@ module Bigcommerce
       @connection.ca_file = path
     end
 
-    # Returns the date formatted as
-    # RFC 2822 string
     def to_rfc2822(datetime)
       datetime.strftime("%a, %d %b %Y %H:%M:%S %z")
     end
@@ -39,8 +36,6 @@ module Bigcommerce
     def get_time
       @connection.get '/time'
     end
-
-    #brands
 
     def get_brands(options={})
       @connection.get("/brands",options)
@@ -57,8 +52,6 @@ module Bigcommerce
     def update_brand(id,options={})
        @connection.put("/brands/#{id}",options)
     end
-
-    #category
 
     def get_categories(options={})
        @connection.get("/categories",options)
@@ -80,8 +73,6 @@ module Bigcommerce
        @connection.put("/categories/#{id}",options)
     end
 
-    #country
-
     def get_countries(options={})
       @connection.get("/countries",options)
     end
@@ -90,7 +81,6 @@ module Bigcommerce
       @connection.get("/countries/#{id}",{})
     end
 
-    #states
     def get_countries_states(options={})
       @connection.get("/countries/states",options)
     end
@@ -98,8 +88,6 @@ module Bigcommerce
     def get_countries_state(id,options={})
       @connection.get("/countries/#{id}/states",{})
     end
-
-     #customers
 
     def get_customers(options = {})
       @connection.get("/customers",options)
@@ -109,8 +97,6 @@ module Bigcommerce
       @connection.get('/customers/' + id.to_s,{})
     end
 
-     #customers/address
-
     def get_customer_addresses(id,options = {})
       @connection.get("/customers/#{id}/addresses",options)
     end
@@ -118,8 +104,6 @@ module Bigcommerce
     def get_customer_address(customer_id,address_id)
       @connection.get("/customers/#{customer_id}/addresses/#{address_id}",{})
     end
-
-    #options
 
     def get_options(options={})
        @connection.get("/options",options)
@@ -136,8 +120,6 @@ module Bigcommerce
     def update_option(id,options={})
       @connection.put("/options/#{id}",options)
     end
-
-    #options/values
 
     def get_options_values(options={})
        @connection.get("/options/values",options)
@@ -192,8 +174,6 @@ module Bigcommerce
       @connection.put("/optionsets/options/#{id}",options)
     end
 
-    #order
-
     def get_orders(options={})
       @connection.get("/orders",options)
     end
@@ -206,9 +186,6 @@ module Bigcommerce
       @connection.put("/orders/#{id}",options)
     end
 
-   
-
-    #order/coupons
     def get_orders_coupons(id)
       @connection.get("/orders/#{id}/coupons",{})
     end
@@ -217,7 +194,6 @@ module Bigcommerce
       @connection.get("/orders/#{order_id}/coupons/#{coupon_id}",{})
     end
 
-    #order/products
     def get_orders_products(id)
       @connection.get("/orders/#{id}/products",{})
     end
@@ -226,7 +202,6 @@ module Bigcommerce
       @connection.get("/orders/#{order_id}/products/#{product_id}",{})
     end
 
-    #order/shipments
     def get_orders_shipments(id)
       @connection.get("/orders/#{id}/shipments",{})
     end
@@ -243,7 +218,6 @@ module Bigcommerce
       @connection.put("/orders/#{order_id}/shipments/#{shipment_id}",options)
     end
 
-    #orders/shippingaddresses
     def get_orders_shippingaddresses(id)
       @connection.get("/orders/#{id}/shippingaddresses",{})
     end
@@ -252,7 +226,6 @@ module Bigcommerce
       @connection.get("/orders/#{order_id}/shippingaddresses/#{shippingaddress_id}",{})
     end
 
-    #orderstatuses
     def get_orderstatuses(options={})
       @connection.get("/orderstatuses",options)
     end
@@ -261,7 +234,6 @@ module Bigcommerce
       @connection.get("/orderstatuses/#{id}",{})
     end
 
-    #products
     def get_products(options={})
       @connection.get("/products",options)
     end
@@ -278,7 +250,6 @@ module Bigcommerce
       @connection.put("/products/#{id}", options)
     end
     
-    #products/bulkdiscount
     def get_products_discountrules(options={})
       @connection.get("/products/discountrules",options)
     end
@@ -287,7 +258,6 @@ module Bigcommerce
       @connection.get("/products/#{product_id}/discountrules/#{discountrule_id}",{})
     end
 
-    #products/configurablefields
     def get_products_configurablefields(options={})
       @connection.get("/products/configurablefields",options)
     end
@@ -296,7 +266,6 @@ module Bigcommerce
       @connection.get("/products/#{product_id}/configurablefields/#{configurable_field_id}",{})
     end
 
-    #products/customfields
     def get_products_customfields(options={})
       @connection.get("/products/customfields",options)
     end
@@ -305,7 +274,6 @@ module Bigcommerce
       @connection.get("/products/#{product_id}/customfields/#{custom_field_id}",{})
     end
 
-    #products/images
     def get_products_images(options={})
       @connection.get("/products/images",options)
     end
@@ -322,7 +290,6 @@ module Bigcommerce
       @connection.put("/products/#{product_id}/images/#{image_id}",options)
     end
 
-    #products/options
     def get_products_customfields(options={})
       @connection.get("/products/options",options)
     end
@@ -331,7 +298,6 @@ module Bigcommerce
       @connection.get("/products/#{product_id}/options/#{option_id}",{})
     end
 
-    #products/rules
     def get_products_rules(options={})
       @connection.get("/products/rules",options)
     end
@@ -365,7 +331,6 @@ module Bigcommerce
       @connection.put("/products/#{product_id}/skus/#{sku_id}",options)
     end
 
-    #products/videos
     def get_products_videos(options={})
       @connection.get("/products/videos",options)
     end
@@ -381,11 +346,11 @@ module Bigcommerce
     end
 
     def get_resource(result)
-
+      result
     end
 
     def get_collection(result)
-
+      result
     end
 
   end
