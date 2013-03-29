@@ -79,7 +79,7 @@ module Bigcommerce
                    end
         JSON.parse response
       rescue => e
-         {"error"=>"Nothing to parse. Possibly no data?"}.to_json
+        raise "Failed to parse Bigcommerce response: #{e}"
       end
     end
  
