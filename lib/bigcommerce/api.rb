@@ -281,6 +281,14 @@ module Bigcommerce
       @connection.get("/products/#{product_id}/customfields/#{custom_field_id}", {})
     end
 
+    def get_product_images(product_id, options={})
+      @connection.get("/products/#{product_id}/images", options)
+    end
+    
+    def create_product_images(product_id, options={})
+      @connection.post("/products/#{product_id}/images", options)
+    end
+
     def get_products_images(options={})
       @connection.get("/products/images", options)
     end
