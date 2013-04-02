@@ -1,2 +1,1 @@
-# Support legacy naming
-require 'bigcommerce'
+raise "'big_commerce' (BigCommerce::Api) is no longer supported. Please require 'bigcommerce' (Bigcommerce::Api)"
