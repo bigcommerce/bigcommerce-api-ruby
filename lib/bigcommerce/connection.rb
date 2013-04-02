@@ -8,6 +8,10 @@ module Bigcommerce
       end
     end
 
+    def configuration
+      @configuration
+    end
+
     def store_url=(store_url)
       url = URI.parse(store_url)
       @configuration[:store_url] = url.scheme + "://" + url.host
