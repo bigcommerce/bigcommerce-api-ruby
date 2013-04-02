@@ -321,7 +321,6 @@ module Bigcommerce
       @connection.put("/products/#{product_id}/rules/#{rule_id}", options)
     end
 
-    #products/skus
     def get_products_skus(options={})
       @connection.get("/products/skus", options)
     end
