@@ -113,7 +113,7 @@ module Bigcommerce
       @connection.get("/options/#{id}",{})
     end
 
-    def create_options(options={})
+    def create_option(options={})
       @connection.post("/options", options)
     end
 
@@ -145,11 +145,11 @@ module Bigcommerce
       @connection.get("/optionsets/#{id}", {})
     end
 
-    def create_optionsets(options={})
+    def create_optionset(options={})
       @connection.post("/optionsets", options)
     end
 
-    def update_optionset(id,options={})
+    def update_optionset(id, options={})
       @connection.put("/optionsets/#{id}", options)
     end
 
@@ -161,12 +161,12 @@ module Bigcommerce
       @connection.get("/optionsets/options/#{id}", {})
     end
 
-    def create_optionsets_options(options={})
-      @connection.post("/optionsets/options", options)
+    def create_optionset_option(id, options={})
+      @connection.post("/optionsets/#{id}/options", options)
     end
 
-    def update_optionsets_option(id,options={})
-      @connection.put("/optionsets/options/#{id}", options)
+    def update_optionset_option(optionset_id, option_id, options={})
+      @connection.put("/optionsets/#{optionset_id}/options/#{option_id}", options)
     end
 
     def get_orders(options={})
