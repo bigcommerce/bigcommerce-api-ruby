@@ -49,7 +49,7 @@ follows:
 ```
 require 'bigcommerce'
 
-api = BigCommerce::Api.new({
+api = Bigcommerce::Api.new({
 	:store_url => "https://store.mybigcommerce.com",
 	:username  => "admin",
 	:api_key   => "d81aada4c19c34d913e18f07fd7f36ca"
@@ -60,7 +60,7 @@ If you want to enable SSL certificates -
 
 ```
 require 'bigcommerce'
-api = BigCommerce::Api.new({
+api = Bigcommerce::Api.new({
 	:store_url => "https://store.mybigcommerce.com",
 	:username  => "admin",
 	:api_key   => "d81aada4c19c34d913e18f07fd7f36ca"
