@@ -6,3 +6,4 @@ rvm:
   - jruby-19mode
   - rbx-18mode
   - rbx-19mode
+env: API_URL=https://store-vnh06c71.mybigcommerce.com API_USER=admin API_PASS=123456
