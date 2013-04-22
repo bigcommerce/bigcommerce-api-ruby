@@ -177,12 +177,11 @@ module Bigcommerce
       if date.is_a?(String)
         date = DateTime.parse(date)
       end
-      date = to_rfc2822(date)
-      @connection.get('/orders', options.merge!(:min_date_created => CGI::escape(date)))
+      @connection.get('/orders', options.merge!(:min_date_created => to_rfc2822(date)))
     end
 
     def get_orders_modified_since(date)
-      @connection.get('/orders', {}, {'If-Modified-Since' => CGI::escape(to_rfc2822(date))})
+      @connection.get('/orders', {}, {'If-Modified-Since' => to_rfc2822(date)})
     end
 
     def get_order(id)
