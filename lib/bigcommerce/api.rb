@@ -196,7 +196,7 @@ module Bigcommerce
       @connection.get("/orders/#{id}/coupons", {})
     end
 
-    def get_orders_product(order_id,coupon_id)
+    def get_orders_coupon(order_id,coupon_id)
       @connection.get("/orders/#{order_id}/coupons/#{coupon_id}", {})
     end
 
