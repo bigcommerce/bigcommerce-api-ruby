@@ -85,7 +85,11 @@ module Bigcommerce
                    when :delete then
                      restclient.delete
                    end
-        JSON.parse response
+        if(response.code == 200)
+          JSON.parse response
+        elsif response.code == 204
+          nil
+        end
       rescue => e
         raise "Failed to parse Bigcommerce response: #{e}"
       end
