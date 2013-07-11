@@ -53,6 +53,18 @@ module Bigcommerce
        @connection.put("/brands/#{id}", options)
     end
 
+    def get_coupons(options={})
+      @connection.get("/coupons", options)
+    end
+
+    def create_coupons(options={})
+       @connection.post("/coupons", options)
+    end
+
+    def update_coupon(id, options={})
+       @connection.put("/coupons/#{id}", options)
+    end
+
     def get_categories(options={})
        @connection.get("/categories", options)
     end
