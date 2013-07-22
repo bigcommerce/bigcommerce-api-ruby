@@ -85,6 +85,8 @@ module BigCommerce
       return case response
                when Net::HTTPSuccess, Net::HTTPRedirection
                  JSON.parse(response.body || "{}")
+               when Net::HTTPUnauthorized
+                 raise HTTPUnauthorized.new 'invalid bigcommerce credentials'
                else
                  false
              end
@@ -102,6 +104,10 @@ module BigCommerce
 
 
   class HttpError < Exception
+
+  end
+
+  class HTTPUnauthorized < Exception
 
   end
 end
