@@ -66,7 +66,7 @@ module Bigcommerce
       if @configuration[:ssl_client_key] && @configuration[:ssl_client_cert] && @configuration[:ssl_ca_file]
         restclient = RestClient::Resource.new(
           "#{@configuration[:store_url]}/api/v2#{path}.json",
-          :username => @configuration[:username], 
+          :username => @configuration[:username],
           :password => @configuration[:api_key],
           :ssl_client_cert  =>  @configuration[:ssl_client_cert],
           :ssl_client_key   =>  @configuration[:ssl_client_key],
@@ -87,6 +87,8 @@ module Bigcommerce
                    end
         if((200..201) === response.code)
           JSON.parse response
+        elsif response.code == 401
+          raise HTTPUnauthorized.new 'invalid bigcommerce credentials'
         elsif response.code == 204
           nil
         end
@@ -94,6 +96,7 @@ module Bigcommerce
         raise "Failed to parse Bigcommerce response: #{e}"
       end
     end
- 
   end
+
+  class HTTPUnauthorized < Exception; end
 end
