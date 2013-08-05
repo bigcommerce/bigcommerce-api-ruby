@@ -1,3 +1,10 @@
+begin
+  require 'coveralls'
+  Coveralls.wear!
+rescue LoadError => e
+  raise e unless RUBY_VERSION < '1.9'
+end
+
 require 'bigcommerce'
 require 'date'
 require 'vcr'
