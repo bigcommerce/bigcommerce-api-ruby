@@ -1,6 +1,12 @@
 Bigcommerce API V2 - Ruby Client
 ================================
 
+[![Gem Version](https://badge.fury.io/rb/bigcommerce-api-ruby.png)](https://rubygems.org/gems/bigcommerce-api-ruby)
+[![Build Status](https://travis-ci.org/bigcommerce/bigcommerce-api-ruby.png?branch=master)](https://travis-ci.org/bigcommerce/bigcommerce-api-ruby)
+[![Dependency Status](https://gemnasium.com/bigcommerce/bigcommerce-api-ruby.png?travis)](https://gemnasium.com/bigcommerce/bigcommerce-api-ruby)
+[![Code Climate](https://codeclimate.com/github/bigcommerce/bigcommerce-api-ruby.png)](https://codeclimate.com/github/bigcommerce/bigcommerce-api-ruby)
+[![Coverage Status](https://coveralls.io/repos/bigcommerce/bigcommerce-api-ruby/badge.png?branch=master)](https://coveralls.io/r/bigcommerce/bigcommerce-api-ruby?branch=master)
+
 This library provides a wrapper around the Bigcommerce REST API for use within
 Ruby apps or via the console.
 
