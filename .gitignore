@@ -1,12 +1,17 @@
-# bundler
+# Bundler
 /.bundle
 /Gemfile.lock
 /pkg
 /vendor/bundle
 
-# ci_reporter
+# CI Reporter
 /spec/reports
 
-#Ignore compiled gems
-*.gem
+# Code coverage
+/coverage
 
+# Ignore compiled gems
+/*.gem
+
+# Rspec
+/tmp
