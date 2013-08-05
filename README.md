@@ -6,7 +6,8 @@ Ruby apps or via the console.
 
 Note
 ----
-If you find anything that is missing or needs clean up, please feel free to fork it and submit a changes with your pull request.
+If you find anything that is missing or needs clean up, please feel free to fork
+it and submit a changes with your pull request.
 
 Requirements
 ------------
@@ -19,7 +20,7 @@ To connect to the API, you need the following credentials:
 - Username of an authorized admin user of the store
 - API key for the user
 
-A valid API key is required to authenticate requests. To grant API access for
+A valid API key is required to authenticate requests. To grant API access for a
 user, go to Control Panel > Users > Edit User and make sure that the
 'Enable API access?' checkbox is ticked.
 
@@ -33,11 +34,13 @@ install the package directly from Rubygems:
 gem install bigcommerce
 ```
 
-Note - the current gem version is 1.0. The Rubygems version might be older. You can install the gem directly from this repo. If you are using rails, you can point your gemfile to this git repo directly or do a local install of the gem by -
+Note that the RubyGems version of this gem might be outdated. You can install the
+gem directly from this repo. If you are using Rails, you can point your Gemfile
+to this git repo directly or do a local install of the gem by -
 
 ```
-gem build bigcommerce
-gem install bigcommerce-1.0.gem
+rake build
+gem install pkg/bigcommerce-*.gem
 ```
 
 Configuration
@@ -70,7 +73,8 @@ api = Bigcommerce::Api.new({
   	:verify_ssl       =>  OpenSSL::SSL::VERIFY_PEER 
 })
 ```
-Remember that the fields :ssl_client_cert, :ssl_client_key, :ssl_ca_file and :verify_ssl are all requrired when enabling SSL certs.
+Remember that the fields `:ssl_client_cert`, `:ssl_client_key`, `:ssl_ca_file` 
+and `:verify_ssl` are all required when enabling SSL certificates.
 
 Connecting to the store
 -----------------------
@@ -118,4 +122,3 @@ api.update_products(31,{:name => "marvel comics spiderman",:sku => "marvel-spide
 api.update_optionsets(13,{:name => "Marvel toys"})
 
 ```
-

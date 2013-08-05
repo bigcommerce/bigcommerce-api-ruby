@@ -1,6 +1,6 @@
 shared_context "mock api" do
   let :api do
-    connection = mock(Bigcommerce::Connection)
+    connection = double(Bigcommerce::Connection)
     api = Bigcommerce::Api.new
     api.instance_eval do
       @connection = connection
