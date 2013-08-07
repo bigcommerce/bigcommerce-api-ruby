@@ -156,7 +156,11 @@ module Bigcommerce
     def get_optionsets(options={})
        @connection.get("/optionsets", options)
     end
-
+    
+    def get_optionsets_count
+       @connection.get '/optionsets/count'
+    end
+    
     def get_optionset(id)
       @connection.get("/optionsets/#{id}", {})
     end
