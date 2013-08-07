@@ -41,6 +41,10 @@ module Bigcommerce
       @connection.get("/brands", options)
     end
 
+    def get_brands_count
+      @connection.get '/brands/count'
+    end
+    
     def get_brand(id)
       @connection.get("/brands/#{id}", {})
     end
