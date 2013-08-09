@@ -181,6 +181,10 @@ module Bigcommerce
        @connection.get("/optionsets/options", options)
     end
 
+    def get_optionset_options(id)
+      @connection.get("/optionsets/#{id}/options", {})
+    end
+    
     def get_optionsets_option(id)
       @connection.get("/optionsets/options/#{id}", {})
     end
