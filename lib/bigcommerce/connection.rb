@@ -85,7 +85,7 @@ module Bigcommerce
                    when :delete then
                      restclient.delete
                    end
-        if(response.code == 200)
+        if(response.code == (200..201))
           JSON.parse response
         elsif response.code == 204
           nil
