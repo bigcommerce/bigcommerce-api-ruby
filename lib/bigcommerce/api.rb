@@ -56,6 +56,10 @@ module Bigcommerce
     def update_brand(id, options={})
        @connection.put("/brands/#{id}", options)
     end
+    
+    def delete_brand(id)
+       @connection.delete"/brands/#{id}")
+    end
 
     def get_coupons(options={})
       @connection.get("/coupons", options)
