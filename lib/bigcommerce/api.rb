@@ -92,7 +92,11 @@ module Bigcommerce
     def update_category(id, options={})
        @connection.put("/categories/#{id}", options)
     end
-
+    
+    def delete_category(id)
+       @connection.delete("/categories/#{id}")
+    end
+    
     def get_countries(options={})
       @connection.get("/countries", options)
     end
