@@ -58,7 +58,7 @@ module Bigcommerce
     end
     
     def delete_brand(id)
-       @connection.delete"/brands/#{id}")
+       @connection.delete("/brands/#{id}")
     end
 
     def get_coupons(options={})
