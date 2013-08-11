@@ -184,6 +184,10 @@ module Bigcommerce
     def update_optionset(id, options={})
       @connection.put("/optionsets/#{id}", options)
     end
+ 
+    def delete_optionset(id)
+      @connection.delete("/optionsets/#{id}")
+    end
 
     def get_optionsets_options(options={})
        @connection.get("/optionsets/options", options)
