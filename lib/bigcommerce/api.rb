@@ -431,6 +431,10 @@ module Bigcommerce
       @connection.get("/products/#{product_id}/videos/#{video_id}", {})
     end
 
+
+    def get_product_images(id)
+      @connection.get '/products/' + id.to_s + '/images'
+    end
     private
 
     def get_count(result)
