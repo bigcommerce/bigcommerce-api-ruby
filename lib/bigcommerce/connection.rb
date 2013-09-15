@@ -61,7 +61,7 @@ module Bigcommerce
       request(:delete, path, options, headers)
     end
 
-    def request(method, path, options,headers={})
+    def request(method, path, options, headers={})
       restclient = RestClient::Resource.new "#{@configuration[:store_url]}/api/v2#{path}.json", @configuration[:username], @configuration[:api_key]
       if @configuration[:ssl_client_key] && @configuration[:ssl_client_cert] && @configuration[:ssl_ca_file]
         restclient = RestClient::Resource.new(
@@ -77,21 +77,25 @@ module Bigcommerce
       begin
         response = case method
                    when :get then
-                     restclient.get :params => options, :accept => :json, :content_type => :json
+                     restclient.get headers.merge({:params => options, :accept => :json, :content_type => :json})
                    when :post then
-                     restclient.post(options.to_json, :content_type => :json, :accept => :json)
+                     restclient.post(options.to_json, headers.merge({:content_type => :json, :accept => :json}))
                    when :put then
-                     restclient.put(options.to_json, :content_type => :json, :accept => :json)
+                     restclient.put(options.to_json, headers.merge({:content_type => :json, :accept => :json}))
                    when :delete then
                      restclient.delete
                    end
         if((200..201) === response.code)
           JSON.parse response
-        elsif response.code == 401
-          raise HTTPUnauthorized.new 'invalid bigcommerce credentials'
         elsif response.code == 204
           nil
         end
+      rescue RestClient::NotModified
+        nil
+      rescue RestClient::Unauthorized => e
+        raise Bigcommerce::HTTPUnauthorized.new 'invalid bigcommerce credentials'
+      rescue SocketError
+        raise Bigcommerce::HTTPNotFound.new 'unable to reach bigcommerce site url'
       rescue => e
         raise "Failed to parse Bigcommerce response: #{e}"
       end
@@ -99,4 +103,5 @@ module Bigcommerce
   end
 
   class HTTPUnauthorized < Exception; end
+  class HTTPNotFound < Exception; end
 end

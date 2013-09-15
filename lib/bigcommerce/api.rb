@@ -224,8 +224,11 @@ module Bigcommerce
       @connection.get('/orders', options.merge!(:min_date_created => to_rfc2822(date)))
     end
 
-    def get_orders_modified_since(date)
-      @connection.get('/orders', {}, {'If-Modified-Since' => to_rfc2822(date)})
+    def get_orders_modified_since(date, options={})
+      if date.is_a?(String)
+        date = DateTime.parse(date)
+      end
+      @connection.get('/orders', options, {'If-Modified-Since' => to_rfc2822(date)})
     end
 
     def get_order(id)
@@ -364,7 +367,7 @@ module Bigcommerce
       @connection.put("/products/#{product_id}/images/#{image_id}", options)
     end
 
-    def get_products_customfields(options={})
+    def get_products_options(options={})
       @connection.get("/products/options", options)
     end
     
@@ -428,10 +431,6 @@ module Bigcommerce
       @connection.get("/products/#{product_id}/videos/#{video_id}", {})
     end
 
-
-    def get_product_images(id)
-      @connection.get '/products/' + id.to_s + '/images'
-    end
     private
 
     def get_count(result)
