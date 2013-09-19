@@ -22,3 +22,29 @@ shared_examples_for "request method accepting optional params and headers" do
   end
 end
 
+describe "#request" do
+  let(:configuration) { { :username => "test", :api_key => "12345", :store_url => "http://a.bigcommerce.com" } }
+  let(:connection) { Bigcommerce::Connection.new(configuration) }
+  let(:expected_url) { "#{configuration[:store_url]}/api/v2/orders.json" }
+  let(:expected_params) { { :user => "test", :password => "12345", :headers => {} } }
+  let(:mock_resource) { double("RestClient::Resource") }
+  let(:mock_response) { double }
+  let(:path) { "/orders" }
+
+  before do
+    mock_response.stub(:code).and_return(204)
+    mock_resource.stub(:get).and_return(mock_response)
+  end
+
+  it "should set up the expected url, user and password" do
+    RestClient::Resource.should_receive(:new).once.with(expected_url, expected_params).and_return(mock_resource)
+    connection.get(path)
+  end
+
+  it "should pass through headers to RestClient::Resource" do
+    params_with_headers = expected_params.merge(:headers => {"Some-Header" => "abc"})
+    RestClient::Resource.should_receive(:new).once.with(expected_url, params_with_headers).and_return(mock_resource)
+
+    connection.get("/orders", {:page => 6}, {"Some-Header" => "abc"})
+  end
+end
