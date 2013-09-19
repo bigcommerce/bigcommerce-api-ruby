@@ -64,7 +64,6 @@ module Bigcommerce
     def request(method, path, options,headers={})
       resource_options = {
         :user => @configuration[:username],
-        :user => @configuration[:username],
         :password => @configuration[:api_key],
         :headers => headers
       }
