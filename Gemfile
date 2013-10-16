@@ -1,4 +1,7 @@
 source 'http://rubygems.org'
 
-# Add gems as dependencies in the .gemspec file
 gemspec
+
+if RUBY_VERSION < '1.9'
+  gem 'activesupport', '< 4.0'
+end

@@ -2,11 +2,7 @@
 require File.expand_path('../lib/bigcommerce/version', __FILE__)
 
 Gem::Specification.new do |s|
-  if RUBY_VERSION < '1.9'
-    s.add_dependency('activesupport', '< 4.0')
-  else
-    s.add_dependency('activesupport')
-  end
+  s.add_dependency('activesupport')
   s.add_dependency('json')
   s.add_dependency('rest-client')
   if RUBY_VERSION >= '1.9'
