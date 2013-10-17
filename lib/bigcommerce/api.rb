@@ -1,3 +1,5 @@
+require 'date'
+
 module Bigcommerce
   class Api
 
@@ -44,7 +46,7 @@ module Bigcommerce
     def get_brands_count
       @connection.get '/brands/count'
     end
-    
+
     def get_brand(id)
       @connection.get("/brands/#{id}", {})
     end
@@ -56,7 +58,7 @@ module Bigcommerce
     def update_brand(id, options={})
        @connection.put("/brands/#{id}", options)
     end
-    
+
     def delete_brand(id)
        @connection.delete("/brands/#{id}")
     end
@@ -92,11 +94,11 @@ module Bigcommerce
     def update_category(id, options={})
        @connection.put("/categories/#{id}", options)
     end
-    
+
     def delete_category(id)
        @connection.delete("/categories/#{id}")
     end
-    
+
     def get_countries(options={})
       @connection.get("/countries", options)
     end
@@ -148,7 +150,7 @@ module Bigcommerce
     def update_option(id, options={})
       @connection.put("/options/#{id}", options)
     end
-    
+
     def delete_option(id)
       @connection.delete("/options/#{id}")
     end
@@ -172,11 +174,11 @@ module Bigcommerce
     def get_optionsets(options={})
        @connection.get("/optionsets", options)
     end
-    
+
     def get_optionsets_count
        @connection.get '/optionsets/count'
     end
-    
+
     def get_optionset(id)
       @connection.get("/optionsets/#{id}", {})
     end
@@ -188,7 +190,7 @@ module Bigcommerce
     def update_optionset(id, options={})
       @connection.put("/optionsets/#{id}", options)
     end
- 
+
     def delete_optionset(id)
       @connection.delete("/optionsets/#{id}")
     end
@@ -200,7 +202,7 @@ module Bigcommerce
     def get_optionset_options(id)
       @connection.get("/optionsets/#{id}/options", {})
     end
-    
+
     def get_optionsets_option(id)
       @connection.get("/optionsets/options/#{id}", {})
     end
@@ -291,7 +293,7 @@ module Bigcommerce
     def get_products_count
       @connection.get '/products/count'
     end
-    
+
     def get_product(id)
       @connection.get("/products/#{id}", {})
     end
@@ -303,15 +305,15 @@ module Bigcommerce
     def update_products(id, options={})
       @connection.put("/products/#{id}", options)
     end
-    
+
     def get_products_discountrules(options={})
       @connection.get("/products/discountrules", options)
     end
-    
+
     def get_product_discountrules(product_id, options={})
       @connection.get("/products/#{product_id}/discountrules", options)
     end
-    
+
     def get_products_discountrule(product_id, discountrule_id)
       @connection.get("/products/#{product_id}/discountrules/#{discountrule_id}", {})
     end
@@ -323,7 +325,7 @@ module Bigcommerce
     def get_product_configurablefields(product_id, options={})
       @connection.get("/products/#{product_id}/configurablefields", options)
     end
-    
+
     def get_products_configurablefield(product_id, configurable_field_id)
       @connection.get("/products/#{product_id}/configurablefields/#{configurable_field_id}", {})
     end
@@ -331,7 +333,7 @@ module Bigcommerce
     def get_products_customfields(options={})
       @connection.get("/products/customfields", options)
     end
-  
+
     def get_product_customfields(product_id, options={})
       @connection.get("/products/#{product_id}/customfields", options)
     end
@@ -343,7 +345,7 @@ module Bigcommerce
     def get_product_images(product_id, options={})
       @connection.get("/products/#{product_id}/images", options)
     end
-    
+
     def create_product_images(product_id, options={})
       @connection.post("/products/#{product_id}/images", options)
     end
@@ -367,7 +369,7 @@ module Bigcommerce
     def get_products_customfields(options={})
       @connection.get("/products/options", options)
     end
-    
+
     def get_product_options(product_id, options={})
       @connection.get("/products/#{product_id}/options", options)
     end
@@ -383,7 +385,7 @@ module Bigcommerce
     def get_product_rules(product_id, options={})
       @connection.get("/products/#{product_id}/rules", options)
     end
-    
+
     def create_products_rules(options={})
       @connection.post("/products/rules", options)
     end
@@ -399,7 +401,7 @@ module Bigcommerce
     def get_products_skus(options={})
       @connection.get("/products/skus", options)
     end
-  
+
     def get_product_skus(product_id, options={})
       @connection.get("/products/#{product_id}/skus", options)
     end
@@ -419,7 +421,7 @@ module Bigcommerce
     def get_products_videos(options={})
       @connection.get("/products/videos", options)
     end
-  
+
     def get_product_videos(product_id, options={})
       @connection.get("/products/#{product_id}/videos", options)
     end
