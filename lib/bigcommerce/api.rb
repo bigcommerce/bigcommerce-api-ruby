@@ -258,8 +258,8 @@ module Bigcommerce
       @connection.get("/orders/#{id}/shipments", {})
     end
 
-    def create_orders_shipments(id)
-      @connection.post("/orders/#{id}/shipments", {})
+    def create_orders_shipments(id, options={})
+      @connection.post("/orders/#{id}/shipments", options)
     end
 
     def get_orders_shipment(order_id,shipment_id)
