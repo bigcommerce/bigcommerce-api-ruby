@@ -22,15 +22,13 @@ describe Bigcommerce::Api do
 
   describe "#create-orders-shipments" do
     it "should accept an order id parameter" do
-      api.connection.should_receive(:post).once
-                                          .with("/orders/123/shipments", {})
+      api.connection.should_receive(:post).once.with("/orders/123/shipments", {})
       api.create_orders_shipments(123)
     end
 
     it "should accept an order id parameter and an options hash" do
       options = Hash[*('A'..'Z').to_a.flatten]
-      api.connection.should_receive(:post).once
-                                          .with("/orders/123/shipments", options)
+      api.connection.should_receive(:post).once.with("/orders/123/shipments", options)
       api.create_orders_shipments(123, options)
     end
   end
