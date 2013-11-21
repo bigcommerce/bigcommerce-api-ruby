@@ -5,3 +5,4 @@ require "uri"
 require 'bigcommerce/api'
 require 'bigcommerce/connection'
 require 'bigcommerce/version'
+require 'bigcommerce/resource'
