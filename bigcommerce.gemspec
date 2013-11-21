@@ -13,7 +13,7 @@ Gem::Specification.new do |s|
   s.files = ["LICENSE", "Rakefile", "README.md", "bigcommerce.gemspec", "./lib/big_commerce.rb", "./lib/bigcommerce/api.rb", "./lib/bigcommerce/connection.rb", "./lib/bigcommerce/version.rb", "./lib/bigcommerce.rb", "./spec/big_commerce_spec.rb", "./spec/integration/orders_spec.rb", "./spec/spec_helper.rb", "./spec/support/integration_context.rb", "./spec/support/mock_api_context.rb", "./spec/unit/api_request_spec.rb", "./spec/unit/api_spec.rb", "./spec/unit/connection_spec.rb", "./spec/unit/date_time_spec.rb", "./spec/unit/version_spec.rb", "spec/big_commerce_spec.rb", "spec/integration/orders_spec.rb", "spec/unit/api_request_spec.rb", "spec/unit/api_spec.rb", "spec/unit/connection_spec.rb", "spec/unit/date_time_spec.rb", "spec/unit/version_spec.rb"]
   s.homepage = "http://github.com/bigcommerce/bigcommerce-api-ruby"
   s.require_paths = ["lib"]
-  s.rubygems_version = "2.1.10"
+  s.rubygems_version = "2.1.11"
   s.summary = "Enables Ruby applications to communicate with the Bigcommerce API"
   s.test_files = ["spec/big_commerce_spec.rb", "spec/integration/orders_spec.rb", "spec/unit/api_request_spec.rb", "spec/unit/api_spec.rb", "spec/unit/connection_spec.rb", "spec/unit/date_time_spec.rb", "spec/unit/version_spec.rb"]
 
