@@ -288,11 +288,7 @@ module Bigcommerce
     end
 
     def products(options={})
-      out = []
-      @connection.get("/products", options).each do |item|
-        out.push Resource.new item, @connection
-      end
-      out
+      collection("/products", options)
     end
 
     def products_count
@@ -303,7 +299,7 @@ module Bigcommerce
       @connection.get("/products/#{id}", {})
     end
 
-     def create_products(options={})
+    def create_products(options={})
       @connection.post('/products', options)
     end
 
@@ -343,8 +339,8 @@ module Bigcommerce
       @connection.get("/products/#{product_id}/customfields", options)
     end
 
-    def products_customfield(product_id, custom_field_id)
-      @connection.get("/products/#{product_id}/customfields/#{custom_field_id}", {})
+    def products_customfield(product_id, custom_field_id, options={})
+      @connection.get("/products/#{product_id}/customfields/#{custom_field_id}", options)
     end
 
     def product_images(product_id, options={})
@@ -363,8 +359,8 @@ module Bigcommerce
       @connection.post("/products/images", options)
     end
 
-    def products_image(product_id, image_id)
-      @connection.get("/products/#{product_id}/images/#{image_id}", {})
+    def products_image(product_id, image_id, options={})
+      @connection.get("/products/#{product_id}/images/#{image_id}", options)
     end
 
     def update_products_image(product_id,image_id,options={})
@@ -379,8 +375,8 @@ module Bigcommerce
       @connection.get("/products/#{product_id}/options", options)
     end
 
-    def products_option(product_id,option_id)
-      @connection.get("/products/#{product_id}/options/#{option_id}", {})
+    def products_option(product_id,option_id, options={})
+      @connection.get("/products/#{product_id}/options/#{option_id}", options)
     end
 
     def products_rules(options={})
@@ -395,8 +391,8 @@ module Bigcommerce
       @connection.post("/products/rules", options)
     end
 
-    def products_rule(product_id,rule_id)
-      @connection.get("/products/#{product_id}/rules/#{rule_id}", {})
+    def products_rule(product_id,rule_id,options={})
+      @connection.get("/products/#{product_id}/rules/#{rule_id}", options)
     end
 
     def update_products_rule(product_id, rule_id, options={})
@@ -415,8 +411,8 @@ module Bigcommerce
       @connection.post("/products/skus", options)
     end
 
-    def products_sku(product_id, sku_id)
-      @connection.get("/products/#{product_id}/skus/#{sku_id}", {})
+    def products_sku(product_id, sku_id, options={})
+      @connection.get("/products/#{product_id}/skus/#{sku_id}", options)
     end
 
     def update_products_sku(product_id, sku_id, options={})
@@ -431,23 +427,31 @@ module Bigcommerce
       @connection.get("/products/#{product_id}/videos", options)
     end
 
-    def products_video(product_id, video_id)
-      @connection.get("/products/#{product_id}/videos/#{video_id}", {})
+    def products_video(product_id, video_id, options={})
+      @connection.get("/products/#{product_id}/videos/#{video_id}", options)
     end
-
-    private
 
     def count(result)
       result["count"]
     end
 
+    def collection(resource_path, options={})
+      Enumerator.new do |yielder|
+        count = -1
+        page = 1
+        until count == 0
+          buffer = @connection.get(resource_path, {page: page})
+          count = buffer.count
+          buffer.each do |item|
+            yielder << Resource.new(item, @connection)
+          end
+          page += 1
+        end
+      end
+    end
+
     def resource(result)
       result
     end
-
-    def collection(result)
-      result
-    end
-
   end
 end
