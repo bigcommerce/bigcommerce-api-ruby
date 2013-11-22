@@ -78,7 +78,6 @@ module Bigcommerce
           :verify_ssl       =>  @configuration[:verify_ssl]
         )
       end
-      begin
         response = case method
                    when :get then
                      restclient.get :params => options, :accept => :json, :content_type => :json
@@ -95,9 +94,6 @@ module Bigcommerce
         elsif response.code == 204
           {}
         end
-      rescue => e
-        raise "Failed to parse Bigcommerce response: #{e.inspect}"
-      end
     end
 
   end
