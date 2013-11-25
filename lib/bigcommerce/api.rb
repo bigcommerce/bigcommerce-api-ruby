@@ -233,63 +233,66 @@ module Bigcommerce
       @connection.get('/orders', {}, {'If-Modified-Since' => to_rfc2822(date)})
     end
 
-    def order(id)
-      @connection.get("/orders/#{id}", {})
+    def order(id,options={})
+      @connection.get("/orders/#{id}", options)
     end
 
     def update_order(id,options={})
       @connection.put("/orders/#{id}", options)
     end
 
-    def orders_coupons(id)
-      @connection.get("/orders/#{id}/coupons", {})
+    def orders_coupons(id,options={})
+      @connection.get("/orders/#{id}/coupons", options)
     end
 
-    def orders_coupon(order_id,coupon_id)
-      @connection.get("/orders/#{order_id}/coupons/#{coupon_id}", {})
+    def orders_coupon(order_id,coupon_id,options={})
+      @connection.get("/orders/#{order_id}/coupons/#{coupon_id}", options)
     end
 
-    def orders_products(id)
-      @connection.get("/orders/#{id}/products", {})
+    def orders_products(id,options={})
+      @connection.get("/orders/#{id}/products", options)
     end
 
-    def orders_product(order_id,product_id)
-      @connection.get("/orders/#{order_id}/products/#{product_id}", {})
+    def orders_product(order_id,product_id,options={})
+      @connection.get("/orders/#{order_id}/products/#{product_id}", options)
     end
 
-    def orders_shipments(id)
-      @connection.get("/orders/#{id}/shipments", {})
+    def orders_shipments(id,options={})
+      @connection.get("/orders/#{id}/shipments", options)
     end
 
     def create_orders_shipments(id, options={})
       @connection.post("/orders/#{id}/shipments", options)
     end
 
-    def orders_shipment(order_id,shipment_id)
-      @connection.get("/orders/#{order_id}/shipments/#{shipment_id}", {})
+    def orders_shipment(order_id,shipment_id,options={})
+      @connection.get("/orders/#{order_id}/shipments/#{shipment_id}", options)
     end
 
     def update_orders_shipment(order_id,shipment_id,options={})
       @connection.put("/orders/#{order_id}/shipments/#{shipment_id}", options)
     end
 
-    def orders_shippingaddresses(id)
-      @connection.get("/orders/#{id}/shippingaddresses", {})
+    def orders_shippingaddresses(id,options={})
+      @connection.get("/orders/#{id}/shippingaddresses", options)
     end
 
-    def orders_shippingaddress(order_id,shippingaddress_id)
-      @connection.get("/orders/#{order_id}/shippingaddresses/#{shippingaddress_id}", {})
+    def orders_shippingaddress(order_id,shippingaddress_id,options={})
+      @connection.get("/orders/#{order_id}/shippingaddresses/#{shippingaddress_id}", options)
     end
 
     def orderstatuses(options={})
       @connection.get("/orderstatuses", options)
     end
 
-    def orderstatus(id)
-      @connection.get("/orderstatuses/#{id}", {})
+    def orderstatus(id,options={})
+      @connection.get("/orderstatuses/#{id}", options)
     end
 
     def products(options={})
+      if (!options["resource_class"])
+        options["resource_class"] = Product
+      end
       collection("/products", options)
     end
 
@@ -297,8 +300,8 @@ module Bigcommerce
       @connection.get '/products/count'
     end
 
-    def product(id)
-      @connection.get("/products/#{id}", {})
+    def product(id,options={})
+      @connection.get("/products/#{id}", options)
     end
 
     def create_products(options={})
@@ -317,8 +320,8 @@ module Bigcommerce
       @connection.get("/products/#{product_id}/discountrules", options)
     end
 
-    def products_discountrule(product_id, discountrule_id)
-      @connection.get("/products/#{product_id}/discountrules/#{discountrule_id}", {})
+    def products_discountrule(product_id, discountrule_id,options={})
+      @connection.get("/products/#{product_id}/discountrules/#{discountrule_id}", options)
     end
 
     def products_configurablefields(options={})
@@ -329,8 +332,8 @@ module Bigcommerce
       @connection.get("/products/#{product_id}/configurablefields", options)
     end
 
-    def products_configurablefield(product_id, configurable_field_id)
-      @connection.get("/products/#{product_id}/configurablefields/#{configurable_field_id}", {})
+    def products_configurablefield(product_id, configurable_field_id, options={})
+      @connection.get("/products/#{product_id}/configurablefields/#{configurable_field_id}", options)
     end
 
     def products_customfields(options={})
@@ -438,6 +441,11 @@ module Bigcommerce
     end
 
     def collection(resource_path, options={})
+      if (options["resource_class"])
+        klass = options["resource_class"]
+      else
+        klass = Resource
+      end
       Enumerator.new do |yielder|
         count = -1
         if options[:starting_page]
@@ -449,7 +457,7 @@ module Bigcommerce
           buffer = @connection.get(resource_path, {page: page})
           count = buffer.count
           buffer.each do |item|
-            yielder << Resource.new(item, @connection)
+            yielder << klass.new(item, @connection)
             p @connection.remaining_rate_limit
           end
           @page += 1

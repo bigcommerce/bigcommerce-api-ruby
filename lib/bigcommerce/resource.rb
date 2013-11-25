@@ -25,8 +25,10 @@ module Bigcommerce
     end
 
     def resourceify(name, data)
-      self.metaclass.send(:define_method, name) do
-        @connection.get data["resource"]
+      if (!self.respond_to?(name.to_sym))
+        self.metaclass.send(:define_method, name) do
+          @connection.get data["resource"]
+        end
       end
     end
 
