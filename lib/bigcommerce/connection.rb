@@ -2,8 +2,6 @@ module Bigcommerce
   class Connection
     attr_reader :configuration, :remaining_rate_limit
 
-    @remaining_rate_limit
-
     def initialize(configuration)
       @configuration = {}
       configuration.each do |key, val|

@@ -4,6 +4,8 @@ require 'ostruct'
 module Bigcommerce
   class Api
 
+    attr_reader :page
+
     def initialize(configuration={})
       @connection = Connection.new(configuration)
     end
@@ -438,14 +440,19 @@ module Bigcommerce
     def collection(resource_path, options={})
       Enumerator.new do |yielder|
         count = -1
-        page = 1
+        if options[:starting_page]
+          @page = options[:starting_page]
+        else
+          @page = 1
+        end
         until count == 0
           buffer = @connection.get(resource_path, {page: page})
           count = buffer.count
           buffer.each do |item|
             yielder << Resource.new(item, @connection)
+            p @connection.remaining_rate_limit
           end
-          page += 1
+          @page += 1
         end
       end
     end
