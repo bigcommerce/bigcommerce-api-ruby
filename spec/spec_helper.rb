@@ -2,7 +2,7 @@ begin
   require 'coveralls'
   Coveralls.wear!
 rescue LoadError => e
-  raise e unless RUBY_VERSION < '1.9'
+  raise e
 end
 
 require 'bigcommerce'
