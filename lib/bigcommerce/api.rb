@@ -1,7 +1,10 @@
 require 'date'
+require 'ostruct'
 
 module Bigcommerce
   class Api
+
+    attr_reader :page
 
     def initialize(configuration={})
       @connection = Connection.new(configuration)
@@ -35,19 +38,19 @@ module Bigcommerce
       datetime.strftime("%a, %d %b %Y %H:%M:%S %z")
     end
 
-    def get_time
+    def time
       @connection.get '/time'
     end
 
-    def get_brands(options={})
+    def brands(options={})
       @connection.get("/brands", options)
     end
 
-    def get_brands_count
+    def brands_count
       @connection.get '/brands/count'
     end
 
-    def get_brand(id)
+    def brand(id)
       @connection.get("/brands/#{id}", {})
     end
 
@@ -63,7 +66,7 @@ module Bigcommerce
        @connection.delete("/brands/#{id}")
     end
 
-    def get_coupons(options={})
+    def coupons(options={})
       @connection.get("/coupons", options)
     end
 
@@ -75,15 +78,15 @@ module Bigcommerce
        @connection.put("/coupons/#{id}", options)
     end
 
-    def get_categories(options={})
+    def categories(options={})
        @connection.get("/categories", options)
     end
 
-    def get_categories_count
+    def categories_count
       @connection.get '/categories/count'
     end
 
-    def get_category(id)
+    def category(id)
       @connection.get("/categories/#{id}", {})
     end
 
@@ -99,47 +102,47 @@ module Bigcommerce
        @connection.delete("/categories/#{id}")
     end
 
-    def get_countries(options={})
+    def countries(options={})
       @connection.get("/countries", options)
     end
 
-    def get_country(id)
+    def country(id)
       @connection.get("/countries/#{id}", {})
     end
 
-    def get_countries_states(options={})
+    def countries_states(options={})
       @connection.get("/countries/states", options)
     end
 
-    def get_countries_state(id, options={})
+    def countries_state(id, options={})
       @connection.get("/countries/#{id}/states", {})
     end
 
-    def get_customers(options = {})
+    def customers(options = {})
       @connection.get("/customers", options)
     end
 
-    def get_customer(id)
+    def customer(id)
       @connection.get('/customers/' + id.to_s, {})
     end
 
-    def get_customer_addresses(id, options = {})
+    def customer_addresses(id, options = {})
       @connection.get("/customers/#{id}/addresses", options)
     end
 
-    def get_customer_address(customer_id, address_id)
+    def customer_address(customer_id, address_id)
       @connection.get("/customers/#{customer_id}/addresses/#{address_id}",{})
     end
 
-    def get_options(options={})
+    def options(options={})
        @connection.get("/options", options)
     end
 
-    def get_options_count
+    def options_count
        @connection.get '/options/count'
     end
 
-    def get_option(id)
+    def option(id)
       @connection.get("/options/#{id}",{})
     end
 
@@ -155,11 +158,11 @@ module Bigcommerce
       @connection.delete("/options/#{id}")
     end
 
-    def get_options_values(options={})
+    def options_values(options={})
        @connection.get("/options/values", options)
     end
 
-    def get_options_value(id)
+    def options_value(id)
       @connection.get("/options/#{id}/values",{})
     end
 
@@ -169,17 +172,17 @@ module Bigcommerce
 
     def update_options_value(options_id, values_id, options={})
       @connection.put("/options/#{options_id}/values/#{values_id}", options)
-    end   
+    end
 
-    def get_optionsets(options={})
+    def optionsets(options={})
        @connection.get("/optionsets", options)
     end
 
-    def get_optionsets_count
+    def optionsets_count
        @connection.get '/optionsets/count'
     end
 
-    def get_optionset(id)
+    def optionset(id)
       @connection.get("/optionsets/#{id}", {})
     end
 
@@ -195,15 +198,15 @@ module Bigcommerce
       @connection.delete("/optionsets/#{id}")
     end
 
-    def get_optionsets_options(options={})
+    def optionsets_options(options={})
        @connection.get("/optionsets/options", options)
     end
 
-    def get_optionset_options(id)
+    def optionset_options(id)
       @connection.get("/optionsets/#{id}/options", {})
     end
 
-    def get_optionsets_option(id)
+    def optionsets_option(id)
       @connection.get("/optionsets/options/#{id}", {})
     end
 
@@ -215,90 +218,93 @@ module Bigcommerce
       @connection.put("/optionsets/#{optionset_id}/options/#{option_id}", options)
     end
 
-    def get_orders(options={})
+    def orders(options={})
       @connection.get("/orders", options)
     end
 
-    def get_orders_by_date(date, options={})
+    def orders_by_date(date, options={})
       if date.is_a?(String)
         date = DateTime.parse(date)
       end
       @connection.get('/orders', options.merge!(:min_date_created => to_rfc2822(date)))
     end
 
-    def get_orders_modified_since(date)
+    def orders_modified_since(date)
       @connection.get('/orders', {}, {'If-Modified-Since' => to_rfc2822(date)})
     end
 
-    def get_order(id)
-      @connection.get("/orders/#{id}", {})
+    def order(id,options={})
+      @connection.get("/orders/#{id}", options)
     end
 
     def update_order(id,options={})
       @connection.put("/orders/#{id}", options)
     end
 
-    def get_orders_coupons(id)
-      @connection.get("/orders/#{id}/coupons", {})
+    def orders_coupons(id,options={})
+      @connection.get("/orders/#{id}/coupons", options)
     end
 
-    def get_orders_coupon(order_id,coupon_id)
-      @connection.get("/orders/#{order_id}/coupons/#{coupon_id}", {})
+    def orders_coupon(order_id,coupon_id,options={})
+      @connection.get("/orders/#{order_id}/coupons/#{coupon_id}", options)
     end
 
-    def get_orders_products(id)
-      @connection.get("/orders/#{id}/products", {})
+    def orders_products(id,options={})
+      @connection.get("/orders/#{id}/products", options)
     end
 
-    def get_orders_product(order_id,product_id)
-      @connection.get("/orders/#{order_id}/products/#{product_id}", {})
+    def orders_product(order_id,product_id,options={})
+      @connection.get("/orders/#{order_id}/products/#{product_id}", options)
     end
 
-    def get_orders_shipments(id)
-      @connection.get("/orders/#{id}/shipments", {})
+    def orders_shipments(id,options={})
+      @connection.get("/orders/#{id}/shipments", options)
     end
 
     def create_orders_shipments(id, options={})
       @connection.post("/orders/#{id}/shipments", options)
     end
 
-    def get_orders_shipment(order_id,shipment_id)
-      @connection.get("/orders/#{order_id}/shipments/#{shipment_id}", {})
+    def orders_shipment(order_id,shipment_id,options={})
+      @connection.get("/orders/#{order_id}/shipments/#{shipment_id}", options)
     end
 
     def update_orders_shipment(order_id,shipment_id,options={})
       @connection.put("/orders/#{order_id}/shipments/#{shipment_id}", options)
     end
 
-    def get_orders_shippingaddresses(id)
-      @connection.get("/orders/#{id}/shippingaddresses", {})
+    def orders_shippingaddresses(id,options={})
+      @connection.get("/orders/#{id}/shippingaddresses", options)
     end
 
-    def get_orders_shippingaddress(order_id,shippingaddress_id)
-      @connection.get("/orders/#{order_id}/shippingaddresses/#{shippingaddress_id}", {})
+    def orders_shippingaddress(order_id,shippingaddress_id,options={})
+      @connection.get("/orders/#{order_id}/shippingaddresses/#{shippingaddress_id}", options)
     end
 
-    def get_orderstatuses(options={})
+    def orderstatuses(options={})
       @connection.get("/orderstatuses", options)
     end
 
-    def get_orderstatus(id)
-      @connection.get("/orderstatuses/#{id}", {})
+    def orderstatus(id,options={})
+      @connection.get("/orderstatuses/#{id}", options)
     end
 
-    def get_products(options={})
-      @connection.get("/products", options)
+    def products(options={})
+      if (!options["resource_class"])
+        options["resource_class"] = Product
+      end
+      collection("/products", options)
     end
 
-    def get_products_count
+    def products_count
       @connection.get '/products/count'
     end
 
-    def get_product(id)
-      @connection.get("/products/#{id}", {})
+    def product(id,options={})
+      @connection.get("/products/#{id}", options)
     end
 
-     def create_products(options={})
+    def create_products(options={})
       @connection.post('/products', options)
     end
 
@@ -306,43 +312,43 @@ module Bigcommerce
       @connection.put("/products/#{id}", options)
     end
 
-    def get_products_discountrules(options={})
+    def products_discountrules(options={})
       @connection.get("/products/discountrules", options)
     end
 
-    def get_product_discountrules(product_id, options={})
+    def product_discountrules(product_id, options={})
       @connection.get("/products/#{product_id}/discountrules", options)
     end
 
-    def get_products_discountrule(product_id, discountrule_id)
-      @connection.get("/products/#{product_id}/discountrules/#{discountrule_id}", {})
+    def products_discountrule(product_id, discountrule_id,options={})
+      @connection.get("/products/#{product_id}/discountrules/#{discountrule_id}", options)
     end
 
-    def get_products_configurablefields(options={})
+    def products_configurablefields(options={})
       @connection.get("/products/configurablefields", options)
     end
 
-    def get_product_configurablefields(product_id, options={})
+    def product_configurablefields(product_id, options={})
       @connection.get("/products/#{product_id}/configurablefields", options)
     end
 
-    def get_products_configurablefield(product_id, configurable_field_id)
-      @connection.get("/products/#{product_id}/configurablefields/#{configurable_field_id}", {})
+    def products_configurablefield(product_id, configurable_field_id, options={})
+      @connection.get("/products/#{product_id}/configurablefields/#{configurable_field_id}", options)
     end
 
-    def get_products_customfields(options={})
+    def products_customfields(options={})
       @connection.get("/products/customfields", options)
     end
 
-    def get_product_customfields(product_id, options={})
+    def product_customfields(product_id, options={})
       @connection.get("/products/#{product_id}/customfields", options)
     end
 
-    def get_products_customfield(product_id, custom_field_id)
-      @connection.get("/products/#{product_id}/customfields/#{custom_field_id}", {})
+    def products_customfield(product_id, custom_field_id, options={})
+      @connection.get("/products/#{product_id}/customfields/#{custom_field_id}", options)
     end
 
-    def get_product_images(product_id, options={})
+    def product_images(product_id, options={})
       @connection.get("/products/#{product_id}/images", options)
     end
 
@@ -350,7 +356,7 @@ module Bigcommerce
       @connection.post("/products/#{product_id}/images", options)
     end
 
-    def get_products_images(options={})
+    def products_images(options={})
       @connection.get("/products/images", options)
     end
 
@@ -358,31 +364,31 @@ module Bigcommerce
       @connection.post("/products/images", options)
     end
 
-    def get_products_image(product_id, image_id)
-      @connection.get("/products/#{product_id}/images/#{image_id}", {})
+    def products_image(product_id, image_id, options={})
+      @connection.get("/products/#{product_id}/images/#{image_id}", options)
     end
 
     def update_products_image(product_id,image_id,options={})
       @connection.put("/products/#{product_id}/images/#{image_id}", options)
     end
 
-    def get_products_customfields(options={})
+    def products_customfields(options={})
       @connection.get("/products/options", options)
     end
 
-    def get_product_options(product_id, options={})
+    def product_options(product_id, options={})
       @connection.get("/products/#{product_id}/options", options)
     end
 
-    def get_products_option(product_id,option_id)
-      @connection.get("/products/#{product_id}/options/#{option_id}", {})
+    def products_option(product_id,option_id, options={})
+      @connection.get("/products/#{product_id}/options/#{option_id}", options)
     end
 
-    def get_products_rules(options={})
+    def products_rules(options={})
       @connection.get("/products/rules", options)
     end
 
-    def get_product_rules(product_id, options={})
+    def product_rules(product_id, options={})
       @connection.get("/products/#{product_id}/rules", options)
     end
 
@@ -390,19 +396,19 @@ module Bigcommerce
       @connection.post("/products/rules", options)
     end
 
-    def get_products_rule(product_id,rule_id)
-      @connection.get("/products/#{product_id}/rules/#{rule_id}", {})
+    def products_rule(product_id,rule_id,options={})
+      @connection.get("/products/#{product_id}/rules/#{rule_id}", options)
     end
 
     def update_products_rule(product_id, rule_id, options={})
       @connection.put("/products/#{product_id}/rules/#{rule_id}", options)
     end
 
-    def get_products_skus(options={})
+    def products_skus(options={})
       @connection.get("/products/skus", options)
     end
 
-    def get_product_skus(product_id, options={})
+    def product_skus(product_id, options={})
       @connection.get("/products/#{product_id}/skus", options)
     end
 
@@ -410,39 +416,57 @@ module Bigcommerce
       @connection.post("/products/skus", options)
     end
 
-    def get_products_sku(product_id, sku_id)
-      @connection.get("/products/#{product_id}/skus/#{sku_id}", {})
+    def products_sku(product_id, sku_id, options={})
+      @connection.get("/products/#{product_id}/skus/#{sku_id}", options)
     end
 
     def update_products_sku(product_id, sku_id, options={})
       @connection.put("/products/#{product_id}/skus/#{sku_id}", options)
     end
 
-    def get_products_videos(options={})
+    def products_videos(options={})
       @connection.get("/products/videos", options)
     end
 
-    def get_product_videos(product_id, options={})
+    def product_videos(product_id, options={})
       @connection.get("/products/#{product_id}/videos", options)
     end
 
-    def get_products_video(product_id, video_id)
-      @connection.get("/products/#{product_id}/videos/#{video_id}", {})
+    def products_video(product_id, video_id, options={})
+      @connection.get("/products/#{product_id}/videos/#{video_id}", options)
     end
 
-    private
-
-    def get_count(result)
+    def count(result)
       result["count"]
     end
 
-    def get_resource(result)
-      result
+    def collection(resource_path, options={})
+      if (options["resource_class"])
+        klass = options["resource_class"]
+      else
+        klass = Resource
+      end
+      Enumerator.new do |yielder|
+        count = -1
+        if options[:starting_page]
+          @page = options[:starting_page]
+        else
+          @page = 1
+        end
+        until count == 0
+          buffer = @connection.get(resource_path, {page: page})
+          count = buffer.count
+          buffer.each do |item|
+            yielder << klass.new(item, @connection)
+            p @connection.remaining_rate_limit
+          end
+          @page += 1
+        end
+      end
     end
 
-    def get_collection(result)
+    def resource(result)
       result
     end
-
   end
 end

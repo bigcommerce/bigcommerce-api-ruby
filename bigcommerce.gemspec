@@ -1,31 +1,58 @@
 # -*- encoding: utf-8 -*-
-require File.expand_path('../lib/bigcommerce/version', __FILE__)
+# stub: bigcommerce 0.9.0 ruby lib
 
 Gem::Specification.new do |s|
-  s.add_dependency('activesupport')
-  s.add_dependency('json')
-  s.add_dependency('rest-client')
-  if RUBY_VERSION >= '1.9'
-    s.add_development_dependency("coveralls")
-  end
-  s.add_development_dependency("ci_reporter")
-  s.add_development_dependency("mocha")
-  s.add_development_dependency("rake")
-  s.add_development_dependency("rspec", '~> 2.11')
-  s.add_development_dependency("vcr")
-  s.add_development_dependency("webmock", '1.9')
-  s.authors  = ["Mark Rickerby", "Rob Howard", "Saranyan Vigraham", "Sasha Gerrand"]
-  s.date     = Time.now.strftime("%Y-%m-%d")
+  s.name = "bigcommerce"
+  s.version = "0.9.0"
+
+  s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
+  s.authors = ["Mark Rickerby", "Rob Howard", "Saranyan Vigraham", "Sasha Gerrand"]
+  s.date = "2013-11-18"
   s.description = "Enables Ruby applications to communicate with the Bigcommerce API V2."
-  s.email    = ["mark.rickerby@bigcommerce.com",
-                "rob.howard@bigcommerce.com",
-                "saranyan.vigraham@bigcommerce.com",
-                "sasha.gerrand@bigcommerce.com"]
-  s.files = ["LICENSE", "Rakefile", "README.md", "bigcommerce.gemspec"] + Dir['./**/*.rb'] + Dir['./**/*.crt']
-  s.has_rdoc = false
+  s.email = ["mark.rickerby@bigcommerce.com", "rob.howard@bigcommerce.com", "saranyan.vigraham@bigcommerce.com", "sasha.gerrand@bigcommerce.com"]
+  s.files = ["LICENSE", "Rakefile", "README.md", "bigcommerce.gemspec", "./lib/big_commerce.rb", "./lib/bigcommerce/api.rb", "./lib/bigcommerce/connection.rb", "./lib/bigcommerce/version.rb", "./lib/bigcommerce.rb", "./spec/big_commerce_spec.rb", "./spec/integration/orders_spec.rb", "./spec/spec_helper.rb", "./spec/support/integration_context.rb", "./spec/support/mock_api_context.rb", "./spec/unit/api_request_spec.rb", "./spec/unit/api_spec.rb", "./spec/unit/connection_spec.rb", "./spec/unit/date_time_spec.rb", "./spec/unit/version_spec.rb", "spec/big_commerce_spec.rb", "spec/integration/orders_spec.rb", "spec/unit/api_request_spec.rb", "spec/unit/api_spec.rb", "spec/unit/connection_spec.rb", "spec/unit/date_time_spec.rb", "spec/unit/version_spec.rb"]
   s.homepage = "http://github.com/bigcommerce/bigcommerce-api-ruby"
-  s.name     = "bigcommerce"
-  s.summary  = "Enables Ruby applications to communicate with the Bigcommerce API"
-  s.test_files = Dir.glob('spec/**/*_spec.rb')
-  s.version  = Bigcommerce::VERSION
+  s.require_paths = ["lib"]
+  s.rubygems_version = "2.1.11"
+  s.summary = "Enables Ruby applications to communicate with the Bigcommerce API"
+  s.test_files = ["spec/big_commerce_spec.rb", "spec/integration/orders_spec.rb", "spec/unit/api_request_spec.rb", "spec/unit/api_spec.rb", "spec/unit/connection_spec.rb", "spec/unit/date_time_spec.rb", "spec/unit/version_spec.rb"]
+
+  if s.respond_to? :specification_version then
+    s.specification_version = 4
+
+    if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
+      s.add_runtime_dependency(%q<activesupport>, [">= 0"])
+      s.add_runtime_dependency(%q<json>, [">= 0"])
+      s.add_runtime_dependency(%q<rest-client>, [">= 0"])
+      s.add_development_dependency(%q<coveralls>, [">= 0"])
+      s.add_development_dependency(%q<ci_reporter>, [">= 0"])
+      s.add_development_dependency(%q<mocha>, [">= 0"])
+      s.add_development_dependency(%q<rake>, [">= 0"])
+      s.add_development_dependency(%q<rspec>, ["~> 2.11"])
+      s.add_development_dependency(%q<vcr>, [">= 0"])
+      s.add_development_dependency(%q<webmock>, ["= 1.9"])
+    else
+      s.add_dependency(%q<activesupport>, [">= 0"])
+      s.add_dependency(%q<json>, [">= 0"])
+      s.add_dependency(%q<rest-client>, [">= 0"])
+      s.add_dependency(%q<coveralls>, [">= 0"])
+      s.add_dependency(%q<ci_reporter>, [">= 0"])
+      s.add_dependency(%q<mocha>, [">= 0"])
+      s.add_dependency(%q<rake>, [">= 0"])
+      s.add_dependency(%q<rspec>, ["~> 2.11"])
+      s.add_dependency(%q<vcr>, [">= 0"])
+      s.add_dependency(%q<webmock>, ["= 1.9"])
+    end
+  else
+    s.add_dependency(%q<activesupport>, [">= 0"])
+    s.add_dependency(%q<json>, [">= 0"])
+    s.add_dependency(%q<rest-client>, [">= 0"])
+    s.add_dependency(%q<coveralls>, [">= 0"])
+    s.add_dependency(%q<ci_reporter>, [">= 0"])
+    s.add_dependency(%q<mocha>, [">= 0"])
+    s.add_dependency(%q<rake>, [">= 0"])
+    s.add_dependency(%q<rspec>, ["~> 2.11"])
+    s.add_dependency(%q<vcr>, [">= 0"])
+    s.add_dependency(%q<webmock>, ["= 1.9"])
+  end
 end

@@ -1,15 +1,12 @@
 module Bigcommerce
   class Connection
+    attr_reader :configuration, :remaining_rate_limit
 
     def initialize(configuration)
       @configuration = {}
       configuration.each do |key, val|
         send(key.to_s + "=", val)
       end
-    end
-
-    def configuration
-      @configuration
     end
 
     def store_url=(store_url)
@@ -71,7 +68,7 @@ module Bigcommerce
       if @configuration[:ssl_client_key] && @configuration[:ssl_client_cert] && @configuration[:ssl_ca_file]
         restclient = RestClient::Resource.new(
           "#{@configuration[:store_url]}/api/v2#{path}.json",
-          :username => @configuration[:username], 
+          :username => @configuration[:username],
           :password => @configuration[:api_key],
           :ssl_client_cert  =>  @configuration[:ssl_client_cert],
           :ssl_client_key   =>  @configuration[:ssl_client_key],
@@ -79,7 +76,6 @@ module Bigcommerce
           :verify_ssl       =>  @configuration[:verify_ssl]
         )
       end
-      begin
         response = case method
                    when :get then
                      restclient.get :params => options, :accept => :json, :content_type => :json
@@ -90,15 +86,13 @@ module Bigcommerce
                    when :delete then
                      restclient.delete
                    end
+        @remaining_rate_limit = response.headers[:x_bc_apilimit_remaining]
         if((200..201) === response.code)
           JSON.parse response
         elsif response.code == 204
-          nil
+          {}
         end
-      rescue => e
-        raise "Failed to parse Bigcommerce response: #{e}"
-      end
     end
- 
+
   end
 end
