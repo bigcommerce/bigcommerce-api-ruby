@@ -76,20 +76,20 @@ api = Bigcommerce::Api.new({
 	:ssl_client_cert  =>  OpenSSL::X509::Certificate.new(File.read("cert.pem")),
   	:ssl_client_key   =>  OpenSSL::PKey::RSA.new(File.read("key.pem"), "passphrase, if any"),
   	:ssl_ca_file      =>  "ca_certificate.pem",
-  	:verify_ssl       =>  OpenSSL::SSL::VERIFY_PEER 
+  	:verify_ssl       =>  OpenSSL::SSL::VERIFY_PEER
 })
 ```
-Remember that the fields `:ssl_client_cert`, `:ssl_client_key`, `:ssl_ca_file` 
+Remember that the fields `:ssl_client_cert`, `:ssl_client_key`, `:ssl_ca_file`
 and `:verify_ssl` are all required when enabling SSL certificates.
 
 Connecting to the store
 -----------------------
 
-Ping the get_time method to check that your configuration is working and you
+Ping the time method to check that your configuration is working and you
 can connect successfully to the store:
 
 ```
-ping = api.get_time
+ping = api.time
 ```
 
 Usage
@@ -99,15 +99,15 @@ The API object acts as a gateway to all top level resources in the V2 API.
 
 Fetch Data
 ```
-orders = api.get_orders
-orders = api.get_orders({:min_id=>100,:max_id=>101})
-orders = api.get_orders(:is_deleted => true)
+orders = api.orders
+orders = api.orders({:min_id=>100,:max_id=>101})
+orders = api.orders(:is_deleted => true)
 
-products = api.get_products
-products = api.get_products(:description=>"iphone", :condition=>"New")
+products = api.products
+products = api.products(:description=>"iphone", :condition=>"New")
 
-options = api.get_options
-options = api.get_options(:type=>"MT")
+options = api.options
+options = api.options(:type=>"MT")
 ...
 
 ```
