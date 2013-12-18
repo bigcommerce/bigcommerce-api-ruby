@@ -4,5 +4,9 @@ rvm:
   - 1.9.3
   - jruby-19mode
   - rbx
-  - ree
 env: API_URL=https://store-vnh06c71.mybigcommerce.com API_USER=admin API_PASS=123456
+
+matrix:
+  fast_finish: true
+  allow_failures:
+    - rvm: rbx
