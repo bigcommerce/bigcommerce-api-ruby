@@ -162,8 +162,8 @@ module Bigcommerce
        @connection.get("/options/values", options)
     end
 
-    def options_value(id)
-      @connection.get("/options/#{id}/values",{})
+    def options_value(id, options={})
+      @connection.get("/options/#{id}/values", options)
     end
 
     def create_options_values(options_id, options={})
