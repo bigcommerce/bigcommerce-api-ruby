@@ -32,4 +32,18 @@ describe Bigcommerce::Api do
       api.create_orders_shipments(123, options)
     end
   end
+
+  describe "#get-options-value" do
+    it "should accept an option id parameter" do
+      api.connection.should_receive(:get).once.with("/options/123/values", {})
+      api.options_value(123)
+    end
+
+    it "should accept an option id parameter and an options hash" do
+      options = Hash[*('A'..'Z').to_a.flatten]
+      api.connection.should_receive(:get).once.with("/options/123/values", options)
+      api.options_value(123, options)
+    end
+  end
+
 end
