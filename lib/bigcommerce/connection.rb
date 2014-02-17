@@ -92,7 +92,8 @@ module Bigcommerce
 
       headers.merge!({'X-Auth-Client' => @configuration[:oauth_client_id],
                       'X-Auth-Token' => @configuration[:oauth_token],
-                      'Accept' =>'application/json'})
+                      'Accept' =>'application/json',
+                      'Content-Type' =>'application/json'})
 
       if path[0] == '/'
         path = path[1..-1] # strip absolute prefix
@@ -102,9 +103,9 @@ module Bigcommerce
                    when :get then
                      token.get(path, {:params => options, :headers => headers})
                    when :post then
-                     token.post(path, {:body => options, :headers => headers})
+                     token.post(path, {:body => options.to_json, :headers => headers})
                    when :put then
-                     token.put(path, {:body => options, :headers => headers})
+                     token.put(path, {:body => options.to_json, :headers => headers})
                    when :delete then
                      token.delete(path, {:headers => headers})
                  end
