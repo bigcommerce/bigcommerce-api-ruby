@@ -22,6 +22,22 @@ module Bigcommerce
       @configuration[:api_key] = api_key
     end
 
+    def store_hash=(store_hash)
+      @configuration[:store_hash] = store_hash
+    end
+
+    def oauth_client_id=(oauth_client_id)
+      @configuration[:oauth_client_id] = oauth_client_id
+    end
+
+    def oauth_client_secret=(oauth_client_secret)
+      @configuration[:oauth_client_secret] = oauth_client_secret
+    end
+
+    def oauth_token=(oauth_token)
+      @configuration[:oauth_token] = oauth_token
+    end
+
     def verify_peer=(verify)
       @configuration[:verify_ssl] = verify
     end
@@ -59,6 +75,50 @@ module Bigcommerce
     end
 
     def request(method, path, options,headers={})
+      if @configuration[:oauth_client_id] && @configuration[:oauth_client_id] && @configuration[:oauth_token]
+        request_oauth(method, path, options, headers)
+      else
+        request_api_user(method, path, options, headers)
+      end
+    end
+
+    def request_oauth(method, path, options,headers={})
+
+      site = "https://api.bigcommerce.com/stores/#{@configuration[:store_hash]}/v2"
+      client = OAuth2::Client.new(@configuration[:oauth_client_id], @configuration[:oauth_client_secret], site: site)
+      token = OAuth2::AccessToken.new(client, @configuration[:oauth_token])
+
+      # TODO: Setup AccessToken for ssl verify
+
+      headers.merge!({'X-Auth-Client' => @configuration[:oauth_client_id],
+                      'X-Auth-Token' => @configuration[:oauth_token],
+                      'Accept' =>'application/json'})
+
+      if path[0] == '/'
+        path = path[1..-1] # strip absolute prefix
+      end
+
+      response = case method
+                   when :get then
+                     token.get(path, {:params => options, :headers => headers})
+                   when :post then
+                     token.post(path, {:body => options, :headers => headers})
+                   when :put then
+                     token.put(path, {:body => options, :headers => headers})
+                   when :delete then
+                     token.delete(path, {:headers => headers})
+                 end
+
+      @remaining_rate_limit = response.headers[:x_bc_apilimit_remaining]
+
+      if((200..201) === response.status)
+        JSON.parse response.body
+      elsif response.status == 204
+        {}
+      end
+    end
+
+    def request_api_user(method, path, options,headers={})
       resource_options = {
         :user => @configuration[:username],
         :password => @configuration[:api_key],

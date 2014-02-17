@@ -26,6 +26,22 @@ module Bigcommerce
       @connection.api_key = api_key
     end
 
+    def store_hash=(store_hash)
+      @configuration.store_hash = store_hash
+    end
+
+    def oauth_client_id=(oauth_client_id)
+      @configuration.oauth_client_id = oauth_client_id
+    end
+
+    def oauth_client_secret=(oauth_client_secret)
+      @configuration.oauth_client_secret = oauth_client_secret
+    end
+
+    def oauth_token=(oauth_token)
+      @configuration.oauth_token = oauth_token
+    end
+
     def verify_ssl=(verify)
       @connection.verify_ssl = verify
     end
