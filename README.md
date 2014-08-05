@@ -89,7 +89,7 @@ Ping the time method to check that your configuration is working and you
 can connect successfully to the store:
 
 ```
-ping = api.time
+ping = api.get_time
 ```
 
 Usage
@@ -99,15 +99,15 @@ The API object acts as a gateway to all top level resources in the V2 API.
 
 Fetch Data
 ```
-orders = api.orders
-orders = api.orders({:min_id=>100,:max_id=>101})
-orders = api.orders(:is_deleted => true)
+orders = api.get_orders
+orders = api.get_orders({:min_id=>100,:max_id=>101})
+orders = api.get_orders(:is_deleted => true)
 
-products = api.products
-products = api.products(:description=>"iphone", :condition=>"New")
+products = api.get_products
+products = api.get_products(:description=>"iphone", :condition=>"New")
 
-options = api.options
-options = api.options(:type=>"MT")
+options = api.get_options
+options = api.get_options(:type=>"MT")
 ...
 
 ```
