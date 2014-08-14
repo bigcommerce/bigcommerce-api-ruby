@@ -5,7 +5,7 @@ module Bigcommerce
     def initialize(configuration)
       @configuration = {}
       configuration.each do |key, val|
-        send(key.to_s + "=", val)
+        public_send(key.to_s + "=", val)
       end
     end
 
@@ -27,19 +27,19 @@ module Bigcommerce
     end
 
     def ssl_ca_file=(path)
-      @configuration.ssl_ca_file = path
+      @configuration[:ssl_ca_file] = path
     end
 
     def ssl_client_key=(path,passphrase=nil)
       if passphrase.nil?
-        @configuration.ssl_client_key = OpenSSL::PKey::RSA.new(File.read(path))
+        @configuration[:ssl_client_key] = OpenSSL::PKey::RSA.new(File.read(path))
       else
-        @configuration.ssl_client_key = OpenSSL::PKey::RSA.new(File.read(path), passphrase)
+        @configuration[:ssl_client_key] = OpenSSL::PKey::RSA.new(File.read(path), passphrase)
       end
     end
 
     def ssl_client_cert=(path)
-      @configuration.client_cert = OpenSSL::X509::Certificate.new(File.read(path))
+      @configuration[:ssl_client_cert] = OpenSSL::X509::Certificate.new(File.read(path))
     end
 
     def get(path, options = {}, headers = {})
@@ -94,5 +94,10 @@ module Bigcommerce
         end
     end
 
+    def should_use_secure_client?
+      @configuration.has_key?(:ssl_client_key) &&
+        @configuration.has_key?(:ssl_client_cert) &&
+        @configuration.has_key?(:ssl_ca_file)
+    end
   end
 end
