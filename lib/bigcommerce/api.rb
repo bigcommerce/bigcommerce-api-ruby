@@ -222,6 +222,14 @@ module Bigcommerce
       @connection.get("/orders", options)
     end
 
+    def create_order(options={})
+      @connection.post("/orders", options)
+    end
+
+    def update_order(order_id, options={})
+      @connection.put("/orders/#{order_id}", options)
+    end
+
     def orders_by_date(date, options={})
       if date.is_a?(String)
         date = DateTime.parse(date)

@@ -31,4 +31,14 @@ describe "API request delegation" do
     api.customers(:limit => 10, :page => 2)
   end
 
+  it "can create a new order" do
+    api.connection.should_receive(:post).once.with("/orders", {order: 'details'})
+    api.create_order(order: 'details')
+  end
+
+  it "can update an order" do
+    api.connection.should_receive(:put).once.with("/orders/123", {order: 'details'})
+    api.update_order(123, order: 'details')
+  end
+
 end
