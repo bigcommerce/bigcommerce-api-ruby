@@ -29,13 +29,34 @@ describe "connection" do
      ssl_client_cert: File.join(Dir.pwd, "spec/support", "test.crt")}
   }
 
-  let(:default_url) { "https://bunk.bigcommerce.com/" }
+  let(:default_url) { "https://store.mybigcommerce.com/api/v2/time" }
   let(:default_username) { "jane" }
   let(:default_api_key) { 'abc123' }
   let(:default_conf_options) { {store_url: default_url,
                                 username: default_username,
                                 api_key: default_api_key} }
 
+  describe "#request" do
+    it "raises exception if method not supported" do
+      conn = Bigcommerce::Connection.new(default_conf_options)
+      expect{
+        conn.request(:bunk, "", {})
+      }.to raise_error(NotImplementedError)
+    end
+
+    context "failed responses" do
+      it "returns a json response if 404" do
+        VCR.use_cassette('page_not_found') do
+          conn = Bigcommerce::Connection.new(default_conf_options)
+          response = conn.request(:get, "/bunk", {})
+          # to prevent regression
+          expect{response}.to_not raise_exception(RestClient::ResourceNotFound)
+          expect(response).to be_kind_of Hash
+          expect(response['status']).to eql(404)
+        end
+      end
+    end
+  end
   describe "#should_use_secure_client?" do
     it "returns true when ssl_client_key, ssl_client_cert & ssl_ca_file are all truthy" do
       conn = Bigcommerce::Connection.new(ssl_opts)

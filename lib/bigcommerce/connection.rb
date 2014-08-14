@@ -59,30 +59,64 @@ module Bigcommerce
     end
 
     def request(method, path, options,headers={})
-        response = case method
-                   when :get then
-                     restclient(headers).get :params => options, :accept => :json, :content_type => :json
-                   when :post then
-                     restclient(headers).post(options.to_json, :content_type => :json, :accept => :json)
-                   when :put then
-                     restclient(headers).put(options.to_json, :content_type => :json, :accept => :json)
-                   when :delete then
-                     restclient(headers).delete
-                   end
-        @remaining_rate_limit = response.headers[:x_bc_apilimit_remaining]
-        if((200..201) === response.code)
-          JSON.parse response
-        elsif response.code == 204
+      response = case method
+                 when :get then
+                   restclient(path, {headers: headers}).get(:params => options,
+                                                 :accept => :json,
+                                                 :content_type => :json) { |response, request, result, &block|
+                     result.body = response
+                     headers = response.headers
+                     result
+                   }
+                 when :post then
+                   restclient(path, {headers: headers}).post(options.to_json,
+                                                             :content_type => :json,
+                                                             :accept => :json) { |response, request, result, &block|
+                     result.body = response
+                     headers = response.headers
+                     result
+                   }
+
+                 when :put then
+                   restclient(path, {headers: headers}).put(options.to_json,
+                                                            :content_type => :json,
+                                                            :accept => :json) { |response, request, result, &block|
+                     result.body = response
+                     headers = response.headers
+                     result
+                   }
+
+                 when :delete then
+                   restclient(path, {headers: headers}).delete { |response, request, result, &block|
+                     result.body = response
+                     headers = response.headers
+                     result
+                   }
+
+                 else
+                   fail NotImplementedError, "#{method} is not a supported method"
+                 end
+
+        if((200..201) === response.code.to_i)
+          @remaining_rate_limit = headers[:x_bc_apilimit_remaining]
+          json = JSON.parse(response.body)
+          json.first if json
+        elsif response.code.to_i == 204
+          @remaining_rate_limit = headers[:x_bc_apilimit_remaining]
           {}
+        else
+          json = JSON.parse(response.body)
+          json.first if json
         end
     end
 
-    def restclient(path)
-      RestClient::Resource.new "#{@configuration[:store_url]}/api/v2#{path}.json", resource_options
+    def restclient(path, options={})
+      RestClient::Resource.new "#{@configuration[:store_url]}/api/v2#{path}.json", resource_options(options)
     end
 
     def resource_options(additional_options={})
       {
+          :user => @configuration[:username],
           :username => @configuration[:username],
           :password => @configuration[:api_key],
           :ssl_client_cert  =>  @configuration[:ssl_client_cert],
