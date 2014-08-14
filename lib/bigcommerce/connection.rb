@@ -59,32 +59,15 @@ module Bigcommerce
     end
 
     def request(method, path, options,headers={})
-      resource_options = {
-        :user => @configuration[:username],
-        :password => @configuration[:api_key],
-        :headers => headers
-      }
-      restclient = RestClient::Resource.new "#{@configuration[:store_url]}/api/v2#{path}.json", resource_options
-      if @configuration[:ssl_client_key] && @configuration[:ssl_client_cert] && @configuration[:ssl_ca_file]
-        restclient = RestClient::Resource.new(
-          "#{@configuration[:store_url]}/api/v2#{path}.json",
-          :username => @configuration[:username],
-          :password => @configuration[:api_key],
-          :ssl_client_cert  =>  @configuration[:ssl_client_cert],
-          :ssl_client_key   =>  @configuration[:ssl_client_key],
-          :ssl_ca_file      =>  @configuration[:ssl_ca_file],
-          :verify_ssl       =>  @configuration[:verify_ssl]
-        )
-      end
         response = case method
                    when :get then
-                     restclient.get :params => options, :accept => :json, :content_type => :json
+                     restclient(headers).get :params => options, :accept => :json, :content_type => :json
                    when :post then
-                     restclient.post(options.to_json, :content_type => :json, :accept => :json)
+                     restclient(headers).post(options.to_json, :content_type => :json, :accept => :json)
                    when :put then
-                     restclient.put(options.to_json, :content_type => :json, :accept => :json)
+                     restclient(headers).put(options.to_json, :content_type => :json, :accept => :json)
                    when :delete then
-                     restclient.delete
+                     restclient(headers).delete
                    end
         @remaining_rate_limit = response.headers[:x_bc_apilimit_remaining]
         if((200..201) === response.code)
@@ -92,6 +75,21 @@ module Bigcommerce
         elsif response.code == 204
           {}
         end
+    end
+
+    def restclient(path)
+      RestClient::Resource.new "#{@configuration[:store_url]}/api/v2#{path}.json", resource_options
+    end
+
+    def resource_options(additional_options={})
+      {
+          :username => @configuration[:username],
+          :password => @configuration[:api_key],
+          :ssl_client_cert  =>  @configuration[:ssl_client_cert],
+          :ssl_client_key   =>  @configuration[:ssl_client_key],
+          :ssl_ca_file      =>  @configuration[:ssl_ca_file],
+          :verify_ssl       =>  @configuration[:verify_ssl]
+      }.merge(additional_options)
     end
 
     def should_use_secure_client?

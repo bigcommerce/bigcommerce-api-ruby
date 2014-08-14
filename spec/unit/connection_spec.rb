@@ -29,6 +29,13 @@ describe "connection" do
      ssl_client_cert: File.join(Dir.pwd, "spec/support", "test.crt")}
   }
 
+  let(:default_url) { "https://bunk.bigcommerce.com/" }
+  let(:default_username) { "jane" }
+  let(:default_api_key) { 'abc123' }
+  let(:default_conf_options) { {store_url: default_url,
+                                username: default_username,
+                                api_key: default_api_key} }
+
   describe "#should_use_secure_client?" do
     it "returns true when ssl_client_key, ssl_client_cert & ssl_ca_file are all truthy" do
       conn = Bigcommerce::Connection.new(ssl_opts)
@@ -42,6 +49,44 @@ describe "connection" do
         conn = Bigcommerce::Connection.new(test_hash)
         expect(conn.should_use_secure_client?).to be_falsey
       end
+    end
+  end
+
+  describe "#restclient" do
+    context "with secure" do
+      it "creates a secure resetclient resourse" do
+        conn = Bigcommerce::Connection.new(default_conf_options.merge(ssl_opts))
+        expect(conn.restclient("/orders")).to be_kind_of RestClient::Resource
+        expect(conn.restclient("/orders").options[:ssl_ca_file]).to_not be_nil
+      end
+    end
+
+    context "without ssl" do
+      it "creates a resetclient resourse" do
+        conn = Bigcommerce::Connection.new(default_conf_options)
+        expect(conn.restclient("/orders")).to be_kind_of RestClient::Resource
+        expect(conn.restclient("/orders").options[:ssl_ca_file]).to be_nil
+      end
+
+    end
+  end
+
+  describe "#resource_options" do
+    it "filters all the configuration keys to supply restclient with what it needs" do
+      conn = Bigcommerce::Connection.new(default_conf_options.merge(ssl_opts))
+      expect(conn.resource_options[:password]).to_not be_nil
+      expect(conn.resource_options[:ssl_ca_file]).to_not be_nil
+
+      conn = Bigcommerce::Connection.new(default_conf_options)
+      expect(conn.resource_options[:ssl_ca_file]).to be_nil
+      expect(conn.resource_options[:password]).to_not be_nil
+    end
+
+    it "adds keys as needed for resource_options" do
+      conn = Bigcommerce::Connection.new(default_conf_options)
+      ro = conn.resource_options(foo: 'bar')
+      expect(ro[:password]).to_not be_nil
+      expect(ro[:foo]).to_not be_nil
     end
   end
 end
