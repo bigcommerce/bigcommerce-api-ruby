@@ -341,11 +341,16 @@ module Bigcommerce
     end
 
     def products_customfields(options={})
-      @connection.get("/products/customfields", options)
+      @connection.get("/products/custom_fields", options)
     end
 
     def product_customfields(product_id, options={})
-      @connection.get("/products/#{product_id}/customfields", options)
+      @connection.get("/products/#{product_id}/custom_fields", options)
+    end
+
+    #NOTE: these should be renamed and aliased
+    def create_products_customfields(product_id, options={})
+      @connection.post("/products/#{product_id}/custom_fields", options)
     end
 
     def products_customfield(product_id, custom_field_id, options={})
@@ -374,10 +379,6 @@ module Bigcommerce
 
     def update_products_image(product_id,image_id,options={})
       @connection.put("/products/#{product_id}/images/#{image_id}", options)
-    end
-
-    def products_customfields(options={})
-      @connection.get("/products/options", options)
     end
 
     def product_options(product_id, options={})

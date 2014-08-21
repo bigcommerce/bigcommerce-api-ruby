@@ -100,7 +100,6 @@ module Bigcommerce
         if((200..201) === response.code.to_i)
           @remaining_rate_limit = headers[:x_bc_apilimit_remaining]
           json = JSON.parse(response.body)
-          json.first if json
         elsif response.code.to_i == 204
           @remaining_rate_limit = headers[:x_bc_apilimit_remaining]
           {}
