@@ -6,6 +6,11 @@ describe "API request delegation" do
     api.time
   end
 
+  it "requests all resources" do
+    api.connection.should_receive(:get).once.with("/products", {})
+    api.products
+  end
+
   it "requests a resource by id" do
     api.connection.should_receive(:get).once.with("/products/333", {})
     api.product(333)

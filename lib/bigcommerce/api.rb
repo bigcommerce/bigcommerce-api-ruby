@@ -294,7 +294,7 @@ module Bigcommerce
     end
 
     def products(options={})
-      @connection.get("/products/#{id}", options)
+      @connection.get("/products", options)
     end
 
     def products_count
