@@ -6,6 +6,11 @@ describe "API request delegation" do
     api.time
   end
 
+  it "requests all resources" do
+    api.connection.should_receive(:get).once.with("/products", {})
+    api.products
+  end
+
   it "requests a resource by id" do
     api.connection.should_receive(:get).once.with("/products/333", {})
     api.product(333)
@@ -29,6 +34,16 @@ describe "API request delegation" do
   it "request a resource with pagination and limit" do
     api.connection.should_receive(:get).once.with("/customers", {:limit => 10, :page => 2})
     api.customers(:limit => 10, :page => 2)
+  end
+
+  it "can create a new order" do
+    api.connection.should_receive(:post).once.with("/orders", {order: 'details'})
+    api.create_order(order: 'details')
+  end
+
+  it "can update an order" do
+    api.connection.should_receive(:put).once.with("/orders/123", {order: 'details'})
+    api.update_order(123, order: 'details')
   end
 
 end

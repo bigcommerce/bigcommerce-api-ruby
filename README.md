@@ -115,10 +115,6 @@ Create Data
 ```
 api.create_products({:name => "Spiderman - The best return",:price => 9.99,:categories => [17],:type =>"physical",:availability => "available", :weight => 1})
 
-api.update_products(31,{:name => "marvel comics spiderman",:sku => "marvel-spidey-1", :inventory_tracking => "simple", :inventory_level => 500})
-
-api.update_orders(101,{:status_id => 12, :is_deleted => true})
-
 ```
 Update Data
 
@@ -126,5 +122,7 @@ Update Data
 api.update_products(31,{:name => "marvel comics spiderman",:sku => "marvel-spidey-1", :inventory_tracking => "simple", :inventory_level => 500})
 
 api.update_optionsets(13,{:name => "Marvel toys"})
+
+api.update_orders(101,{:status_id => 12, :is_deleted => true})
 
 ```

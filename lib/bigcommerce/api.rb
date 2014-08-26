@@ -222,6 +222,10 @@ module Bigcommerce
       @connection.get("/orders", options)
     end
 
+    def create_order(options={})
+      @connection.post("/orders", options)
+    end
+
     def orders_by_date(date, options={})
       if date.is_a?(String)
         date = DateTime.parse(date)
@@ -290,10 +294,7 @@ module Bigcommerce
     end
 
     def products(options={})
-      if (!options["resource_class"])
-        options["resource_class"] = Product
-      end
-      collection("/products", options)
+      @connection.get("/products", options)
     end
 
     def products_count
@@ -337,11 +338,16 @@ module Bigcommerce
     end
 
     def products_customfields(options={})
-      @connection.get("/products/customfields", options)
+      @connection.get("/products/custom_fields", options)
     end
 
     def product_customfields(product_id, options={})
-      @connection.get("/products/#{product_id}/customfields", options)
+      @connection.get("/products/#{product_id}/custom_fields", options)
+    end
+
+    #NOTE: these should be renamed and aliased
+    def create_products_customfields(product_id, options={})
+      @connection.post("/products/#{product_id}/custom_fields", options)
     end
 
     def products_customfield(product_id, custom_field_id, options={})
@@ -370,10 +376,6 @@ module Bigcommerce
 
     def update_products_image(product_id,image_id,options={})
       @connection.put("/products/#{product_id}/images/#{image_id}", options)
-    end
-
-    def products_customfields(options={})
-      @connection.get("/products/options", options)
     end
 
     def product_options(product_id, options={})

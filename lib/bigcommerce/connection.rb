@@ -5,7 +5,7 @@ module Bigcommerce
     def initialize(configuration)
       @configuration = {}
       configuration.each do |key, val|
-        send(key.to_s + "=", val)
+        public_send(key.to_s + "=", val)
       end
     end
 
@@ -27,19 +27,19 @@ module Bigcommerce
     end
 
     def ssl_ca_file=(path)
-      @configuration.ssl_ca_file = path
+      @configuration[:ssl_ca_file] = path
     end
 
     def ssl_client_key=(path,passphrase=nil)
       if passphrase.nil?
-        @configuration.ssl_client_key = OpenSSL::PKey::RSA.new(File.read(path))
+        @configuration[:ssl_client_key] = OpenSSL::PKey::RSA.new(File.read(path))
       else
-        @configuration.ssl_client_key = OpenSSL::PKey::RSA.new(File.read(path), passphrase)
+        @configuration[:ssl_client_key] = OpenSSL::PKey::RSA.new(File.read(path), passphrase)
       end
     end
 
     def ssl_client_cert=(path)
-      @configuration.client_cert = OpenSSL::X509::Certificate.new(File.read(path))
+      @configuration[:ssl_client_cert] = OpenSSL::X509::Certificate.new(File.read(path))
     end
 
     def get(path, options = {}, headers = {})
@@ -59,40 +59,76 @@ module Bigcommerce
     end
 
     def request(method, path, options,headers={})
-      resource_options = {
-        :user => @configuration[:username],
-        :password => @configuration[:api_key],
-        :headers => headers
-      }
-      restclient = RestClient::Resource.new "#{@configuration[:store_url]}/api/v2#{path}.json", resource_options
-      if @configuration[:ssl_client_key] && @configuration[:ssl_client_cert] && @configuration[:ssl_ca_file]
-        restclient = RestClient::Resource.new(
-          "#{@configuration[:store_url]}/api/v2#{path}.json",
+      response = case method
+                 when :get then
+                   restclient(path, {headers: headers}).get(:params => options,
+                                                 :accept => :json,
+                                                 :content_type => :json) { |response, request, result, &block|
+                     result.body = response
+                     headers = response.headers
+                     result
+                   }
+                 when :post then
+                   restclient(path, {headers: headers}).post(options.to_json,
+                                                             :content_type => :json,
+                                                             :accept => :json) { |response, request, result, &block|
+                     result.body = response
+                     headers = response.headers
+                     result
+                   }
+
+                 when :put then
+                   restclient(path, {headers: headers}).put(options.to_json,
+                                                            :content_type => :json,
+                                                            :accept => :json) { |response, request, result, &block|
+                     result.body = response
+                     headers = response.headers
+                     result
+                   }
+
+                 when :delete then
+                   restclient(path, {headers: headers}).delete { |response, request, result, &block|
+                     result.body = response
+                     headers = response.headers
+                     result
+                   }
+
+                 else
+                   fail NotImplementedError, "#{method} is not a supported method"
+                 end
+
+        if((200..201) === response.code.to_i)
+          @remaining_rate_limit = headers[:x_bc_apilimit_remaining]
+          json = JSON.parse(response.body)
+        elsif response.code.to_i == 204
+          @remaining_rate_limit = headers[:x_bc_apilimit_remaining]
+          {}
+        else
+          json = JSON.parse(response.body)
+          json.first if json
+        end
+    end
+
+    def restclient(path, options={})
+      RestClient::Resource.new "#{@configuration[:store_url]}/api/v2#{path}.json", resource_options(options)
+    end
+
+    def resource_options(additional_options={})
+      {
+          :user => @configuration[:username],
           :username => @configuration[:username],
           :password => @configuration[:api_key],
           :ssl_client_cert  =>  @configuration[:ssl_client_cert],
           :ssl_client_key   =>  @configuration[:ssl_client_key],
           :ssl_ca_file      =>  @configuration[:ssl_ca_file],
           :verify_ssl       =>  @configuration[:verify_ssl]
-        )
-      end
-        response = case method
-                   when :get then
-                     restclient.get :params => options, :accept => :json, :content_type => :json
-                   when :post then
-                     restclient.post(options.to_json, :content_type => :json, :accept => :json)
-                   when :put then
-                     restclient.put(options.to_json, :content_type => :json, :accept => :json)
-                   when :delete then
-                     restclient.delete
-                   end
-        @remaining_rate_limit = response.headers[:x_bc_apilimit_remaining]
-        if((200..201) === response.code)
-          JSON.parse response
-        elsif response.code == 204
-          {}
-        end
+      }.merge(additional_options)
     end
 
+    def should_use_secure_client?
+      @configuration.has_key?(:ssl_client_key) &&
+        @configuration.has_key?(:ssl_client_cert) &&
+        @configuration.has_key?(:ssl_ca_file)
+    end
   end
 end
