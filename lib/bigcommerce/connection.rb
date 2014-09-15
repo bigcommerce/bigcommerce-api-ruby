@@ -75,7 +75,7 @@ module Bigcommerce
     end
 
     def request(method, path, options,headers={})
-      if @configuration[:oauth_client_id] && @configuration[:oauth_client_id] && @configuration[:oauth_token]
+      if @configuration[:oauth_client_id] && @configuration[:oauth_client_secret] && @configuration[:oauth_token]
         request_oauth(method, path, options, headers)
       else
         request_api_user(method, path, options, headers)
