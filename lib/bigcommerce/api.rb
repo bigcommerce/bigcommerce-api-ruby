@@ -312,6 +312,10 @@ module Bigcommerce
       @connection.put("/products/#{id}", options)
     end
 
+    def delete_products(id)
+      @connection.delete("/products/#{id}")
+    end
+
     def products_discountrules(options={})
       @connection.get("/products/discountrules", options)
     end
