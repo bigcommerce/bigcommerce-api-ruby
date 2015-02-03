@@ -42,6 +42,10 @@ module Bigcommerce
       @connection.get '/time'
     end
 
+    def store_information
+      @connection.get '/store'
+    end
+
     def brands(options={})
       @connection.get("/brands", options)
     end
@@ -290,10 +294,7 @@ module Bigcommerce
     end
 
     def products(options={})
-      if (!options["resource_class"])
-        options["resource_class"] = Product
-      end
-      collection("/products", options)
+      @connection.get("/products", options)
     end
 
     def products_count
@@ -376,10 +377,6 @@ module Bigcommerce
       @connection.post("/products/#{product_id}/images", options)
     end
 
-    def products_images(options={})
-      @connection.get("/products/images", options)
-    end
-
     def create_products_images(options={})
       @connection.post("/products/images", options)
     end
@@ -392,20 +389,12 @@ module Bigcommerce
       @connection.put("/products/#{product_id}/images/#{image_id}", options)
     end
 
-    def products_customfields(options={})
-      @connection.get("/products/options", options)
-    end
-
     def product_options(product_id, options={})
       @connection.get("/products/#{product_id}/options", options)
     end
 
     def products_option(product_id,option_id, options={})
       @connection.get("/products/#{product_id}/options/#{option_id}", options)
-    end
-
-    def products_rules(options={})
-      @connection.get("/products/rules", options)
     end
 
     def product_rules(product_id, options={})
@@ -424,10 +413,6 @@ module Bigcommerce
       @connection.put("/products/#{product_id}/rules/#{rule_id}", options)
     end
 
-    def products_skus(options={})
-      @connection.get("/products/skus", options)
-    end
-
     def product_skus(product_id, options={})
       @connection.get("/products/#{product_id}/skus", options)
     end
@@ -442,10 +427,6 @@ module Bigcommerce
 
     def update_products_sku(product_id, sku_id, options={})
       @connection.put("/products/#{product_id}/skus/#{sku_id}", options)
-    end
-
-    def products_videos(options={})
-      @connection.get("/products/videos", options)
     end
 
     def product_videos(product_id, options={})
