@@ -312,6 +312,10 @@ module Bigcommerce
       @connection.put("/products/#{id}", options)
     end
 
+    def delete_products(id)
+      @connection.delete("/products/#{id}")
+    end
+
     def products_discountrules(options={})
       @connection.get("/products/discountrules", options)
     end
@@ -342,6 +346,22 @@ module Bigcommerce
 
     def product_customfields(product_id, options={})
       @connection.get("/products/#{product_id}/customfields", options)
+    end
+
+    def create_product_customfield(product_id, options={})
+      @connection.post("/products/#{product_id}/customfields", options)
+    end
+
+    def update_product_customfield(product_id, custom_field_id, options={})
+      @connection.put("/products/#{product_id}/customfields/#{custom_field_id}", options)
+    end
+
+    def delete_product_customfield(product_id, custom_field_id)
+      @connection.delete("/products/#{product_id}/customfields/#{custom_field_id}")
+    end
+
+    def delete_product_customfields(product_id)
+      @connection.delete("/products/#{product_id}/customfields")
     end
 
     def products_customfield(product_id, custom_field_id, options={})
