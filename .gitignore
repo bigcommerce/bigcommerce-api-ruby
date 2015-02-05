@@ -15,3 +15,5 @@
 
 # Rspec
 /tmp
+
+.DS_Store

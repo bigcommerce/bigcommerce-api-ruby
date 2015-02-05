@@ -1,5 +1,4 @@
-Bigcommerce API V2 - Ruby Client
-================================
+# Bigcommerce API V2 - Ruby Client
 
 [![Gem Version](https://badge.fury.io/rb/bigcommerce.png)](https://rubygems.org/gems/bigcommerce)
 [![Build Status](https://travis-ci.org/bigcommerce/bigcommerce-api-ruby.png?branch=master)](https://travis-ci.org/bigcommerce/bigcommerce-api-ruby)
@@ -10,121 +9,101 @@ Bigcommerce API V2 - Ruby Client
 This library provides a wrapper around the Bigcommerce REST API for use within
 Ruby apps or via the console.
 
-Note
-----
+### Note
+
 If you find anything that is missing or needs clean up, please feel free to fork
 it and submit a changes with your pull request.
 
-Requirements
-------------
+## Requirements
 
 - Ruby 1.9+
 
 To connect to the API, you need the following credentials:
 
+For the OAuth API:
+
+- Create and register an app at [developer.bigcommerce.com](https://developer.bigcommerce.com).
+- Have a callback URL defined
+- Prepare the `client_id` credential
+
+For the Legacy API:
+
 - Secure URL pointing to a Bigcommerce store
 - Username of an authorized admin user of the store
 - API key for the user
 
-A valid API key is required to authenticate requests. To grant API access for a
-user, go to Control Panel > Users > Edit User and make sure that the
-'Enable API access?' checkbox is ticked.
+A valid API key is required to authenticate requests. To grant API access for a user, go to Control Panel > Users > Edit User and make sure that the 'Enable API access?' checkbox is ticked.
 
-Installation
-------------
+## Installation
 
 Download the lib folder and copy it to a path accessible within your app, or
 install the package directly from Rubygems:
 
-```
+```sh
 gem install bigcommerce
 ```
 
-Note that the RubyGems version of this gem might be outdated. You can install the
-gem directly from this repo. If you are using Rails, you can point your Gemfile
-to this git repo directly or do a local install of the gem by -
+## Configuration
 
-```
-rake build
-gem install pkg/bigcommerce-*.gem
-```
+#### OAuth Authentication
 
-Configuration
--------------
+In order to create a new Bigcommerce application, please visit [developer.bigcommerce.com](https://developer.bigcommerce.com). Its free to sign up and only takes a moment. Once you have created your app, you can get a `client_id`.
 
 To use the API client in your Ruby code, provide the required credentials as
 follows:
 
-```
+```rb
 require 'bigcommerce'
 
 api = Bigcommerce::Api.new({
-	:store_url => "https://store.mybigcommerce.com",
-	:username  => "admin",
-	:api_key   => "d81aada4c19c34d913e18f07fd7f36ca"
+  :store_hash    => 'STORE_HASH',
+  :client_id     => 'CLIENT_ID',
+  :access_token  => 'ACCESS_TOKEN'
 })
 ```
 
-If you want to enable SSL certificates -
+__NOTE:__ You do not need extra SSL certificates when connecting to the OAuth version of the api.
 
-```
+#### Legacy Credentials
+
+To use the API client with the legacy credentials you can visit the main store page and under the "Setup & Tools" dropdown, you will see a link for the legacy API credentials.
+
+```rb
 require 'bigcommerce'
+
 api = Bigcommerce::Api.new({
-	:store_url => "https://store.mybigcommerce.com",
-	:username  => "admin",
-	:api_key   => "d81aada4c19c34d913e18f07fd7f36ca"
-	:ssl_client_cert  =>  OpenSSL::X509::Certificate.new(File.read("cert.pem")),
-  	:ssl_client_key   =>  OpenSSL::PKey::RSA.new(File.read("key.pem"), "passphrase, if any"),
-  	:ssl_ca_file      =>  "ca_certificate.pem",
-  	:verify_ssl       =>  OpenSSL::SSL::VERIFY_PEER
+  :store_url => "https://store.mybigcommerce.com",
+  :username  => "username",
+  :api_key   => "api_key"
+})
+```
+
+You can also enable SSL for the Legacy API.
+
+```rb
+require 'bigcommerce'
+
+api = Bigcommerce::Api.new({
+  :store_url => "https://store.mybigcommerce.com",
+  :username  => "username",
+  :api_key   => "api_key",
+  :ssl_client_cert  =>  OpenSSL::X509::Certificate.new(File.read("cert.pem")),
+  :ssl_client_key   =>  OpenSSL::PKey::RSA.new(File.read("key.pem"), "passphrase, if any"),
+  :ssl_ca_file      =>  "ca_certificate.pem",
+  :verify_ssl       =>  OpenSSL::SSL::VERIFY_PEER
 })
 ```
 Remember that the fields `:ssl_client_cert`, `:ssl_client_key`, `:ssl_ca_file`
 and `:verify_ssl` are all required when enabling SSL certificates.
 
-Connecting to the store
------------------------
+## Connecting to the store
 
-Ping the time method to check that your configuration is working and you
-can connect successfully to the store:
+Once you have authenticated with the OAuth or Legacy credentials, ping the time method to check that your configuration is working and you can connect successfully to the store:
 
-```
-ping = api.time
+```rb
+ping = api.time()
 ```
 
-Usage
------
+## Reference
 
-The API object acts as a gateway to all top level resources in the V2 API.
-
-Fetch Data
-```
-orders = api.orders
-orders = api.orders({:min_id=>100,:max_id=>101})
-orders = api.orders(:is_deleted => true)
-
-products = api.products
-products = api.products(:description=>"iphone", :condition=>"New")
-
-options = api.options
-options = api.options(:type=>"MT")
-...
-
-```
-Create Data
-```
-api.create_products({:name => "Spiderman - The best return",:price => 9.99,:categories => [17],:type =>"physical",:availability => "available", :weight => 1})
-
-api.update_products(31,{:name => "marvel comics spiderman",:sku => "marvel-spidey-1", :inventory_tracking => "simple", :inventory_level => 500})
-
-api.update_orders(101,{:status_id => 12, :is_deleted => true})
-
-```
-Update Data
-
-```
-api.update_products(31,{:name => "marvel comics spiderman",:sku => "marvel-spidey-1", :inventory_tracking => "simple", :inventory_level => 500})
-
-api.update_optionsets(13,{:name => "Marvel toys"})
-
-```
+For full reference about the resources and supported endpoints, please see [developer.bigcommerce.com](https://developer.bigcommerce.com).
