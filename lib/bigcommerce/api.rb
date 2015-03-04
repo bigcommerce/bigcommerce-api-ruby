@@ -225,6 +225,10 @@ module Bigcommerce
     def orders(options={})
       @connection.get("/orders", options)
     end
+    
+    def orders_count(options={})
+      @connection.get("/orders/count", options)
+    end
 
     def orders_by_date(date, options={})
       if date.is_a?(String)
