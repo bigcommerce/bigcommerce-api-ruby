@@ -245,6 +245,10 @@ module Bigcommerce
       @connection.put("/orders/#{id}", options)
     end
 
+    def orders_count(options={})
+        @connection.get("/orders/count", options)
+    end
+    
     def orders_coupons(id,options={})
       @connection.get("/orders/#{id}/coupons", options)
     end
@@ -297,8 +301,8 @@ module Bigcommerce
       @connection.get("/products", options)
     end
 
-    def products_count
-      @connection.get '/products/count'
+    def products_count(options={})
+      @connection.get('/products/count', options)
     end
 
     def product(id,options={})
