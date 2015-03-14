@@ -133,7 +133,7 @@ module Bigcommerce
       if @configuration[:ssl_client_key] && @configuration[:ssl_client_cert] && @configuration[:ssl_ca_file]
         rest_client = RestClient::Resource.new(
             "#{@configuration[:store_url]}/api/v2#{path}.json",
-            :username => @configuration[:username],
+            :user => @configuration[:username],
             :password => @configuration[:api_key],
             :ssl_client_cert => @configuration[:ssl_client_cert],
             :ssl_client_key => @configuration[:ssl_client_key],
