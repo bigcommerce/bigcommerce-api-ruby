@@ -87,9 +87,9 @@ api = Bigcommerce::Api.new({
   :store_url => "https://store.mybigcommerce.com",
   :username  => "username",
   :api_key   => "api_key",
-  :ssl_client_cert  =>  OpenSSL::X509::Certificate.new(File.read("cert.pem")),
-  :ssl_client_key   =>  OpenSSL::PKey::RSA.new(File.read("key.pem"), "passphrase, if any"),
-  :ssl_ca_file      =>  "ca_certificate.pem",
+  :ssl_client_cert  =>  "/path/to/cert.pem",
+  :ssl_client_key   =>  { path: "/path/to/key.pem", passphrase: "passphrase, if any" },
+  :ssl_ca_file      =>  "/path/to/ca_certificate.pem",
   :verify_ssl       =>  OpenSSL::SSL::VERIFY_PEER
 })
 ```

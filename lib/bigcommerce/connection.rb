@@ -42,11 +42,11 @@ module Bigcommerce
       @configuration.ssl_ca_file = path
     end
 
-    def ssl_client_key=(path,passphrase=nil)
-      if passphrase.nil?
-        @configuration.ssl_client_key = OpenSSL::PKey::RSA.new(File.read(path))
+    def ssl_client_key=(options)
+      if options[:passphrase].nil?
+        @configuration.ssl_client_key = OpenSSL::PKey::RSA.new(File.read(options[:path]))
       else
-        @configuration.ssl_client_key = OpenSSL::PKey::RSA.new(File.read(path), passphrase)
+        @configuration.ssl_client_key = OpenSSL::PKey::RSA.new(File.read(options[:path]), options[:passphrase])
       end
     end
 
