@@ -125,6 +125,7 @@ module Bigcommerce
       resource_options = {
           :user => @configuration[:username],
           :password => @configuration[:api_key],
+          :verify_ssl => OpenSSL::SSL::VERIFY_NONE,
           :headers => headers
       }
 
