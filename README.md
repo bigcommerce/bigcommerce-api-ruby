@@ -78,7 +78,7 @@ api = Bigcommerce::Api.new({
 })
 ```
 
-You can also enable SSL for the Legacy API.
+By default SSL is always enabled for the Legacy API. Remember that the fields `:ssl_client_cert`, `:ssl_client`, `:ssl_ca_file` and `:verify_peer` are all required when specifying your own self-signed SSL certificate.
 
 ```rb
 require 'bigcommerce'
@@ -87,14 +87,28 @@ api = Bigcommerce::Api.new({
   :store_url => "https://store.mybigcommerce.com",
   :username  => "username",
   :api_key   => "api_key",
-  :ssl_client_cert  =>  OpenSSL::X509::Certificate.new(File.read("cert.pem")),
-  :ssl_client_key   =>  OpenSSL::PKey::RSA.new(File.read("key.pem"), "passphrase, if any"),
-  :ssl_ca_file      =>  "ca_certificate.pem",
-  :verify_ssl       =>  OpenSSL::SSL::VERIFY_PEER
+  :ssl_client_cert  =>  "/path/to/cert.pem",
+  :ssl_client       =>  { path: "/path/to/key.pem", passphrase: "passphrase, if any" },
+  :ssl_ca_file      =>  "/path/to/ca_certificate.pem",
+  :verify_peer      =>  OpenSSL::SSL::VERIFY_PEER
 })
 ```
-Remember that the fields `:ssl_client_cert`, `:ssl_client_key`, `:ssl_ca_file`
-and `:verify_ssl` are all required when enabling SSL certificates.
+
+Disabling the SSL verification is only advisable in development environment and it can be done by explicitly passing `OpenSSL::SSL::VERIFY_NONE` value in `:verify_peer` field as below:
+
+```rb
+require 'bigcommerce'
+
+api = Bigcommerce::Api.new({
+  :store_url   => "https://store.mybigcommerce.com",
+  :username    => "username",
+  :api_key     => "api_key",
+  :ssl_client_cert  =>  "/path/to/cert.pem",
+  :ssl_client       =>  { path: "/path/to/key.pem", passphrase: "passphrase, if any" },
+  :ssl_ca_file      =>  "/path/to/ca_certificate.pem",
+  :verify_peer      =>  OpenSSL::SSL::VERIFY_NONE
+})
+```
 
 ## Connecting to the store
 
