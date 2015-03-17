@@ -4,17 +4,19 @@ require 'bigcommerce/version'
 
 Gem::Specification.new do |s|
   s.name = 'bigcommerce'
-  s.homepage = 'https://github.com/bigcommerce/bigcommerce-api-ruby'
-  s.authors = ['Patrick Edelman']
   s.version = Bigcommerce::VERSION
+  s.required_ruby_version = '>= 1.9.3'
   s.license = 'MIT'
 
-  s.description = 'Bigcommerce API Ruby client library. Allows developers to \
-  easily communicate with the Bigcommerce API, for either CLI tools or public \
-  apps. More info: http://developer.bigcommerce.com'
+  s.authors = ['Patrick Edelman']
+  s.homepage = 'https://github.com/bigcommerce/bigcommerce-api-ruby'
   s.summary = 'Ruby client library for the Bigcommerce v2 API'
+  s.description =  <<-EOF
+    Bigcommerce API Ruby client library.
+    Allows developer access to the Bigcommerce API, for CLI tools or public apps.
+    More info: https://developer.bigcommerce.com
+  EOF
 
-  s.required_ruby_version = '>= 1.9.3'
   s.require_paths = ['lib']
   s.files = `git ls-files`.split($ORS)
   s.test_files = Dir['spec/**/*.rb']
