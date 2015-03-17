@@ -1,19 +1,17 @@
-# Bundler
-/.bundle
-/Gemfile.lock
-/pkg
-/vendor/bundle
-
-# CI Reporter
-/spec/reports
-
-# Code coverage
-/coverage
-
-# Ignore compiled gems
-/*.gem
-
-# Rspec
-/tmp
-
+*.gem
+*.rbc
 .DS_Store
+.bundle
+.rvmrc
+.ruby-version
+.yardoc
+.rake_tasks~
+Gemfile.lock
+coverage/*
+doc/*
+log/*
+pkg/*
+.idea/*
+tmp/*
+.env
+.env-*

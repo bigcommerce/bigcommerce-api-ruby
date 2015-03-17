@@ -1,4 +1,4 @@
-# Bigcommerce API V2 - Ruby Client
+# Bigcommerce
 
 [![Gem Version](https://badge.fury.io/rb/bigcommerce.png)](https://rubygems.org/gems/bigcommerce)
 [![Build Status](https://travis-ci.org/bigcommerce/bigcommerce-api-ruby.png?branch=master)](https://travis-ci.org/bigcommerce/bigcommerce-api-ruby)
@@ -6,104 +6,95 @@
 [![Code Climate](https://codeclimate.com/github/bigcommerce/bigcommerce-api-ruby.png)](https://codeclimate.com/github/bigcommerce/bigcommerce-api-ruby)
 [![Coverage Status](https://coveralls.io/repos/bigcommerce/bigcommerce-api-ruby/badge.png?branch=master)](https://coveralls.io/r/bigcommerce/bigcommerce-api-ruby?branch=master)
 
-This library provides a wrapper around the Bigcommerce REST API for use within
-Ruby apps or via the console.
+This is the official Bigcommerce API client to support our Rest API. You can find more information about becoming a Bigcommerce developer here: [developer.bigcommerce.com](http://developer.bigcommerce.com).
 
-### Note
+#### ⚠️ A note about the current client: ⚠️
+This is a preview release of the 1.0.0 version of the Bigcommerce API Client. Please report issues if they come up.
 
-If you find anything that is missing or needs clean up, please feel free to fork
-it and submit a changes with your pull request.
+We have introduced a new major version of the API client and it is a complete rewrite (for the better). If you want to see the old version of the API client, please view it here: [Bigcommerce API client v0.x](https://github.com/bigcommerce/bigcommerce-api-ruby/tree/0.x). We recommend that developers upgrade to the latest client, but we will still support our developers who are unable to upgrade.
 
-## Requirements
-
-- Ruby 1.9+
-
-To connect to the API, you need the following credentials:
-
-For the OAuth API:
-
-- Create and register an app at [developer.bigcommerce.com](https://developer.bigcommerce.com).
-- Have a callback URL defined
-- Prepare the `client_id` credential
-
-For the Legacy API:
-
-- Secure URL pointing to a Bigcommerce store
-- Username of an authorized admin user of the store
-- API key for the user
-
-A valid API key is required to authenticate requests. To grant API access for a user, go to Control Panel > Users > Edit User and make sure that the 'Enable API access?' checkbox is ticked.
 
 ## Installation
-
-Download the lib folder and copy it to a path accessible within your app, or
-install the package directly from Rubygems:
+Bigcommerce is available on Rubygems:
 
 ```sh
-gem install bigcommerce
+gem install bigcommerce --pre
 ```
+
+You can also add it to your Gemfile.
+
+```rb
+gem 'bigcommerce', '>= 1.0.0.beta'
+```
+
+## Getting Started
+In order to make requests to our API, you must register as a developer and have your credentials ready.
+
+We currently have two different authentication schemes you can use depending on your use-case.
+
+#### Public Apps
+Public apps can be submitted to Bigcommerce App Store, allowing other businesses to install it in their Bigcommerce stores.
+
+[More Information](https://developer.bigcommerce.com/api/using-oauth-intro)
+
+#### Private Apps
+To develop a custom integration for one store, your app needs to use Basic Authentication.
+
+[More Information](https://developer.bigcommerce.com/api/legacy/basic-auth)
+
+## Usage
+For full examples on using the API client, please see the [examples folder](examples).
 
 ## Configuration
+In order to authenticate the API client, you will need to configure the client like this:
 
-#### OAuth Authentication
+#### Single Click (Public Apps):
 
-In order to create a new Bigcommerce application, please visit [developer.bigcommerce.com](https://developer.bigcommerce.com). Its free to sign up and only takes a moment. Once you have created your app, you can get a `client_id`.
-
-To use the API client in your Ruby code, provide the required credentials as
-follows:
-
-```rb
-require 'bigcommerce'
-
-api = Bigcommerce::Api.new({
-  :store_hash    => 'STORE_HASH',
-  :client_id     => 'CLIENT_ID',
-  :access_token  => 'ACCESS_TOKEN'
-})
-```
-
-__NOTE:__ You do not need extra SSL certificates when connecting to the OAuth version of the api.
-
-#### Legacy Credentials
-
-To use the API client with the legacy credentials you can visit the main store page and under the "Setup & Tools" dropdown, you will see a link for the legacy API credentials.
+- ```client_id```: Obtained from the "My Apps" section on the [developer portal](http://developer.bigcommerce.com).
+- ```access_token```: Obtained after a token exchange in the auth callback.
+- ```store_hash```: Also obtained after the token exchange.
 
 ```rb
-require 'bigcommerce'
-
-api = Bigcommerce::Api.new({
-  :store_url => "https://store.mybigcommerce.com",
-  :username  => "username",
-  :api_key   => "api_key"
-})
+Bigcommerce.configure do |config|
+  config.store_hash = 'store_hash'
+  config.client_id = 'client_id'
+  config.access_token = 'access_token'
+end
 ```
 
-You can also enable SSL for the Legacy API.
+#### Private Apps:
+
+To get all the private app credentials, simply visit your store admin page and navigate to the Settings > Legacy API Settings. Once there, you can create a new username to authenticate with.
 
 ```rb
-require 'bigcommerce'
-
-api = Bigcommerce::Api.new({
-  :store_url => "https://store.mybigcommerce.com",
-  :username  => "username",
-  :api_key   => "api_key",
-  :ssl_client_cert  =>  OpenSSL::X509::Certificate.new(File.read("cert.pem")),
-  :ssl_client_key   =>  OpenSSL::PKey::RSA.new(File.read("key.pem"), "passphrase, if any"),
-  :ssl_ca_file      =>  "ca_certificate.pem",
-  :verify_ssl       =>  OpenSSL::SSL::VERIFY_PEER
-})
+Bigcommerce.configure do |config|
+  config.auth = 'legacy'
+  config.url = 'https://api_path.com'
+  config.username = 'username'
+  config.api_key = 'api_key'
+end
 ```
-Remember that the fields `:ssl_client_cert`, `:ssl_client_key`, `:ssl_ca_file`
-and `:verify_ssl` are all required when enabling SSL certificates.
 
-## Connecting to the store
+__SSL Configuration:__
 
-Once you have authenticated with the OAuth or Legacy credentials, ping the time method to check that your configuration is working and you can connect successfully to the store:
+If you are using your own self-signed certificate, you can pass SSL options to Faraday. This is not required, but may be useful in special edge cases.
 
 ```rb
-ping = api.time()
+Bigcommerce.configure do |config|
+  config.auth = 'legacy'
+  config.url = 'https://api_path.com'
+  config.username = 'username'
+  config.api_key = 'api_key'
+  config.ssl = {
+    # Faraday options here
+  }
+end
 ```
 
-## Reference
+For more information about configuring SSL with Faraday, please see the following:
 
-For full reference about the resources and supported endpoints, please see [developer.bigcommerce.com](https://developer.bigcommerce.com).
+- [Faraday SSL example](https://gist.github.com/mislav/938183)
+- [Setting up SSL certificates](https://github.com/lostisland/faraday/wiki/Setting-up-SSL-certificates)
+
+## Contributing
+See [CONTRIBUTING.md](CONTRIBUTING.md)
