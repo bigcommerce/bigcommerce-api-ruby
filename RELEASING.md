@@ -33,7 +33,7 @@ git commit -m "Preparing for release, 1.1.0."
 git push origin master
 ```
 
-### Release 🎉
+### Release :tada:
 
 ```sh
 $ rake release

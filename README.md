@@ -8,7 +8,7 @@
 
 This is the official Bigcommerce API client to support our Rest API. You can find more information about becoming a Bigcommerce developer here: [developer.bigcommerce.com](http://developer.bigcommerce.com).
 
-#### ⚠️ A note about the current client: ⚠️
+#### :warning: A note about the current client: :warning:
 This is a preview release of the 1.0.0 version of the Bigcommerce API Client. Please report issues if they come up.
 
 We have introduced a new major version of the API client and it is a complete rewrite (for the better). If you want to see the old version of the API client, please view it here: [Bigcommerce API client v0.x](https://github.com/bigcommerce/bigcommerce-api-ruby/tree/0.x). We recommend that developers upgrade to the latest client, but we will still support our developers who are unable to upgrade.
@@ -64,7 +64,7 @@ end
 
 #### Private Apps:
 
-To get all the private app credentials, simply visit your store admin page and navigate to the Settings > Legacy API Settings. Once there, you can create a new username to authenticate with.
+To get all the private app credentials, simply visit your store admin page and navigate to the ```Settings > Legacy API Settings```. Once there, you can create a new username to authenticate with.
 
 ```rb
 Bigcommerce.configure do |config|
