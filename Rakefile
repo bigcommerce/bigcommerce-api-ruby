@@ -1,11 +1,13 @@
-require 'bundler/gem_tasks'
-require 'ci/reporter/rake/rspec'
 require 'rspec/core/rake_task'
+require 'bundler/gem_tasks'
+require 'bigcommerce'
 
-Bundler::GemHelper.install_tasks
-
-RSpec::Core::RakeTask.new(:spec) do |spec|
+RSpec::Core::RakeTask.new do |spec|
   spec.pattern = 'spec/**/*_spec.rb'
+  spec.verbose = false
 end
 
-task :default => ['ci:setup:rspec', :spec]
+require 'rubocop/rake_task'
+RuboCop::RakeTask.new(:rubocop)
+
+task default: [:rubocop, :spec]

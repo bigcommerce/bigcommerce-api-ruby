@@ -1,10 +1,15 @@
-source 'http://rubygems.org'
+source 'https://rubygems.org'
+gemspec
 
-platforms :rbx do
-  gem 'racc'
-  gem 'rubinius-coverage'
-  gem 'rubysl', '~> 2.0'
-  gem 'psych'
+group :development do
+  gem 'pry'
+  gem 'rubocop'
+  gem 'guard'
+  gem 'guard-rspec'
 end
 
-gemspec
+group :test do
+  gem 'rspec'
+  gem 'simplecov'
+  gem 'coveralls'
+end
