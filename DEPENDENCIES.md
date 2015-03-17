@@ -1,4 +1,4 @@
-### Bigcommerce 💙  Open Source
+### Bigcommerce :blue_heart: Open Source
 
 Many thanks to the contributors and authors of the following libraries!
 
