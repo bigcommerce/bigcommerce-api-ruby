@@ -21,8 +21,11 @@ Gem::Specification.new do |s|
   s.files = `git ls-files`.split($ORS)
   s.test_files = Dir['spec/**/*.rb']
 
-  s.add_development_dependency 'rake'
   s.add_development_dependency 'bundler'
+  s.add_development_dependency 'coveralls'
+  s.add_development_dependency 'rake'
+  s.add_development_dependency 'rspec'
+  s.add_development_dependency 'rubocop'
 
   s.add_dependency 'faraday'
   s.add_dependency 'faraday_middleware'
