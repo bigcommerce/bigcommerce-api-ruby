@@ -1,6 +1,7 @@
 ## Next Release
 
 * Your contribution here.
+* [#101](https://github.com/bigcommerce/bigcommerce-api-ruby/pull/101): Fix #100 when exception and env.body is a string. - [@gregory](https://github.com/gregory).
 
 ## 1.0.0
 Please note that this is the start of a new major release which breaks all backward compatibility.

@@ -41,6 +41,19 @@ describe Bigcommerce::HttpErrors do
         expect(e.response_headers[:retry_after]).to eq 1
       end
     end
+
+    it 'handle string in body' do
+      message = 'Unauthorized'
+      code = 401
+      env = double(:env)
+      allow(env).to receive(:body) { message }
+      allow(env).to receive(:[]) { {} }
+      begin
+        dummy_class.throw_http_exception!(code, env)
+      rescue Bigcommerce::Unauthorized => e
+        expect(e.message).to eq message
+      end
+    end
   end
 
   context 'valid response status' do
