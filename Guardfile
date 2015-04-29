@@ -1,9 +1,9 @@
 guard 'rspec', all_on_start: false, cmd: 'bundle exec rspec' do
   # Watch spec directory
-  watch(/^spec\/.+_spec\.rb/)
+  watch(%r{^spec\/.+_spec\.rb})
 
   # Watch lib/*.rb
-  watch(/^lib\/(.+)\.rb/) do |m|
+  watch(%r{^lib\/(.+)\.rb}) do |m|
     "spec/bigcommerce/#{m[1]}_spec.rb"
   end
 

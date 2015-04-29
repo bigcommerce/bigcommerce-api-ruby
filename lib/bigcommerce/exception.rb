@@ -6,19 +6,19 @@ module Bigcommerce
     end
   end
 
-  class BadRequest             < HttpError; end
-  class Unauthorized           < HttpError; end
-  class Forbidden              < HttpError; end
-  class NotFound               < HttpError; end
-  class MethodNotAllowed       < HttpError; end
-  class NotAccepted            < HttpError; end
-  class TimeOut                < HttpError; end
-  class ResourceConflict       < HttpError; end
-  class TooManyRequests        < HttpError; end
-  class InternalServerError    < HttpError; end
-  class BadGateway             < HttpError; end
-  class ServiceUnavailable     < HttpError; end
-  class GatewayTimeout         < HttpError; end
+  class BadRequest < HttpError; end
+  class Unauthorized < HttpError; end
+  class Forbidden < HttpError; end
+  class NotFound < HttpError; end
+  class MethodNotAllowed < HttpError; end
+  class NotAccepted < HttpError; end
+  class TimeOut < HttpError; end
+  class ResourceConflict < HttpError; end
+  class TooManyRequests < HttpError; end
+  class InternalServerError < HttpError; end
+  class BadGateway < HttpError; end
+  class ServiceUnavailable < HttpError; end
+  class GatewayTimeout < HttpError; end
   class BandwidthLimitExceeded < HttpError; end
 
   module HttpErrors
@@ -41,11 +41,18 @@ module Bigcommerce
 
     def throw_http_exception!(code, env)
       return unless ERRORS.keys.include? code
-      error_hash = env.body.empty? ? {} : JSON.parse(env.body, symbolize_names: true)
-      unless env[:response_headers]['X-Retry-After'].nil?
-        error_hash[:retry_after] = env[:response_headers]['X-Retry-After'].to_i
+      response_headers = {}
+      unless env.body.empty?
+        response_headers = begin
+          JSON.parse(env.body, symbolize_names: true)
+        rescue
+          {}
+        end
       end
-      fail ERRORS[code].new(error_hash), env.body
+      unless env[:response_headers]['X-Retry-After'].nil?
+        response_headers[:retry_after] = env[:response_headers]['X-Retry-After'].to_i
+      end
+      fail ERRORS[code].new(response_headers), env.body
     end
   end
 end
