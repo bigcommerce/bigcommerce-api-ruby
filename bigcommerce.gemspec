@@ -30,5 +30,5 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'faraday'
   s.add_dependency 'faraday_middleware'
-  s.add_dependency 'hashie'
+  s.add_dependency 'hashie', '>=3.0'
 end
