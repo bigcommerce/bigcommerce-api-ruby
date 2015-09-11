@@ -12,7 +12,7 @@ Gem::Specification.new do |s|
   s.authors = ['Patrick Edelman']
   s.homepage = 'https://github.com/bigcommerce/bigcommerce-api-ruby'
   s.summary = 'Ruby client library for the Bigcommerce v2 API'
-  s.description =  <<-EOF
+  s.description = <<-EOF
     Bigcommerce API Ruby client library.
     Allows developer access to the Bigcommerce API, for CLI tools or public apps.
     More info: https://developer.bigcommerce.com
