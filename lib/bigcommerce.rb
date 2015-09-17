@@ -60,15 +60,12 @@ module Bigcommerce
 
     ensure
       # Make sure we don't leak memory
+      @tenant_threadsafe.delete(tenant)
       clear_thread!
     end
 
     def api
       @tenant_single_thread || @tenant_threadsafe[tenant]
-    end
-
-    def clear_thread!
-      self.tenant = nil
     end
 
     def build_url(config)
@@ -94,6 +91,11 @@ module Bigcommerce
         conn.use Bigcommerce::Middleware::HttpException
         conn.adapter Faraday.default_adapter
       end
+    end
+
+    def clear_thread!
+      @tenant_threadsafe[tenant]
+      self.tenant = nil
     end
 
     def tenant
