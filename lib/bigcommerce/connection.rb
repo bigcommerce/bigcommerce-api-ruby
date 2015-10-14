@@ -92,7 +92,7 @@ module Bigcommerce
         end
       rescue RestClient::NotModified
         nil
-      rescue RestClient::Unauthorized => e
+      rescue RestClient::Unauthorized, RestClient::Forbidden => e
         raise Bigcommerce::HTTPUnauthorized.new 'invalid bigcommerce credentials'
       rescue SocketError
         raise Bigcommerce::HTTPNotFound.new 'unable to reach bigcommerce site url'
