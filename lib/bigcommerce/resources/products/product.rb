@@ -91,13 +91,16 @@ module Bigcommerce
     property :primary_image
     property :metadata, transform_with: (lambda do |value|
       result = []
-      value.keys.each do |key|
-        value[key].each do |obj|
-          result << {
-            namespace: key,
-            key: obj.try(:[], :key),
-            value: obj.try(:[], :value)
-          }
+
+      unless value.nil? || !value.is_a?(Hash)
+        value.keys.each do |key|
+          value[key].each do |obj|
+            result << {
+              namespace: key,
+              key: obj.try(:[], :key),
+              value: obj.try(:[], :value)
+            }
+          end
         end
       end
       result
