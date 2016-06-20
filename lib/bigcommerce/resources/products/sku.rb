@@ -7,16 +7,22 @@ module Bigcommerce
     include Bigcommerce::SubresourceActions.new uri: 'products/%d/skus/%d'
 
     property :id
-    property :product_id
     property :sku
-    property :cost_price
-    property :count
     property :upc
-    property :inventory_level
-    property :intentory_warning_level
-    property :bin_picking_number
+    property :price
+    property :weight
     property :options
+    property :cost_price
+    property :image_file
+    property :product_id
+    property :adjusted_price
+    property :adjusted_weight
+    property :inventory_level
+    property :bin_picking_number
+    property :is_purchasing_disabled
     property :inventory_warning_level
+    property :purchasing_disabled_message
+    property :count
 
     def self.count_all
       get 'products/skus/count'
