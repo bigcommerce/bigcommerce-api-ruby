@@ -1,6 +1,4 @@
-require 'spec_helper'
-
-describe Bigcommerce::System do
+RSpec.describe Bigcommerce::System do
   before(:each) { @system = Bigcommerce::System }
 
   describe '.time' do

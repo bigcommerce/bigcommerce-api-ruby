@@ -1,6 +1,4 @@
-require 'spec_helper'
-
-describe Bigcommerce::PaymentMethod do
+RSpec.describe Bigcommerce::PaymentMethod do
   before(:each) { @payment_method = Bigcommerce::PaymentMethod }
 
   let(:params) do

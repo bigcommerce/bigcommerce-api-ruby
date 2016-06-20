@@ -7,7 +7,8 @@ module Bigcommerce
   class Webhook < Resource
     include Bigcommerce::ResourceActions.new(
       uri: 'hooks/%d',
-      disable: [:destroy_all])
+      disable: [:destroy_all]
+    )
 
     property :id
     property :client_id

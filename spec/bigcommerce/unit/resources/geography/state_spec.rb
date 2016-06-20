@@ -1,6 +1,4 @@
-require 'spec_helper'
-
-describe Bigcommerce::State do
+RSpec.describe Bigcommerce::State do
   before(:each) { @state = Bigcommerce::State }
 
   let(:params) { 226 }

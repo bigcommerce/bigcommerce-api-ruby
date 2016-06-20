@@ -1,6 +1,4 @@
-require 'spec_helper'
-
-describe Bigcommerce::ResourceActions do
+RSpec.describe Bigcommerce::ResourceActions do
   before do
     module Bigcommerce
       class DummyClass

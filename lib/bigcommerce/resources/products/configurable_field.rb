@@ -6,7 +6,8 @@ module Bigcommerce
   class ConfigurableField < Resource
     include Bigcommerce::SubresourceActions.new(
       uri: 'products/%d/configurable_fields/%d',
-      disable: [:create, :update])
+      disable: [:create, :update]
+    )
 
     property :id
     property :product_id

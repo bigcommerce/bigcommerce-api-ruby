@@ -1,6 +1,4 @@
-require 'spec_helper'
-
-describe Bigcommerce::ProductVideo do
+RSpec.describe Bigcommerce::ProductVideo do
   before(:each) { @video = Bigcommerce::ProductVideo }
 
   let(:params) { 1 }

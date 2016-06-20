@@ -1,6 +1,4 @@
-require 'spec_helper'
-
-describe Bigcommerce::Redirect do
+RSpec.describe Bigcommerce::Redirect do
   before(:each) { @redirect = Bigcommerce::Redirect }
 
   describe '.count' do

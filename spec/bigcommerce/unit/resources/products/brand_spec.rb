@@ -1,6 +1,4 @@
-require 'spec_helper'
-
-describe Bigcommerce::Brand do
+RSpec.describe Bigcommerce::Brand do
   before(:each) { @brand = Bigcommerce::Brand }
 
   describe '.count' do

@@ -1,6 +1,4 @@
-require 'spec_helper'
-
-describe Bigcommerce::Sku do
+RSpec.describe Bigcommerce::Sku do
   before(:each) { @sku = Bigcommerce::Sku }
 
   let(:params) { 1 }

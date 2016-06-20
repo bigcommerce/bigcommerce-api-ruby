@@ -1,6 +1,4 @@
-require 'spec_helper'
-
-describe Bigcommerce::OrderProduct do
+RSpec.describe Bigcommerce::OrderProduct do
   before(:each) { @order_product = Bigcommerce::OrderProduct }
   
   let(:params) { 1 }

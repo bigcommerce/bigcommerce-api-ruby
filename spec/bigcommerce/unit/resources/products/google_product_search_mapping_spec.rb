@@ -1,6 +1,4 @@
-require 'spec_helper'
-
-describe Bigcommerce::GoogleProductSearchMapping do
+RSpec.describe Bigcommerce::GoogleProductSearchMapping do
   before(:each) { @mapping = Bigcommerce::GoogleProductSearchMapping }
 
   let(:params) { 1 }

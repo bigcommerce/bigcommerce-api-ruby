@@ -37,7 +37,7 @@ module Bigcommerce
       503 => Bigcommerce::ServiceUnavailable,
       504 => Bigcommerce::GatewayTimeout,
       509 => Bigcommerce::BandwidthLimitExceeded
-    }
+    }.freeze
 
     def throw_http_exception!(code, env)
       return unless ERRORS.keys.include? code
@@ -49,10 +49,10 @@ module Bigcommerce
           {}
         end
       end
-      unless env[:response_headers]['X-Retry-After'].nil?
+      unless env[:response_headers] && env[:response_headers]['X-Retry-After'].nil?
         response_headers[:retry_after] = env[:response_headers]['X-Retry-After'].to_i
       end
-      fail ERRORS[code].new(response_headers), env.body
+      raise ERRORS[code].new(response_headers), env.body
     end
   end
 end

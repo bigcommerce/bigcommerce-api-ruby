@@ -1,6 +1,4 @@
-require 'spec_helper'
-
-describe Bigcommerce::BlogPost do
+RSpec.describe Bigcommerce::BlogPost do
   before(:each) { @blog_post = Bigcommerce::BlogPost }
 
   describe '.count' do

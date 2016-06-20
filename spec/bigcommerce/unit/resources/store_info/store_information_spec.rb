@@ -1,6 +1,4 @@
-require 'spec_helper'
-
-describe Bigcommerce::StoreInfo do
+RSpec.describe Bigcommerce::StoreInfo do
   before(:each) { @store_info = Bigcommerce::StoreInfo }
 
   describe '.info' do

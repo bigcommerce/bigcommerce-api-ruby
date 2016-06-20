@@ -1,10 +1,4 @@
-require 'coveralls'
-Coveralls.wear!
-
-SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter[
-  Coveralls::SimpleCov::Formatter,
-  SimpleCov::Formatter::HTMLFormatter
-]
+require 'simplecov'
 SimpleCov.start { add_filter '/spec/' }
 
 require 'rspec'

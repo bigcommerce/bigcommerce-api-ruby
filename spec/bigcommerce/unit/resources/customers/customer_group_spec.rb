@@ -1,6 +1,4 @@
-require 'spec_helper'
-
-describe Bigcommerce::CustomerGroup do
+RSpec.describe Bigcommerce::CustomerGroup do
   before(:each) { @group = Bigcommerce::CustomerGroup }
 
   describe '.count' do

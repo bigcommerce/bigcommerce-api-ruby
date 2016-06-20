@@ -1,15 +1,14 @@
 language: ruby
+sudo: false
 cache: bundler
 
-# http://docs.travis-ci.com/user/workers/container-based-infrastructure/
-sudo: false
-
 rvm:
-  - jruby-head
   - ruby-head
-  - rbx-2.2.10
-  - 2.2.1
-  - 2.1.5
-  - 2.0.0
-  - 1.9.3
-  - jruby-19mode
+  - 2.0
+  - 2.1
+  - 2.2
+  - 2.3.0
+
+matrix:
+  allow_failures:
+    - rvm: ruby-head

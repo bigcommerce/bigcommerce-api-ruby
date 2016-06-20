@@ -6,7 +6,8 @@ module Bigcommerce
   class OrderTax < Resource
     include Bigcommerce::SubresourceActions.new(
       uri: 'orders/%d/taxes/%d',
-      disable: [:create, :update, :destroy, :destroy_all])
+      disable: [:create, :update, :destroy, :destroy_all]
+    )
 
     property :id
     property :order_id

@@ -1,6 +1,4 @@
-require 'spec_helper'
-
-describe Bigcommerce::CustomerAddress do
+RSpec.describe Bigcommerce::CustomerAddress do
   before(:each) { @address = Bigcommerce::CustomerAddress }
 
   let(:params) { 1 }

@@ -1,6 +1,4 @@
-require 'spec_helper'
-
-describe Bigcommerce::BulkPricingRule do
+RSpec.describe Bigcommerce::BulkPricingRule do
   before(:each) { @bulk_pricing_rule = Bigcommerce::BulkPricingRule }
 
   let(:params) { 1 }
