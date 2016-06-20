@@ -42,7 +42,7 @@ rescue => e
   puts "Some other Error #{e.inspect}"
 end
 
-Bigcommerce::HttpError::ERRORS.each do |k, v|
+Bigcommerce::HttpErrors::ERRORS.each do |k, v|
   bc_handle_exception do
     # This will be your request that you want to protect from exceptions
     raise v, k
