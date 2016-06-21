@@ -13,7 +13,7 @@ end
 puts @banners
 
 # Get a banner
-puts Bigcommerce::Banner.find(@banner.first.id)
+puts Bigcommerce::Banner.find(@banners.first.id)
 
 # Create a banner
 # For 'page', you can use: 'home_page', 'category_page', 'brand_page', and 'searchpage'.
@@ -30,10 +30,10 @@ puts Bigcommerce::Banner.find(@banner.first.id)
 puts @banner
 
 # Update a banner
-@banner.update(content: 'I have been updated.')
+puts @banner.update(content: 'I have been updated.')
 
 # Delete a banner
 puts Bigcommerce::Banner.destroy(@banner.id)
 
 # Delete all banners
-puts Bigcommerce::Banner.destroy_all
+# puts Bigcommerce::Banner.destroy_all

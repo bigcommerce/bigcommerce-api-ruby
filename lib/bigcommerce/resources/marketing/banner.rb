@@ -1,6 +1,6 @@
 # Banner
 # HTML element on webpages to advertise discounts or other content relevant to shoppers.
-# No URL as of yet
+# https://developer.bigcommerce.com/api/stores/v2/banners
 
 module Bigcommerce
   class Banner < Resource
