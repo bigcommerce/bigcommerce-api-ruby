@@ -1,6 +1,4 @@
-require 'spec_helper'
-
-describe Bigcommerce::Request do
+RSpec.describe Bigcommerce::Request do
   before do
     module Bigcommerce
       class DummyClass

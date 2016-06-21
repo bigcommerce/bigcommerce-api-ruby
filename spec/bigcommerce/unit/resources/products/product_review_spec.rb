@@ -1,6 +1,4 @@
-require 'spec_helper'
-
-describe Bigcommerce::ProductReview do
+RSpec.describe Bigcommerce::ProductReview do
   before(:each) { @product_review = Bigcommerce::ProductReview }
 
   let(:params) { 1 }

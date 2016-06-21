@@ -1,6 +1,4 @@
-require 'spec_helper'
-
-describe Bigcommerce do
+RSpec.describe Bigcommerce do
   let(:middleware) do
     api.instance_variable_get('@builder').instance_variable_get('@handlers')
   end

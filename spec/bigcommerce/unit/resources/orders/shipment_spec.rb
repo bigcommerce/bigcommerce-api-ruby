@@ -1,6 +1,4 @@
-require 'spec_helper'
-
-describe Bigcommerce::Shipment do
+RSpec.describe Bigcommerce::Shipment do
   before(:each) { @shipment = Bigcommerce::Shipment }
 
   let(:params) { 1 }

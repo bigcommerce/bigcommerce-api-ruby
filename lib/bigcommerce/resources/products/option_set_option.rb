@@ -5,7 +5,8 @@
 module Bigcommerce
   class OptionSetOption < Resource
     include Bigcommerce::SubresourceActions.new(
-      uri: 'option_sets/%d/options/%d')
+      uri: 'option_sets/%d/options/%d'
+    )
 
     property :id
     property :option_id

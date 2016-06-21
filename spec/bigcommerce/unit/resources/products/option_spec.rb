@@ -1,6 +1,4 @@
-require 'spec_helper'
-
-describe Bigcommerce::Option do
+RSpec.describe Bigcommerce::Option do
   before(:each) { @option = Bigcommerce::Option }
 
   describe '.count' do

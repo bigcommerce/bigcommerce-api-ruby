@@ -3,6 +3,7 @@ gemspec
 
 group :development do
   gem 'pry'
-  gem 'guard'
-  gem 'guard-rspec'
+  gem 'rspec'
+  gem 'simplecov'
+  gem 'rubocop'
 end

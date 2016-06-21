@@ -1,6 +1,4 @@
-require 'spec_helper'
-
-describe Bigcommerce::Coupon do
+RSpec.describe Bigcommerce::Coupon do
   before(:each) { @coupon = Bigcommerce::Coupon }
 
   describe '.count' do

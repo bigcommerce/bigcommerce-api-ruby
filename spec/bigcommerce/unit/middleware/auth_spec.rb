@@ -1,6 +1,4 @@
-require 'spec_helper'
-
-describe Bigcommerce::Middleware::Auth do
+RSpec.describe Bigcommerce::Middleware::Auth do
   it 'should set the correct headers' do
     app = double
     options = {

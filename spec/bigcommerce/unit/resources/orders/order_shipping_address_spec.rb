@@ -1,6 +1,4 @@
-require 'spec_helper'
-
-describe Bigcommerce::OrderShippingAddress do
+RSpec.describe Bigcommerce::OrderShippingAddress do
   before(:each) { @shipping_address = Bigcommerce::OrderShippingAddress }
 
   let(:params) { 1 }

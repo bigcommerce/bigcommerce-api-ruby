@@ -1,6 +1,4 @@
-require 'spec_helper'
-
-describe Bigcommerce::ProductImage do
+RSpec.describe Bigcommerce::ProductImage do
   before(:each) { @image = Bigcommerce::ProductImage }
 
   let(:params) { 1 }

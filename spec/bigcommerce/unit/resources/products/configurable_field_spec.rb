@@ -1,6 +1,4 @@
-require 'spec_helper'
-
-describe Bigcommerce::ConfigurableField do
+RSpec.describe Bigcommerce::ConfigurableField do
   before(:each) { @configurable_field = Bigcommerce::ConfigurableField }
 
   let(:params) { 1 }

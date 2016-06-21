@@ -7,7 +7,8 @@ module Bigcommerce
   class OrderStatus < Resource
     include Bigcommerce::ResourceActions.new(
       uri: 'order_statuses/%d',
-      disable: [:create, :update, :destroy, :destroy_all])
+      disable: [:create, :update, :destroy, :destroy_all]
+    )
 
     property :id
     property :name

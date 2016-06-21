@@ -11,13 +11,13 @@ module Bigcommerce
 
   DEFAULTS = {
     base_url: 'https://api.bigcommerce.com'
-  }
+  }.freeze
 
   HEADERS = {
     'accept' => 'application/json',
     'content-type' => 'application/json',
     'user-agent' => 'bigcommerce-api-ruby'
-  }
+  }.freeze
 
   class << self
     attr_reader :api

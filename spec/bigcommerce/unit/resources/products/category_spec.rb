@@ -1,6 +1,4 @@
-require 'spec_helper'
-
-describe Bigcommerce::Category do
+RSpec.describe Bigcommerce::Category do
   before(:each) { @category = Bigcommerce::Category }
 
   describe '.count' do

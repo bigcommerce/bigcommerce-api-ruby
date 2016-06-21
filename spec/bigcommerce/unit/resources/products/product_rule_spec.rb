@@ -1,6 +1,4 @@
-require 'spec_helper'
-
-describe Bigcommerce::ProductRule do
+RSpec.describe Bigcommerce::ProductRule do
   before(:each) { @rule = Bigcommerce::ProductRule }
 
   let(:params) { 1 }

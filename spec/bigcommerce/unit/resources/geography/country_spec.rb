@@ -1,6 +1,4 @@
-require 'spec_helper'
-
-describe Bigcommerce::Country do
+RSpec.describe Bigcommerce::Country do
   before(:each) { @country = Bigcommerce::Country }
 
   describe '.count' do

@@ -5,7 +5,8 @@
 module Bigcommerce
   class BulkPricingRule < Resource
     include Bigcommerce::SubresourceActions.new(
-      uri: 'products/%d/discount_rules/%d')
+      uri: 'products/%d/discount_rules/%d'
+    )
 
     property :id
     property :count

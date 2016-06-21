@@ -1,6 +1,4 @@
-require 'spec_helper'
-
-describe Bigcommerce::Customer do
+RSpec.describe Bigcommerce::Customer do
   before(:each) { @customer = Bigcommerce::Customer }
 
   describe '.count' do

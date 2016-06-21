@@ -7,9 +7,9 @@ Bigcommerce.configure do |config|
 end
 
 # rubocop:disable MethodLength, Metrics/AbcSize:
-def bc_handle_exception(&block)
+def bc_handle_exception
   # Below is a list of all the errors we will throw
-  block.call
+  yield
 rescue Bigcommerce::BadRequest => e
   puts e.inspect
 rescue Bigcommerce::Unauthorized => e
@@ -45,6 +45,6 @@ end
 Bigcommerce::HttpError::ERRORS.each do |k, v|
   bc_handle_exception do
     # This will be your request that you want to protect from exceptions
-    fail v, k
+    raise v, k
   end
 end

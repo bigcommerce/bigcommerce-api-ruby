@@ -1,6 +1,4 @@
-require 'spec_helper'
-
-describe Bigcommerce::CustomField do
+RSpec.describe Bigcommerce::CustomField do
   before(:each) { @custom_field = Bigcommerce::CustomField }
 
   let(:params) { 1 }
