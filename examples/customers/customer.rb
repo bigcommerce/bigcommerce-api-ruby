@@ -1,4 +1,5 @@
 require 'bigcommerce'
+require 'securerandom'
 
 Bigcommerce.configure do |config|
   config.store_hash = ENV['BC_STORE_HASH']
@@ -7,10 +8,11 @@ Bigcommerce.configure do |config|
 end
 
 # List customers
-puts Bigcommerce::Customer.all(page: 1)
+@customers = Bigcommerce::Customer.all(page: 1)
+puts @customers
 
 # Get a customer
-puts Bigcommerce::Customer.find(1)
+puts Bigcommerce::Customer.find(@customers.first.id)
 
 # Get a count of customers
 puts Bigcommerce::Customer.count
@@ -19,7 +21,7 @@ puts Bigcommerce::Customer.count
 @customer = Bigcommerce::Customer.create(
   first_name: 'Karl',
   last_name: 'The Fog',
-  email: 'test@example.com'
+  email: "#{SecureRandom.hex(5)}@example.com"
 )
 puts @customer
 
