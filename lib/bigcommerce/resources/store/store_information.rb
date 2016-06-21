@@ -7,28 +7,32 @@ module Bigcommerce
     include Bigcommerce::Request.new 'store'
 
     property :id
-    property :domain
+    property :logo
     property :name
-    property :address
     property :phone
+    property :domain
+    property :address
+    property :currency
+    property :features
+    property :language
+    property :timezone
+    property :plan_name
+    property :plan_level
+    property :secure_url
     property :admin_email
     property :order_email
-    property :language
-    property :currency
+    property :weight_units
+    property :decimal_places
     property :currency_symbol
+    property :dimension_units
     property :decimal_separator
     property :thousands_separator
-    property :decimal_places
-    property :dimension_decimal_places
     property :dimension_decimal_token
-    property :dimension_thousands_token
     property :currency_symbol_location
-    property :is_price_entered_with_tax
+    property :dimension_decimal_places
     property :active_comparison_modules
-    property :weight_units
-    property :dimension_units
-    property :plan_name
-    property :logo
+    property :dimension_thousands_token
+    property :is_price_entered_with_tax
 
     def self.info
       get path.build
