@@ -8,6 +8,7 @@ module Bigcommerce
 
     property :id
     property :customer_id
+    property :form_fields
     property :first_name
     property :address_type
     property :count
@@ -21,7 +22,6 @@ module Bigcommerce
     property :country
     property :country_iso2
     property :phone
-    property :adderss_type
 
     def self.count_all
       get 'customers/addresses/count'
