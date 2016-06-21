@@ -6,18 +6,19 @@ module Bigcommerce
   class GoogleProductSearchMapping < Resource
     include Bigcommerce::Request.new 'products/%d/googleproductsearch'
 
+    property :size
+    property :color
+    property :gender
     property :enabled
+    property :pattern
+    property :material
+    property :age_group
     property :product_id
     property :category_id
     property :custom_item
     property :global_trade_item_number
     property :manufacturer_part_number
-    property :gender
-    property :age_group
-    property :color
-    property :size
-    property :material
-    property :pattern
+    property :google_shopping_product_category_path
 
     def self.all(product_id)
       get path.build(product_id)

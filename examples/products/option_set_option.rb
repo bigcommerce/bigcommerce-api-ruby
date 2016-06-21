@@ -29,8 +29,6 @@ puts @option_set_option
 # List option set options
 puts Bigcommerce::OptionSetOption.all(@option_set.id)
 
-puts Bigcommerce::OptionSetOption.count(@option_set.id)
-
 # Get an option set option
 puts Bigcommerce::OptionSetOption.find(@option_set.id, @option_set_option.id)
 

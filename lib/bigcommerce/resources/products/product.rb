@@ -7,88 +7,88 @@ module Bigcommerce
     include Bigcommerce::ResourceActions.new uri: 'products/%d'
 
     property :id
-    property :count
-    property :keyword_filter
-    property :name
-    property :type
     property :sku
-    property :description
-    property :search_keywords
-    property :availability_description
+    property :upc
+    property :name
+    property :skus
+    property :type
+    property :brand
+    property :depth
     property :price
-    property :cost_price
-    property :retail_price
-    property :sale_price
-    property :calculated_price
-    property :sort_order
-    property :is_visible
-    property :is_featured
-    property :related_products
-    property :inventory_level
-    property :inventory_warning_level
-    property :warranty
-    property :weight
+    property :rules
     property :width
     property :height
-    property :depth
-    property :fixed_cost_shipping_price
-    property :is_free_shipping
-    property :inventory_tracking
-    property :rating_total
-    property :rating_count
-    property :total_sold
-    property :date_created
+    property :images
+    property :videos
+    property :weight
+    property :options
     property :brand_id
-    property :view_count
-    property :page_title
-    property :meta_keywords
-    property :meta_description
-    property :layout_file
-    property :is_price_hidden
-    property :price_hidden_label
+    property :warranty
+    property :condition
+    property :downloads
+    property :tax_class
     property :categories
+    property :cost_price
+    property :custom_url
+    property :is_visible
+    property :option_set
+    property :page_title
+    property :sale_price
+    property :sort_order
+    property :total_sold
+    property :view_count
+    property :description
+    property :is_featured
+    property :layout_file
+    property :availability
+    property :date_created
+    property :rating_count
+    property :rating_total
+    property :retail_price
+    property :tax_class_id
+    property :custom_fields
     property :date_modified
-    property :event_date_field_name
-    property :event_date_type
-    property :event_date_start
+    property :meta_keywords
+    property :option_set_id
+    property :discount_rules
     property :event_date_end
+    property :keyword_filter
+    property :event_date_type
+    property :inventory_level
+    property :is_price_hidden
+    property :open_graph_type
+    property :search_keywords
+    property :calculated_price
+    property :event_date_start
+    property :is_free_shipping
+    property :is_preorder_only
+    property :meta_description
+    property :open_graph_title
+    property :preorder_message
+    property :related_products
+    property :bin_picking_number
+    property :date_last_imported
+    property :inventory_tracking
+    property :is_condition_shown
     property :myob_asset_account
+    property :option_set_display
+    property :price_hidden_label
+    property :configurable_fields
     property :myob_income_account
     property :myob_expense_account
     property :peachtree_gl_account
-    property :condition
-    property :is_condition_shown
+    property :event_date_field_name
     property :preorder_release_date
-    property :is_preorder_only
-    property :preorder_message
-    property :order_quantity_minimum
-    property :order_quantity_maximum
-    property :open_graph_type
-    property :open_graph_title
     property :open_graph_description
+    property :order_quantity_maximum
+    property :order_quantity_minimum
+    property :inventory_warning_level
     property :is_open_graph_thumbnail
-    property :upc
-    property :date_last_imported
-    property :option_set_id
-    property :tax_class_id
-    property :option_set_display
-    property :bin_picking_number
-    property :custom_url
-    property :availability
-    property :brand
-    property :downloads
-    property :images
-    property :discount_rules
-    property :configurable_fields
-    property :custom_fields
-    property :videos
-    property :skus
-    property :rules
-    property :option_set
-    property :options
-    property :tax_class
+    property :availability_description
     property :avalara_product_tax_code
+    property :fixed_cost_shipping_price
     property :primary_image
+    property :count
 
     def self.count(params = {})
       get 'products/count', params

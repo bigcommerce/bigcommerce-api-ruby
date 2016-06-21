@@ -8,10 +8,10 @@ Bigcommerce.configure do |config|
 end
 
 # List brands
-puts Bigcommerce::Brand.all(page: 2)
+@brands = Bigcommerce::Brand.all(page: 1)
 
 # Get a brand
-puts Bigcommerce::Brand.find(10)
+puts Bigcommerce::Brand.find(@brands.first.id)
 
 # Get a count of brands
 puts Bigcommerce::Brand.count

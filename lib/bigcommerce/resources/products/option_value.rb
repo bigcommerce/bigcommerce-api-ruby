@@ -11,5 +11,6 @@ module Bigcommerce
     property :label
     property :sort_order
     property :value
+    property :is_default
   end
 end
