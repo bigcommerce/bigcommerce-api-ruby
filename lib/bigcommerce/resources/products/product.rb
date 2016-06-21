@@ -89,6 +89,22 @@ module Bigcommerce
     property :tax_class
     property :avalara_product_tax_code
     property :primary_image
+    property :metadata, transform_with: (lambda do |value|
+      result = []
+
+      unless value.nil? || !value.is_a?(Hash)
+        value.keys.each do |key|
+          value[key].each do |obj|
+            result << {
+              namespace: key,
+              key: obj.try(:[], :key),
+              value: obj.try(:[], :value)
+            }
+          end
+        end
+      end
+      result
+    end)
 
     def self.count(params = {})
       get 'products/count', params
