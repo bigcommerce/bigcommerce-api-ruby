@@ -8,21 +8,19 @@ module Bigcommerce
 
     property :id
     property :url
-    property :count
     property :preview_url
     property :body
     property :tags
     property :summary
     property :title
-    property :content
     property :author
     property :author_url
     property :is_published
     property :published_date
-    property :published_at
     property :meta_description
     property :meta_keywords
     property :thumbnail_path
+    property :count
 
     def self.count
       get 'blog/posts/count'
