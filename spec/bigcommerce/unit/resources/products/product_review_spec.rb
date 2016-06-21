@@ -5,7 +5,7 @@ RSpec.describe Bigcommerce::ProductReview do
 
   describe '.all' do
     it 'should hit the correct path' do
-      expect(@product_review).to receive(:get).with('products/1/reviews')
+      expect(@product_review).to receive(:get).with('products/1/reviews', {})
       @product_review.all params
     end
   end

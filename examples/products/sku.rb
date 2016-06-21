@@ -14,8 +14,8 @@ end
   @product.id,
   sku: SecureRandom.hex,
   options: [
-    product_option_id: 95,
-    option_value_id: 10
+    product_option_id: 3,
+    option_value_id: 73
   ]
 )
 puts @sku
@@ -25,7 +25,10 @@ puts @sku
 puts @skus
 
 # Get a count of product skus
-puts Bigcommerce::Sku.count
+puts Bigcommerce::Sku.count(@product.id)
+
+# Get a count of all product skus
+puts Bigcommerce::Sku.count_all
 
 # Get a product sku
 puts Bigcommerce::Sku.find(@product.id, @sku.id)
@@ -36,8 +39,8 @@ puts Bigcommerce::Sku.update(
   @sku.id,
   sku: SecureRandom.hex,
   options: [
-    product_option_id: 95,
-    option_value_id: 7
+    product_option_id: 3,
+    option_value_id: 73
   ]
 )
 

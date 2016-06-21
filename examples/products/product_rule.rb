@@ -6,7 +6,7 @@ Bigcommerce.configure do |config|
   config.access_token = ENV['BC_ACCESS_TOKEN']
 end
 
-@product = Bigcommerce::Product.all[0]
+@product = Bigcommerce::Product.find(6)
 
 # List product rules
 @product_rules = Bigcommerce::ProductRule.all(@product.id)
@@ -23,8 +23,8 @@ puts Bigcommerce::ProductRule.count_all
   @product.id,
   conditions: [
     {
-      product_option_id: 95,
-      option_value_id: 13,
+      product_option_id: 3,
+      option_value_id: 73,
       sku_id: nil
     }
   ]
@@ -40,8 +40,8 @@ puts Bigcommerce::ProductRule.update(
   @product_rule.id,
   conditions: [
     {
-      product_option_id: 95,
-      option_value_id: 12,
+      product_option_id: 3,
+      option_value_id: 73,
       sku_id: nil
     }
   ]

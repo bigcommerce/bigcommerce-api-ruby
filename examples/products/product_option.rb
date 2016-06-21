@@ -6,7 +6,7 @@ Bigcommerce.configure do |config|
   config.access_token = ENV['BC_ACCESS_TOKEN']
 end
 
-@product = Bigcommerce::Product.all[0]
+@product = Bigcommerce::Product.find(6)
 
 # List product options
 @product_options = Bigcommerce::ProductOption.all(@product.id)
