@@ -6,7 +6,7 @@ Bigcommerce.configure do |config|
   config.access_token = ENV['BC_ACCESS_TOKEN']
 end
 
-@order = Bigcommerce::Order.all[0]
+@order = Bigcommerce::Order.find(104)
 
 # List order coupons
 @order_coupons = Bigcommerce::OrderCoupon.all(@order.id)

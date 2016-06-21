@@ -10,15 +10,15 @@ module Bigcommerce
     )
 
     property :id
+    property :type
+    property :status
+    property :message
+    property :subject
+    property :customer
     property :order_id
     property :staff_id
-    property :customer_id
-    property :type
-    property :subject
-    property :message
-    property :status
     property :is_flagged
+    property :customer_id
     property :date_created
-    property :customer
   end
 end

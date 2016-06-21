@@ -6,7 +6,7 @@ Bigcommerce.configure do |config|
   config.access_token = ENV['BC_ACCESS_TOKEN']
 end
 
-@order = Bigcommerce::Order.find(109)
+@order = Bigcommerce::Order.find(110)
 
 # List order taxes
 @order_taxes = Bigcommerce::OrderTax.all(@order.id)

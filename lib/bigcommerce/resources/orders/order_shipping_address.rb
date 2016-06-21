@@ -10,35 +10,35 @@ module Bigcommerce
     )
 
     property :id
-    property :order_id
-    property :count
-    property :first_name
-    property :last_name
-    property :company
-    property :street_1
-    property :street_2
-    property :city
     property :zip
-    property :country
-    property :country_iso2
-    property :state
+    property :city
     property :email
     property :phone
+    property :state
+    property :company
+    property :country
+    property :cost_tax
+    property :order_id
+    property :street_1
+    property :street_2
+    property :base_cost
+    property :last_name
+    property :first_name
+    property :cost_ex_tax
     property :items_total
+    property :cost_inc_tax
+    property :country_iso2
     property :items_shipped
     property :shipping_method
-    property :base_cost
-    property :cost_ex_tax
-    property :cost_inc_tax
-    property :cost_tax
+    property :shipping_zone_id
     property :cost_tax_class_id
+    property :handling_cost_tax
     property :base_handling_cost
+    property :shipping_zone_name
     property :handling_cost_ex_tax
     property :handling_cost_inc_tax
-    property :handling_cost_tax
     property :handling_cost_tax_class_id
-    property :shipping_zone_id
-    property :shipping_zone_name
+    property :count
 
     def self.count(order_id)
       get "orders/#{order_id}/shipping_addresses/count"

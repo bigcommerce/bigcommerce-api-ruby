@@ -10,12 +10,11 @@ module Bigcommerce
     )
 
     property :id
-    property :coupon_id
-    property :order_id
     property :code
+    property :type
     property :amount
-    property :type
-    property :type
     property :discount
+    property :order_id
+    property :coupon_id
   end
 end
