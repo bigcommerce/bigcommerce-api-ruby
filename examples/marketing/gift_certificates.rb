@@ -1,4 +1,5 @@
 require 'bigcommerce'
+require 'securerandom'
 
 Bigcommerce.configure do |config|
   config.auth = 'legacy'
@@ -9,14 +10,14 @@ Bigcommerce.configure do |config|
 end
 
 # List gift certificates
-@gift_certificates = Bigcommerce::Giftcertificates.all
+@gift_certificates = Bigcommerce::GiftCertificates.all
 puts @gift_certificates
 
 # Get a gift certificate
 puts Bigcommerce::GiftCertificates.find(@gift_certificates.first.id)
 
 # Create a gift certificate
-@gift_certificates = Bigcommerce::GiftCertificates.create(
+@gift_certificate = Bigcommerce::GiftCertificates.create(
   to_name:    'Test',
   to_email:   'test@test.com',
   from_name:  'Test2',
@@ -24,7 +25,7 @@ puts Bigcommerce::GiftCertificates.find(@gift_certificates.first.id)
   code:       SecureRandom.hex,
   amount:     100
 )
-puts @gift_certificates
+puts @gift_certificate
 
 # Update an instance of a gift certificate
 puts @gift_certificates.first.update(balance: 50)
@@ -36,4 +37,4 @@ puts Bigcommerce::GiftCertificates.update(@gift_certificates.first.id, balance: 
 puts Bigcommerce::GiftCertificates.destroy(@gift_certificates.first.id)
 
 # Delete all gift certificates
-puts Bigcommerce::GiftCertificates.destroy_all
+# puts Bigcommerce::GiftCertificates.destroy_all
