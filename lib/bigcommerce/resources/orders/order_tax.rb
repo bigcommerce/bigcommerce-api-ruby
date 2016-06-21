@@ -10,15 +10,15 @@ module Bigcommerce
     )
 
     property :id
+    property :name
+    property :rate
+    property :tax_class, from: :class
     property :order_id
-    property :order_address_id
+    property :priority
+    property :line_amount
     property :tax_rate_id
     property :tax_class_id
-    property :name
-    property :tax_class, from: :class
-    property :rate
-    property :priority
     property :priority_amount
-    property :line_amount
+    property :order_address_id
   end
 end

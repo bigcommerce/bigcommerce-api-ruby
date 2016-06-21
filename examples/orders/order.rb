@@ -31,7 +31,7 @@ puts Bigcommerce::Order.count
   },
   products: [
     {
-      product_id: 34,
+      product_id: 5,
       quantity: 2
     }
   ]
