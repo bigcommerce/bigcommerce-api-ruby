@@ -20,12 +20,12 @@ module Bigcommerce
     property :image_file
     property :conditions
 
-    def self.count(product_id)
-      get "products/#{product_id}/rules/count"
+    def self.count(product_id, params = {})
+      get "products/#{product_id}/rules/count", params
     end
 
-    def self.count_all
-      get 'products/rules/count'
+    def self.count_all(params = {})
+      get 'products/rules/count', params
     end
   end
 end

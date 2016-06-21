@@ -16,8 +16,8 @@ module Bigcommerce
     property :country_iso3
     property :states
 
-    def self.count
-      get 'countries/count'
+    def self.count(params = {})
+      get 'countries/count', params
     end
   end
 end

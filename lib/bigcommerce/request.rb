@@ -43,30 +43,29 @@ module Bigcommerce
     end
 
     module ClassMethods
-      def get(path, params = nil)
+      def get(path, params = {})
         response = raw_request(:get, path, params)
         build_response_object response
       end
 
-      def delete(path)
-        response = raw_request(:delete, path)
+      def delete(path, params = {})
+        response = raw_request(:delete, path, params)
         response.body
       end
 
-      def post(path, params)
+      def post(path, params = {})
         response = raw_request(:post, path, params)
         build_response_object response
       end
 
-      def put(path, params)
+      def put(path, params = {})
         response = raw_request(:put, path, params)
         build_response_object response
       end
 
-      def raw_request(method, path, params = nil)
-        response = Bigcommerce.api.send(method, path.to_s, params)
-        Bigcommerce.api_limit = response.headers['X-BC-ApiLimit-Remaining']
-        response
+      def raw_request(method, path, params = {})
+        client = params.delete(:connection) || Bigcommerce.api
+        client.send(method, path.to_s, params)
       end
 
       private

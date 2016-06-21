@@ -40,12 +40,12 @@ module Bigcommerce
     property :handling_cost_tax_class_id
     property :count
 
-    def self.count(order_id)
-      get "orders/#{order_id}/shipping_addresses/count"
+    def self.count(order_id, params = {})
+      get "orders/#{order_id}/shipping_addresses/count", params
     end
 
-    def self.count_all
-      get 'orders/shipping_addresses/count'
+    def self.count_all(params = {})
+      get 'orders/shipping_addresses/count', params
     end
   end
 end

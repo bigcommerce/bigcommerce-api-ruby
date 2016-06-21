@@ -8,8 +8,8 @@ module Bigcommerce
 
     property :time
 
-    def self.time
-      get path.build
+    def self.time(params = {})
+      get path.build, params
     end
   end
 end

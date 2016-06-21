@@ -14,8 +14,8 @@ module Bigcommerce
     property :category_access
     property :discount_rules
 
-    def self.count
-      get 'customer_groups/count'
+    def self.count(params = {})
+      get 'customer_groups/count', params
     end
   end
 end

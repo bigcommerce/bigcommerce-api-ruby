@@ -5,14 +5,14 @@ RSpec.describe Bigcommerce::BulkPricingRule do
 
   describe '.count' do
     it 'should hit the correct path' do
-      expect(@bulk_pricing_rule).to receive(:get).with('products/1/discount_rules/count')
+      expect(@bulk_pricing_rule).to receive(:get).with('products/1/discount_rules/count', {})
       @bulk_pricing_rule.count params
     end
   end
 
   describe '.count_all' do
     it 'should hit the correct path' do
-      expect(@bulk_pricing_rule).to receive(:get).with('products/discount_rules/count')
+      expect(@bulk_pricing_rule).to receive(:get).with('products/discount_rules/count', {})
       @bulk_pricing_rule.count_all
     end
   end

@@ -13,8 +13,8 @@ module Bigcommerce
     property :type
     property :values
 
-    def self.count
-      get 'options/count'
+    def self.count(params = {})
+      get 'options/count', params
     end
   end
 end

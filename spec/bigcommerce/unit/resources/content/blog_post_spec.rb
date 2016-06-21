@@ -3,7 +3,7 @@ RSpec.describe Bigcommerce::BlogPost do
 
   describe '.count' do
     it 'should hit the correct path' do
-      expect(@blog_post).to receive(:get).with('blog/posts/count')
+      expect(@blog_post).to receive(:get).with('blog/posts/count', {})
       @blog_post.count
     end
   end

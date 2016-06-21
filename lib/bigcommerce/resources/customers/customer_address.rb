@@ -23,12 +23,12 @@ module Bigcommerce
     property :country_iso2
     property :phone
 
-    def self.count_all
-      get 'customers/addresses/count'
+    def self.count_all(params = {})
+      get 'customers/addresses/count', params
     end
 
-    def self.count(customer_id)
-      get "customers/#{customer_id}/addresses/count"
+    def self.count(customer_id, params = {})
+      get "customers/#{customer_id}/addresses/count", params
     end
   end
 end

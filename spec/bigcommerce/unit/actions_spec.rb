@@ -39,7 +39,7 @@ RSpec.describe Bigcommerce::ResourceActions do
 
   describe '.find' do
     it 'should make a get request to the correct route' do
-      expect(@klass).to receive(:get).with('http://foo.bar/1')
+      expect(@klass).to receive(:get).with('http://foo.bar/1', {})
       @klass.find(1)
     end
   end
@@ -60,14 +60,14 @@ RSpec.describe Bigcommerce::ResourceActions do
 
   describe '.destroy' do
     it 'should make a delete request to the correct route with params' do
-      expect(@klass).to receive(:delete).with('http://foo.bar/1')
+      expect(@klass).to receive(:delete).with('http://foo.bar/1', {})
       @klass.destroy(1)
     end
   end
 
   describe '.destroy_all' do
     it 'should make a delete request to the correct route with params' do
-      expect(@klass).to receive(:delete).with('http://foo.bar')
+      expect(@klass).to receive(:delete).with('http://foo.bar', {})
       @klass.destroy_all
     end
   end
@@ -114,7 +114,7 @@ describe Bigcommerce::SubresourceActions do
 
   describe '.find' do
     it 'should make a get request to the correct route' do
-      expect(@klass).to receive(:get).with('http://foo.bar/1/2')
+      expect(@klass).to receive(:get).with('http://foo.bar/1/2', {})
       @klass.find(1,2)
     end
   end
@@ -135,14 +135,14 @@ describe Bigcommerce::SubresourceActions do
 
   describe '.destroy' do
     it 'should make a delete request to the correct route with params' do
-      expect(@klass).to receive(:delete).with('http://foo.bar/1/2')
+      expect(@klass).to receive(:delete).with('http://foo.bar/1/2', {})
       @klass.destroy(1, 2)
     end
   end
 
   describe '.destroy_all' do
     it 'should make a delete request to the correct route with params' do
-      expect(@klass).to receive(:delete).with('http://foo.bar/1')
+      expect(@klass).to receive(:delete).with('http://foo.bar/1', {})
       @klass.destroy_all(1)
     end
   end

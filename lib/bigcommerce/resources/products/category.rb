@@ -22,8 +22,8 @@ module Bigcommerce
     property :search_keywords
     property :url
 
-    def self.count
-      get 'categories/count'
+    def self.count(params = {})
+      get 'categories/count', params
     end
   end
 end

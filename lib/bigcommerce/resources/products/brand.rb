@@ -16,8 +16,8 @@ module Bigcommerce
     property :image_file
     property :search_keywords
 
-    def self.count
-      get 'brands/count'
+    def self.count(params = {})
+      get 'brands/count', params
     end
   end
 end

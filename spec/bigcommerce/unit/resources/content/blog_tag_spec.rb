@@ -3,7 +3,7 @@ RSpec.describe Bigcommerce::BlogTag do
 
   describe '.all' do
     it 'should hit the correct path' do
-      expect(@blog_tag).to receive(:get).with(@blog_tag.path.build)
+      expect(@blog_tag).to receive(:get).with(@blog_tag.path.build, {})
       @blog_tag.all
     end
   end

@@ -15,12 +15,12 @@ module Bigcommerce
     property :state_abbreviation
     property :country_id
 
-    def self.count(country_id)
-      get "countries/#{country_id}/states/count"
+    def self.count(country_id, params = {})
+      get "countries/#{country_id}/states/count", params
     end
 
-    def self.count_all
-      get 'countries/states/count'
+    def self.count_all(params = {})
+      get 'countries/states/count', params
     end
   end
 end

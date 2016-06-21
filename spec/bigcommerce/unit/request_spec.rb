@@ -35,7 +35,7 @@ RSpec.describe Bigcommerce::Request do
         response = double
         allow(response).to receive(:body) { '' }
         allow(@klass).to receive(:raw_request) { response }
-        expect(@klass).to receive(:raw_request).with(:delete, @klass.path)
+        expect(@klass).to receive(:raw_request).with(:delete, @klass.path, {})
         @klass.delete(@klass.path)
       end
     end
@@ -71,9 +71,7 @@ RSpec.describe Bigcommerce::Request do
       it 'send its method to Bigcommerce.api' do
         response = double
         allow(@api).to receive(:get) { response }
-        allow(response).to receive(:headers) { '' }
-        expect(@api).to receive(:get).with('path/1', nil)
-        expect(response).to receive(:headers)
+        expect(@api).to receive(:get).with('path/1', {})
         @klass.raw_request(:get, 'path/1')
       end
     end

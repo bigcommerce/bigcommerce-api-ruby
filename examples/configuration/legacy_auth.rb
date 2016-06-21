@@ -9,4 +9,3 @@ Bigcommerce.configure do |config|
 end
 
 puts Bigcommerce::System.time
-puts Bigcommerce.api_limit

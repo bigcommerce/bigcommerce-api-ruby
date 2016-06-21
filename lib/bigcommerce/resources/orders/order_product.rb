@@ -54,12 +54,12 @@ module Bigcommerce
     property :parent_order_product_id
     property :count
 
-    def self.count(order_id)
-      get "orders/#{order_id}/products/count"
+    def self.count(order_id, params = {})
+      get "orders/#{order_id}/products/count", params
     end
 
-    def self.count_all
-      get 'orders/products/count'
+    def self.count_all(params = {})
+      get 'orders/products/count', params
     end
   end
 end

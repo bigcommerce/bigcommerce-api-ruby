@@ -20,12 +20,12 @@ module Bigcommerce
     property :is_required
     property :sort_order
 
-    def self.count(product_id)
-      get "products/#{product_id}/configurable_fields/count"
+    def self.count(product_id, params = {})
+      get "products/#{product_id}/configurable_fields/count", params
     end
 
-    def self.count_all
-      get 'products/configurable_fields/count'
+    def self.count_all(params = {})
+      get 'products/configurable_fields/count', params
     end
   end
 end

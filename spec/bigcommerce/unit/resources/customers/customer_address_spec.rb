@@ -5,14 +5,14 @@ RSpec.describe Bigcommerce::CustomerAddress do
 
   describe '.count' do
     it 'should hit the correct path' do
-      expect(@address).to receive(:get).with('customers/1/addresses/count')
+      expect(@address).to receive(:get).with('customers/1/addresses/count', {})
       @address.count params
     end
   end
 
   describe '.count_all' do
     it 'should hit the correct path' do
-      expect(@address).to receive(:get).with('customers/addresses/count')
+      expect(@address).to receive(:get).with('customers/addresses/count', {})
       @address.count_all
     end
   end

@@ -23,8 +23,8 @@ module Bigcommerce
     property :restricted_to
     property :shipping_methods
 
-    def self.count
-      get 'coupons/count'
+    def self.count(params = {})
+      get 'coupons/count', params
     end
   end
 end

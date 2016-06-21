@@ -13,12 +13,12 @@ module Bigcommerce
     property :sort_order
     property :name
 
-    def self.count(product_id)
-      get "products/#{product_id}/videos/count"
+    def self.count(product_id, params = {})
+      get "products/#{product_id}/videos/count", params
     end
 
-    def self.count_all
-      get 'products/videos/count'
+    def self.count_all(params = {})
+      get 'products/videos/count', params
     end
   end
 end

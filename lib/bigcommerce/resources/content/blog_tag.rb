@@ -9,8 +9,8 @@ module Bigcommerce
     property :tag
     property :post_ids
 
-    def self.all
-      get path.build
+    def self.all(params = {})
+      get path.build, params
     end
   end
 end
