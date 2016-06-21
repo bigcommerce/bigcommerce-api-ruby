@@ -1,54 +1,50 @@
-# Bigcommerce
+# BigCommerce API Ruby
 
-[![Gem Version](https://badge.fury.io/rb/bigcommerce.png)](https://rubygems.org/gems/bigcommerce)
-[![Build Status](https://travis-ci.org/bigcommerce/bigcommerce-api-ruby.png?branch=master)](https://travis-ci.org/bigcommerce/bigcommerce-api-ruby)
-[![Dependency Status](https://gemnasium.com/bigcommerce/bigcommerce-api-ruby.png?travis)](https://gemnasium.com/bigcommerce/bigcommerce-api-ruby)
-[![Code Climate](https://codeclimate.com/github/bigcommerce/bigcommerce-api-ruby.png)](https://codeclimate.com/github/bigcommerce/bigcommerce-api-ruby)
-[![Coverage Status](https://coveralls.io/repos/bigcommerce/bigcommerce-api-ruby/badge.png?branch=master)](https://coveralls.io/r/bigcommerce/bigcommerce-api-ruby?branch=master)
+[![Gem Version](https://badge.fury.io/rb/bigcommerce.svg)](https://rubygems.org/gems/bigcommerce)
+[![Build Status](https://travis-ci.org/bigcommerce/bigcommerce-api-ruby.svg?branch=master)](https://travis-ci.org/bigcommerce/bigcommerce-api-ruby)
+[![Dependency Status](https://gemnasium.com/bigcommerce/bigcommerce-api-ruby.svg?travis)](https://gemnasium.com/bigcommerce/bigcommerce-api-ruby)
 
-This is the official Bigcommerce API client to support our Rest API. You can find more information about becoming a Bigcommerce developer here: [developer.bigcommerce.com](http://developer.bigcommerce.com).
-
-#### :warning: A note about the current client: :warning:
-This is a preview release of the 1.0.0 version of the Bigcommerce API Client. Please report issues if they come up.
-
-We have introduced a new major version of the API client and it is a complete rewrite (for the better). If you want to see the old version of the API client, please view it here: [Bigcommerce API client v0.x](https://github.com/bigcommerce/bigcommerce-api-ruby/tree/0.x). We recommend that developers upgrade to the latest client, but we will still support our developers who are unable to upgrade.
+This is the official BigCommerce API client to support our Stores API. You can find more information about becoming a BigCommerce developer here: [developer.bigcommerce.com](http://developer.bigcommerce.com).
 
 
 ## Installation
-Bigcommerce is available on Rubygems:
+BigCommerce is available on [RubyGems](https://rubygems.org/gems/bigcommerce).
 
 ```sh
-gem install bigcommerce --pre
+gem install bigcommerce
 ```
 
 You can also add it to your Gemfile.
 
 ```rb
-gem 'bigcommerce', '>= 1.0.0.beta'
+gem 'bigcommerce', '~> 1.0.0'
 ```
 
+## Requirements
+- Ruby 2.0.0 or newer. Please refer to the `.travis.yml` to see which versions we officially support.
+
 ## Getting Started
-In order to make requests to our API, you must register as a developer and have your credentials ready.
+In order to make requests to our API, you must register as a developer and have your credentials ready. 
 
-We currently have two different authentication schemes you can use depending on your use-case.
+Its also very important to note that for the OAuth authentication mechanism, the resources you have acccess to depend on the scopes which your application has been granted by the merchant. For more information about the Store API scopes, see: [OAuth Scopes](https://developer.bigcommerce.com/api/scopes).
 
-#### Public Apps
-Public apps can be submitted to Bigcommerce App Store, allowing other businesses to install it in their Bigcommerce stores.
+## Authentication
+We currently have two different authentication schemes you can use depending on your use case.
 
-[More Information](https://developer.bigcommerce.com/api/using-oauth-intro)
+### OAuth
+OAuth apps can be submitted to [BigCommerce App Store](https://www.bigcommerce.com/apps), allowing other merchants to install it in their BigCommerce store.
 
-#### Private Apps
+__[More Information](https://developer.bigcommerce.com/api/using-oauth-intro)__
+
+### Basic Authentication (Legacy)
 To develop a custom integration for one store, your app needs to use Basic Authentication.
 
-[More Information](https://developer.bigcommerce.com/api/legacy/basic-auth)
-
-## Usage
-For full examples on using the API client, please see the [examples folder](examples).
+__[More Information](https://developer.bigcommerce.com/api/legacy/basic-auth)__
 
 ## Configuration
-In order to authenticate the API client, you will need to configure the client like this:
+In order to authenticate the API client, you will need to configure the client like the following.
 
-#### Single Click (Public Apps):
+### OAuth App
 
 - ```client_id```: Obtained from the "My Apps" section on the [developer portal](http://developer.bigcommerce.com).
 - ```access_token```: Obtained after a token exchange in the auth callback.
@@ -56,26 +52,26 @@ In order to authenticate the API client, you will need to configure the client l
 
 ```rb
 Bigcommerce.configure do |config|
-  config.store_hash = 'store_hash'
-  config.client_id = 'client_id'
-  config.access_token = 'access_token'
+  config.store_hash = ENV['BC_STORE_HASH']
+  config.client_id = ENV['BC_CLIENT_ID']
+  config.access_token = ENV['BC_ACCESS_TOKEN']
 end
 ```
 
-#### Private Apps:
+### Basic Authentication (Legacy)
 
-To get all the private app credentials, simply visit your store admin page and navigate to the ```Settings > Legacy API Settings```. Once there, you can create a new username to authenticate with.
+To get all the basic auth credentials, simply visit your store admin page and navigate to the `Advanced Settings > Legacy API Settings`. Once there, you can create a new legacy api account to authenticate with.
 
 ```rb
 Bigcommerce.configure do |config|
   config.auth = 'legacy'
-  config.url = 'https://api_path.com'
-  config.username = 'username'
-  config.api_key = 'api_key'
+  config.url = ENV['BC_API_ENDPOINT_LEGACY']
+  config.username = ENV['BC_USERNAME']
+  config.api_key = ENV['BC_API_KEY']
 end
 ```
 
-__SSL Configuration:__
+__SSL Configuration__
 
 If you are using your own self-signed certificate, you can pass SSL options to Faraday. This is not required, but may be useful in special edge cases.
 
@@ -95,6 +91,72 @@ For more information about configuring SSL with Faraday, please see the followin
 
 - [Faraday SSL example](https://gist.github.com/mislav/938183)
 - [Setting up SSL certificates](https://github.com/lostisland/faraday/wiki/Setting-up-SSL-certificates)
+
+
+## Usage
+For full examples on using the API client, please see the [examples folder](examples) and refer to the [developer documentation](https://developer.bigcommerce.com/api).
+
+Example:
+
+```rb
+# Configure the client to talk to a given store
+Bigcommerce.configure do |config|
+  config.store_hash = ENV['BC_STORE_HASH']
+  config.client_id = ENV['BC_CLIENT_ID']
+  config.access_token = ENV['BC_ACCESS_TOKEN']
+end
+
+# Make an API request for a given resource
+Bigcommerce::System.time
+=> #<Bigcommerce::System time=1466801314>
+```
+
+### Thread Safety
+
+The `Bigcommerce.configure` method is NOT thread safe. This mechanism is designed for applications or cli where thread safety is not a concern. If you need to guarantee thread safety, we support another mechanism to make threadsafe API requests.
+
+Rather then setting up a single `connection` for all API requests, you will want to construct a new connection for each thread. If you can make sure that each of these connections is stored in a thread safe manner, you can pass the `connection` as you query the resource.
+
+This connection is nothing more than a `Faraday::Connection` so if you want to write your own, or use your own adapers, you can feel free. Please refer to the [connection class](https://github.com/bigcommerce/bigcommerce-api-ruby/blob/master/lib/bigcommerce/connection.rb) for more details.
+
+##### OAuth
+
+```rb
+connection = Bigcommerce::Connection.build(
+  Bigcommerce::Config.new(
+    store_hash: ENV['BC_STORE_HASH'], 
+    client_id: ENV['BC_CLIENT_ID'], 
+    access_token: ENV['BC_ACCESS_TOKEN']
+  )
+)
+=> #<Faraday::Connection:0x007fbf95068978 ... >>
+
+Bigcommerce::System.time(connection: connection)
+=> #<Bigcommerce::System time=1466546702>
+
+Bigcommerce::System.raw_request(:get, 'time', connection: connection)
+=> #<Faraday::Response:0x007fd4a4063170 ... >>
+```
+
+##### Basic Auth
+
+```rb
+connection_legacy = Bigcommerce::Connection.build(
+  Bigcommerce::Config.new(
+    auth: 'legacy', 
+    url: ENV['BC_API_ENDPOINT_LEGACY'],
+    username: ENV['BC_USERNAME'],
+    api_key: ENV['BC_API_KEY']
+  )
+)
+=> #<Faraday::Connection:0x007fbf95068978 ... >>
+
+Bigcommerce::System.time(connection: connection_legacy)
+=> #<Bigcommerce::System time=1466546702>
+
+Bigcommerce::System.raw_request(:get, 'time', connection: connection_legacy)
+=> #<Faraday::Response:0x007fd4a4063170 ... >>
+```
 
 ## Contributing
 See [CONTRIBUTING.md](CONTRIBUTING.md)
