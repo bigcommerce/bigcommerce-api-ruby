@@ -20,12 +20,12 @@ module Bigcommerce
     property :shipping_provider
     property :count
 
-    def self.count(order_id)
-      get "orders/#{order_id}/shipments/count"
+    def self.count(order_id, params = {})
+      get "orders/#{order_id}/shipments/count", params
     end
 
-    def self.count_all
-      get 'orders/shipments/count'
+    def self.count_all(params = {})
+      get 'orders/shipments/count', params
     end
   end
 end

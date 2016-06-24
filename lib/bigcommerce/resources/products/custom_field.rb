@@ -14,12 +14,12 @@ module Bigcommerce
     property :name
     property :text
 
-    def self.count(product_id)
-      get "products/#{product_id}/custom_fields/count"
+    def self.count(product_id, params = {})
+      get "products/#{product_id}/custom_fields/count", params
     end
 
-    def self.count_all
-      get 'products/custom_fields/count'
+    def self.count_all(params = {})
+      get 'products/custom_fields/count', params
     end
   end
 end

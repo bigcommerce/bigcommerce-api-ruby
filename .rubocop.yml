@@ -1,9 +1,19 @@
-Metrics/LineLength:
-  Max: 120
 AllCops:
   Exclude:
     - spec/**/*
     - .bundle/**/*
     - bin/**/*
     - vendor/**/*
-inherit_from: .rubocop_todo.yml
+
+Metrics/LineLength:
+  Max: 120
+
+Metrics/AbcSize:
+  Max: 25
+
+Metrics/MethodLength:
+  CountComments: false
+  Max: 25
+
+Style/Documentation:
+  Enabled: false

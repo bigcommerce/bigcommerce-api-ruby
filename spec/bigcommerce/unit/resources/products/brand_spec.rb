@@ -3,7 +3,7 @@ RSpec.describe Bigcommerce::Brand do
 
   describe '.count' do
     it 'should hit the correct path' do
-      expect(@brand).to receive(:get).with('brands/count')
+      expect(@brand).to receive(:get).with('brands/count', {})
       @brand.count
     end
   end

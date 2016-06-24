@@ -3,7 +3,7 @@ RSpec.describe Bigcommerce::System do
 
   describe '.time' do
     it 'should hit the correct path' do
-      expect(@system).to receive(:get).with(@system.path.build)
+      expect(@system).to receive(:get).with(@system.path.build, {})
       @system.time
     end
   end

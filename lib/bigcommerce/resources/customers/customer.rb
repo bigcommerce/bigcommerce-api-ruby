@@ -23,8 +23,8 @@ module Bigcommerce
     property :addresses
     property :tax_exempt_category
 
-    def self.count
-      get 'customers/count'
+    def self.count(params = {})
+      get 'customers/count', params
     end
   end
 end

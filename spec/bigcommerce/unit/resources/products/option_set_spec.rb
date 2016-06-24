@@ -3,7 +3,7 @@ RSpec.describe Bigcommerce::OptionSet do
 
   describe '.count' do
     it 'should hit the correct path' do
-      expect(@option_set).to receive(:get).with('option_sets/count')
+      expect(@option_set).to receive(:get).with('option_sets/count', {})
       @option_set.count
     end
   end

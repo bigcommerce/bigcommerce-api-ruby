@@ -5,14 +5,14 @@ RSpec.describe Bigcommerce::ConfigurableField do
 
   describe '.count' do
     it 'should hit the correct path' do
-      expect(@configurable_field).to receive(:get).with('products/1/configurable_fields/count')
+      expect(@configurable_field).to receive(:get).with('products/1/configurable_fields/count', {})
       @configurable_field.count params
     end
   end
 
   describe '.count_all' do
     it 'should hit the correct path' do
-      expect(@configurable_field).to receive(:get).with('products/configurable_fields/count')
+      expect(@configurable_field).to receive(:get).with('products/configurable_fields/count', {})
       @configurable_field.count_all
     end
   end

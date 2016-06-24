@@ -5,7 +5,7 @@ RSpec.describe Bigcommerce::GoogleProductSearchMapping do
 
   describe '.all' do
     it 'should hit the correct path' do
-      expect(@mapping).to receive(:get).with('products/1/googleproductsearch')
+      expect(@mapping).to receive(:get).with('products/1/googleproductsearch', {})
       @mapping.all params
     end
   end

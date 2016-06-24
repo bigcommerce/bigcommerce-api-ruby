@@ -3,7 +3,7 @@ RSpec.describe Bigcommerce::Coupon do
 
   describe '.count' do
     it 'should hit the correct path' do
-      expect(@coupon).to receive(:get).with('coupons/count')
+      expect(@coupon).to receive(:get).with('coupons/count', {})
       @coupon.count
     end
   end

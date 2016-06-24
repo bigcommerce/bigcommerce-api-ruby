@@ -24,12 +24,12 @@ module Bigcommerce
     property :purchasing_disabled_message
     property :count
 
-    def self.count_all
-      get 'products/skus/count'
+    def self.count_all(params = {})
+      get 'products/skus/count', params
     end
 
-    def self.count(product_id)
-      get "products/#{product_id}/skus/count"
+    def self.count(product_id, params = {})
+      get "products/#{product_id}/skus/count", params
     end
   end
 end

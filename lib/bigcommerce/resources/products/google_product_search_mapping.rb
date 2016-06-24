@@ -20,8 +20,8 @@ module Bigcommerce
     property :manufacturer_part_number
     property :google_shopping_product_category_path
 
-    def self.all(product_id)
-      get path.build(product_id)
+    def self.all(product_id, params = {})
+      get path.build(product_id), params
     end
   end
 end

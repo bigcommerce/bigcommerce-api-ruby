@@ -3,7 +3,7 @@ RSpec.describe Bigcommerce::Country do
 
   describe '.count' do
     it 'should hit the correct path' do
-      expect(@country).to receive(:get).with('countries/count')
+      expect(@country).to receive(:get).with('countries/count', {})
       @country.count
     end
   end

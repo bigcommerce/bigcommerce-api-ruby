@@ -3,7 +3,7 @@ RSpec.describe Bigcommerce::Category do
 
   describe '.count' do
     it 'should hit the correct path' do
-      expect(@category).to receive(:get).with('categories/count')
+      expect(@category).to receive(:get).with('categories/count', {})
       @category.count
     end
   end

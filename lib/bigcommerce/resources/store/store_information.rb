@@ -34,8 +34,8 @@ module Bigcommerce
     property :dimension_thousands_token
     property :is_price_entered_with_tax
 
-    def self.info
-      get path.build
+    def self.info(params = {})
+      get path.build, params
     end
   end
 end

@@ -3,7 +3,7 @@ RSpec.describe Bigcommerce::Redirect do
 
   describe '.count' do
     it 'should hit the correct path' do
-      expect(@redirect).to receive(:get).with('redirects/count')
+      expect(@redirect).to receive(:get).with('redirects/count', {})
       @redirect.count
     end
   end

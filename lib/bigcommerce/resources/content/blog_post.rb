@@ -22,8 +22,8 @@ module Bigcommerce
     property :thumbnail_path
     property :count
 
-    def self.count
-      get 'blog/posts/count'
+    def self.count(params = {})
+      get 'blog/posts/count', params
     end
   end
 end
