@@ -24,15 +24,15 @@ gem 'bigcommerce', '~> 1.0.0'
 - Ruby 2.0.0 or newer. Please refer to the `.travis.yml` to see which versions we officially support.
 
 ## Getting Started
-In order to make requests to our API, you must register as a developer and have your credentials ready. 
+To make requests to our API, you must register as a developer and have your credentials ready.
 
-Its also very important to note that for the OAuth authentication mechanism, the resources you have acccess to depend on the scopes which your application has been granted by the merchant. For more information about the Store API scopes, see: [OAuth Scopes](https://developer.bigcommerce.com/api/scopes).
+Also very important: For the OAuth authentication mechanism, the resources to which you have acccess depend on the scopes that the merchant has granted to your application. For more information about Store API scopes, see: [OAuth Scopes](https://developer.bigcommerce.com/api/scopes).
 
 ## Authentication
-We currently have two different authentication schemes you can use depending on your use case.
+We currently have two different authentication schemes that you can select, depending on your use case.
 
 ### OAuth
-OAuth apps can be submitted to [BigCommerce App Store](https://www.bigcommerce.com/apps), allowing other merchants to install it in their BigCommerce store.
+OAuth apps can be submitted to [BigCommerce App Store](https://www.bigcommerce.com/apps), allowing other merchants to install these apps in their BigCommerce stores.
 
 __[More Information](https://developer.bigcommerce.com/api/using-oauth-intro)__
 
@@ -42,11 +42,11 @@ To develop a custom integration for one store, your app needs to use Basic Authe
 __[More Information](https://developer.bigcommerce.com/api/legacy/basic-auth)__
 
 ## Configuration
-In order to authenticate the API client, you will need to configure the client like the following.
+To authenticate your API client, you will need to configure the client like the following examples.
 
 ### OAuth App
 
-- ```client_id```: Obtained from the "My Apps" section on the [developer portal](http://developer.bigcommerce.com).
+- ```client_id```: Obtained from the on the BigCommerce [Developer Portal's](http://developer.bigcommerce.com) "My Apps" section.
 - ```access_token```: Obtained after a token exchange in the auth callback.
 - ```store_hash```: Also obtained after the token exchange.
 
@@ -60,7 +60,7 @@ end
 
 ### Basic Authentication (Legacy)
 
-To get all the basic auth credentials, simply visit your store admin page and navigate to the `Advanced Settings > Legacy API Settings`. Once there, you can create a new legacy api account to authenticate with.
+To get all the basic auth credentials, simply visit your store admin page, and navigate to the `Advanced Settings` > `Legacy API Settings`. Once there, you can create a new legacy API account on which to authenticate.
 
 ```rb
 Bigcommerce.configure do |config|
@@ -73,7 +73,7 @@ end
 
 __SSL Configuration__
 
-If you are using your own self-signed certificate, you can pass SSL options to Faraday. This is not required, but may be useful in special edge cases.
+If you are using your own, self-signed, certificate, you can pass SSL options to Faraday. This is not required, but might be useful in special edge cases.
 
 ```rb
 Bigcommerce.configure do |config|
@@ -90,11 +90,11 @@ end
 For more information about configuring SSL with Faraday, please see the following:
 
 - [Faraday SSL example](https://gist.github.com/mislav/938183)
-- [Setting up SSL certificates](https://github.com/lostisland/faraday/wiki/Setting-up-SSL-certificates)
+- [Faraday: Setting up SSL certificates](https://github.com/lostisland/faraday/wiki/Setting-up-SSL-certificates)
 
 
 ## Usage
-For full examples on using the API client, please see the [examples folder](examples) and refer to the [developer documentation](https://developer.bigcommerce.com/api).
+For full examples of using the API client, please see the [examples folder](examples) and refer to BigCommerce's [developer documentation](https://developer.bigcommerce.com/api).
 
 Example:
 
@@ -113,11 +113,11 @@ Bigcommerce::System.time
 
 ### Thread Safety
 
-The `Bigcommerce.configure` method is NOT thread safe. This mechanism is designed for applications or cli where thread safety is not a concern. If you need to guarantee thread safety, we support another mechanism to make threadsafe API requests.
+The `Bigcommerce.configure` method is NOT thread-safe. This mechanism is designed for applications or CLI's (command-line interfaces) where thread safety is not a concern. If you need to guarantee thread safety, we support this alternative mechanism to make thread-safe API requests:
 
-Rather then setting up a single `connection` for all API requests, you will want to construct a new connection for each thread. If you can make sure that each of these connections is stored in a thread safe manner, you can pass the `connection` as you query the resource.
+Rather then setting up a single `connection` for all API requests, you would construct a new connection for each thread. If you can ensure that each of these connections is stored in a thread-safe manner, you can pass the `connection` as you query the resource.
 
-This connection is nothing more than a `Faraday::Connection` so if you want to write your own, or use your own adapers, you can feel free. Please refer to the [connection class](https://github.com/bigcommerce/bigcommerce-api-ruby/blob/master/lib/bigcommerce/connection.rb) for more details.
+This connection is nothing more than a `Faraday::Connection` – so if you want to write your own, or to use your own adapters, you can feel free. Please refer to this gem's [connection class](https://github.com/bigcommerce/bigcommerce-api-ruby/blob/master/lib/bigcommerce/connection.rb) for more details.
 
 ##### OAuth
 
