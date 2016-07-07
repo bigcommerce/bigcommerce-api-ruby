@@ -12,7 +12,7 @@ module Bigcommerce
   Dir.glob(resources, &method(:require))
 
   class << self
-    attr_reader :api
+    attr_reader :api, :config
 
     def configure
       @config = Bigcommerce::Config.new.tap { |h| yield(h) }

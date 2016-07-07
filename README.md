@@ -92,6 +92,20 @@ For more information about configuring SSL with Faraday, please see the followin
 - [Faraday SSL example](https://gist.github.com/mislav/938183)
 - [Faraday: Setting up SSL certificates](https://github.com/lostisland/faraday/wiki/Setting-up-SSL-certificates)
 
+### Customer Login API
+If you want to generate tokens for storefront login using the Customer Login API, you need to configure your app's client secret.
+
+- ```store_hash```: The store hash of the store you are operating against.
+- ```client_id```: Obtained from the on the BigCommerce [Developer Portal's](http://developer.bigcommerce.com) "My Apps" section.
+- ```client_secret```: Obtained from the on the BigCommerce [Developer Portal's](http://developer.bigcommerce.com) "My Apps" section.
+
+```rb
+Bigcommerce.configure do |config|
+  config.store_hash = ENV['BC_STORE_HASH']
+  config.client_id = ENV['BC_CLIENT_ID']
+  config.client_secret = ENV['BC_CLIENT_SECRET']
+end
+```
 
 ## Usage
 For full examples of using the API client, please see the [examples folder](examples) and refer to BigCommerce's [developer documentation](https://developer.bigcommerce.com/api).
@@ -124,8 +138,8 @@ This connection is nothing more than a `Faraday::Connection` – so if you want 
 ```rb
 connection = Bigcommerce::Connection.build(
   Bigcommerce::Config.new(
-    store_hash: ENV['BC_STORE_HASH'], 
-    client_id: ENV['BC_CLIENT_ID'], 
+    store_hash: ENV['BC_STORE_HASH'],
+    client_id: ENV['BC_CLIENT_ID'],
     access_token: ENV['BC_ACCESS_TOKEN']
   )
 )
@@ -143,7 +157,7 @@ Bigcommerce::System.raw_request(:get, 'time', connection: connection)
 ```rb
 connection_legacy = Bigcommerce::Connection.build(
   Bigcommerce::Config.new(
-    auth: 'legacy', 
+    auth: 'legacy',
     url: ENV['BC_API_ENDPOINT_LEGACY'],
     username: ENV['BC_USERNAME'],
     api_key: ENV['BC_API_KEY']

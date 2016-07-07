@@ -1,7 +1,6 @@
 # Contributing to Bigcommerce
 
-
-We would love to see contributors! You're encouraged to submit [pull requests](https://github.com/bigcommerce/bigcommerce-api-ruby/pulls), [propose features, and discuss issues](https://github.com/bigcommerce/bigcommerce-api-ruby/issues).
+We welcome your contribution! You're encouraged to submit [pull requests](https://github.com/bigcommerce/bigcommerce-api-ruby/pulls), [propose features, and discuss issues](https://github.com/bigcommerce/bigcommerce-api-ruby/issues).
 
 #### Fork the Project
 
