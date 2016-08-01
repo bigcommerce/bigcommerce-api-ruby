@@ -94,7 +94,7 @@ module Bigcommerce
         nil
       rescue RestClient::Unauthorized, RestClient::Forbidden => e
         raise Bigcommerce::HTTPUnauthorized.new 'invalid bigcommerce credentials'
-      rescue SocketError
+      rescue SocketError, Errno::ECONNREFUSED
         raise Bigcommerce::HTTPNotFound.new 'unable to reach bigcommerce site url'
       rescue => e
         raise "Failed to parse Bigcommerce response: #{e}"
