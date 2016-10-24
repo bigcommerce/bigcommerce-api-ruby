@@ -25,6 +25,7 @@ module Bigcommerce
     property :notes
     property :addresses
     property :tax_exempt_category
+    property :accepts_marketing
 
     def self.count(params = {})
       get 'customers/count', params
