@@ -435,6 +435,11 @@ module Bigcommerce
     def get_product_images(id)
       @connection.get '/products/' + id.to_s + '/images'
     end
+
+    def get_product_reviews(product_id, options={})
+      @connection.get("/products/#{product_id}/reviews", options)
+    end
+
     private
 
     def get_count(result)
