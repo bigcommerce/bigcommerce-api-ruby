@@ -3,7 +3,8 @@ module Bigcommerce
     HEADERS = {
       'accept' => 'application/json',
       'content-type' => 'application/json',
-      'user-agent' => 'bigcommerce-api-ruby'
+      'user-agent' => 'bigcommerce-api-ruby',
+      'accept-encoding' => 'gzip'
     }.freeze
 
     def self.build(config)
