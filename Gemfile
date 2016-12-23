@@ -4,6 +4,6 @@ gemspec
 group :development do
   gem 'pry'
   gem 'rspec'
-  gem 'simplecov'
   gem 'rubocop'
+  gem 'simplecov'
 end

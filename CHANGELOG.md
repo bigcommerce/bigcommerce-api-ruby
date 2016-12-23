@@ -2,6 +2,7 @@
 Your contribution here.
 
 * [#000](https://github.com/bigcommerce/bigcommerce-api-ruby/pull/000): Brief description here. - [@username](https://github.com/username).
+* [#136](https://github.com/bigcommerce/bigcommerce-api-ruby/pull/136): Added accept-encoding: gzip header. - [@adambilsing](https://github.com/adambilsing)
 * [#128](https://github.com/bigcommerce/bigcommerce-api-ruby/pull/128): Added support for token generation for storefront login. - [@mattolson](https://github.com/mattolson).
 
 ## 1.0.0
