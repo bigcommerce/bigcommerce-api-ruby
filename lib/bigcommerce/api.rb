@@ -440,6 +440,10 @@ module Bigcommerce
       @connection.get("/products/#{product_id}/reviews", options)
     end
 
+    def get_store_information
+      @connection.get('/store')
+    end
+
     private
 
     def get_count(result)
