@@ -18,6 +18,7 @@ module Bigcommerce
           conn.use Bigcommerce::Middleware::Auth, config
         end
         conn.use Bigcommerce::Middleware::HttpException
+        conn.use FaradayMiddleware::Gzip
         conn.adapter Faraday.default_adapter
       end
     end
