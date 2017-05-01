@@ -6,7 +6,7 @@ module Bigcommerce
   class Country < Resource
     include Bigcommerce::ResourceActions.new(
       uri: 'countries/%d',
-      disable: [:create, :update, :destroy, :destroy_all]
+      disable: %i[create update destroy destroy_all]
     )
 
     property :id

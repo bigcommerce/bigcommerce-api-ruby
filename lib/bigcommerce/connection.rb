@@ -8,7 +8,7 @@ module Bigcommerce
     }.freeze
 
     def self.build(config)
-      ssl_options = config.ssl if config.auth == 'legacy'
+      ssl_options = config.ssl || {}
       Faraday.new(url: config.api_url, ssl: ssl_options) do |conn|
         conn.request :json
         conn.headers = HEADERS
