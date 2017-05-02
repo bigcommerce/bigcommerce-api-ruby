@@ -6,7 +6,7 @@ module Bigcommerce
   class State < Resource
     include Bigcommerce::SubresourceActions.new(
       uri: 'countries/%d/states/%d',
-      disable: [:create, :update, :destroy, :destroy_all]
+      disable: %i[create update destroy destroy_all]
     )
 
     property :id

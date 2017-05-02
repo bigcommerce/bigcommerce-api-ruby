@@ -6,7 +6,7 @@ module Bigcommerce
   class OrderProduct < Resource
     include Bigcommerce::SubresourceActions.new(
       uri: 'orders/%d/products/%d',
-      disable: [:create, :update, :destroy, :destroy_all]
+      disable: %i[create update destroy destroy_all]
     )
 
     property :id
