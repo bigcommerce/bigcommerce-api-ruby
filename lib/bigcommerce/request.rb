@@ -21,12 +21,21 @@ module Bigcommerce
       keys = [keys] if keys.is_a? Numeric
       ids = uri.scan('%d').count + uri.scan('%s').count
       str = ids > keys.size ? uri.chomp('%d').chomp('%s').chomp('/') : uri
-      (str % keys).chomp('/')
+      str = (str % keys).chomp('/')
+      return path(str)
     end
 
     def to_s
       @uri
     end
+
+    protected
+
+    def path(path)
+      path += "?include=variants,custom_fields" if path.include? "products"
+      path
+    end
+      
   end
 
   class Request < Module

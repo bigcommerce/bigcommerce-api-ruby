@@ -89,6 +89,7 @@ module Bigcommerce
     property :fixed_cost_shipping_price
     property :primary_image
     property :count
+    property :variants
 
     def self.count(params = {})
       get 'products/count', params
