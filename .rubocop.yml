@@ -4,6 +4,7 @@ AllCops:
     - .bundle/**/*
     - bin/**/*
     - vendor/**/*
+    - examples/**/*
 
 Metrics/LineLength:
   Max: 120
@@ -16,4 +17,10 @@ Metrics/MethodLength:
   Max: 25
 
 Style/Documentation:
+  Enabled: false
+
+Style/FormatStringToken:
+  Enabled: false
+
+Gemspec/RequiredRubyVersion:
   Enabled: false

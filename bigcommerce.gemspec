@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
   s.required_ruby_version = '>= 2.0.0'
   s.license = 'MIT'
 
-  s.authors = ['Patrick Edelman']
+  s.authors = ['BigCommerce Engineering']
   s.homepage = 'https://github.com/bigcommerce/bigcommerce-api-ruby'
   s.summary = 'Ruby client library for the BigCommerce API'
   s.description = s.summary
@@ -20,8 +20,8 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'bundler'
   s.add_development_dependency 'rake'
 
-  s.add_dependency 'faraday', '~> 0.12.0'
-  s.add_dependency 'faraday_middleware', '~> 0.10.0'
+  s.add_dependency 'faraday', '~> 0.11'
+  s.add_dependency 'faraday_middleware', '~> 0.11'
   s.add_dependency 'hashie', '~> 3.4'
   s.add_dependency 'jwt', '~> 1.5.4'
 end

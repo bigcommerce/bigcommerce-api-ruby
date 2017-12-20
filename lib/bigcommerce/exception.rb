@@ -45,7 +45,7 @@ module Bigcommerce
       unless env.body.empty?
         response_headers = begin
           JSON.parse(env.body, symbolize_names: true)
-        rescue
+        rescue StandardError
           {}
         end
       end
