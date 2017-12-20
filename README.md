@@ -17,7 +17,7 @@ gem install bigcommerce
 You can also add it to your Gemfile.
 
 ```rb
-gem 'bigcommerce', '~> 1.0.0'
+gem 'bigcommerce', '~> 1.0'
 ```
 
 ## Requirements

@@ -2,6 +2,10 @@
 Your contribution here.
 
 * [#000](https://github.com/bigcommerce/bigcommerce-api-ruby/pull/000): Brief description here. - [@username](https://github.com/username).
+
+## 1.0.1
+
+* [#148](https://github.com/bigcommerce/bigcommerce-api-ruby/pull/148): Loosen Faraday version dependency pin. Update license to explicit MIT. Fix Rubocop and Travis builds. - [@splittingred](https://github.com/splittingred)
 * [#142](https://github.com/bigcommerce/bigcommerce-api-ruby/pull/142): Update Faraday gem version. Add support for OAuth SSL options. - [@pedelman](https://github.com/pedelman)
 * [#136](https://github.com/bigcommerce/bigcommerce-api-ruby/pull/136): Added accept-encoding: gzip header. - [@adambilsing](https://github.com/adambilsing)
 * [#128](https://github.com/bigcommerce/bigcommerce-api-ruby/pull/128): Added support for token generation for storefront login. - [@mattolson](https://github.com/mattolson).
