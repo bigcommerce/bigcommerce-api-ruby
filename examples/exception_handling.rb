@@ -38,7 +38,7 @@ rescue Bigcommerce::GatewayTimeout => e
   puts e.inspect
 rescue Bigcommerce::BandwidthLimitExceeded => e
   puts e.inspect
-rescue => e
+rescue StandardError => e
   puts "Some other Error #{e.inspect}"
 end
 
