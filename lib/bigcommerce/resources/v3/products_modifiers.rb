@@ -4,8 +4,8 @@
 
 module Bigcommerce
   module V3
-    class Products < Resource
-      include Bigcommerce::ResourceActions.new uri: 'catalog/products/%d'
+    class ProductModifiers < Resource
+      include Bigcommerce::SubresourceActions.new uri: 'catalog/products/%d/modifiers/%d'
 
       property :data
     end
