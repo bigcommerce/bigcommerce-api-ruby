@@ -1,6 +1,6 @@
 # Catalog Products
 # Need to use connection version v3
-# https://developer.bigcommerce.com/api/v3/#/reference/scripts/content-scripts/create-a-script
+# https://developer.bigcommerce.com/api/v3/#/reference/catalog/products
 
 module Bigcommerce
   module V3
