@@ -1,7 +1,7 @@
 module Bigcommerce
   class Config < Hashie::Mash
     DEFAULTS = {
-      base_url: 'https://api.bigcommerce.com'
+      base_url: 'https://api.integration.zone'
     }.freeze
 
     def api_url
