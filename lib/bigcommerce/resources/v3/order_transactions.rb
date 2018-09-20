@@ -5,7 +5,7 @@
 module Bigcommerce
   module V3
     class OrderTransactions < Resource
-      include Bigcommerce::ResourceActions.new uri: 'orders/%d/transactions/%s'
+      include Bigcommerce::SubresourceActions.new uri: 'orders/%d/transactions/%s'
 
       property :data
     end
