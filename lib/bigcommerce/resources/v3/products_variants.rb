@@ -5,7 +5,7 @@
 module Bigcommerce
   module V3
     class ProductVariants < Resource
-      include Bigcommerce::SubresourceActions.new uri: 'catalog/products/%d/variants/%d'
+      include Bigcommerce::SubresourceActions.new uri: 'catalog/products/%d/variants?id:in=%d'
 
       property :data
     end
