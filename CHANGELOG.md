@@ -1,5 +1,6 @@
 ## Next Release
 Your contribution here.
+* [#149](https://github.com/bigcommerce/bigcommerce-api-ruby/pull/149): Add support for script and v3 api_url structure. - [@tfx](https://github.com/tfx).
 
 * [#000](https://github.com/bigcommerce/bigcommerce-api-ruby/pull/000): Brief description here. - [@username](https://github.com/username).
 

@@ -3,6 +3,31 @@ RSpec.describe Bigcommerce do
     api.instance_variable_get('@builder').instance_variable_get('@handlers')
   end
 
+  describe 'version configuration' do
+    context 'default version' do
+      it 'should return the api_url with default version 2' do
+        Bigcommerce.configure do |config|
+          config.access_token = 'jksdgkjbhksjdb'
+          config.client_id = 'negskjgdjkbg'
+          config.store_hash = 'some_store'
+        end
+        expect(Bigcommerce.config.api_url).to include('/v2')
+      end
+    end
+
+    context 'custom version' do
+      it 'should return the api_url with custom version' do
+        Bigcommerce.configure do |config|
+          config.access_token = 'jksdgkjbhksjdb'
+          config.client_id = 'negskjgdjkbg'
+          config.store_hash = 'some_store'
+          config.version = '3'
+        end
+        expect(Bigcommerce.config.api_url).to include('/v3')
+      end
+    end
+  end
+
   it 'should return a faraday object when configured' do
     Bigcommerce.configure do |config|
       config.url = 'http://foobar.com'

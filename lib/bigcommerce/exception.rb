@@ -40,7 +40,7 @@ module Bigcommerce
     }.freeze
 
     def throw_http_exception!(code, env)
-      return unless ERRORS.keys.include? code
+      return unless ERRORS.key? code
       response_headers = {}
       unless env.body.empty?
         response_headers = begin

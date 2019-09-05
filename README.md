@@ -172,5 +172,21 @@ Bigcommerce::System.raw_request(:get, 'time', connection: connection_legacy)
 => #<Faraday::Response:0x007fd4a4063170 ... >>
 ```
 
+### API v3 support
+
+The `Bigcommerce::Script` requires a v3 api url, which can be achieved by adding `version` to the configuration:
+
+```rb
+connection_v3 = Bigcommerce::Connection.build(
+  Bigcommerce::Config.new(
+    store_hash: ENV['BC_STORE_HASH'],
+    client_id: ENV['BC_CLIENT_ID'],
+    access_token: ENV['BC_ACCESS_TOKEN'],
+    version: '3'
+  )
+)
+Bigcommerce::V3::Script.all(connection: connection_v3)
+```
+
 ## Contributing
 See [CONTRIBUTING.md](CONTRIBUTING.md)
