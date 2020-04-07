@@ -6,22 +6,6 @@ module Bigcommerce
   class BlogPost < Resource
     include Bigcommerce::ResourceActions.new uri: 'blog/posts/%d'
 
-    property :id
-    property :url
-    property :preview_url
-    property :body
-    property :tags
-    property :summary
-    property :title
-    property :author
-    property :author_url
-    property :is_published
-    property :published_date
-    property :meta_description
-    property :meta_keywords
-    property :thumbnail_path
-    property :count
-
     def self.count(params = {})
       get 'blog/posts/count', params
     end

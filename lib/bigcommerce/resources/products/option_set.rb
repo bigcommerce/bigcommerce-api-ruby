@@ -6,11 +6,6 @@ module Bigcommerce
   class OptionSet < Resource
     include Bigcommerce::ResourceActions.new uri: 'option_sets/%d'
 
-    property :id
-    property :name
-    property :count
-    property :options
-
     def self.count(params = {})
       get 'option_sets/count', params
     end

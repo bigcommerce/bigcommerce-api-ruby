@@ -8,9 +8,5 @@ module Bigcommerce
       uri: 'shipping/methods/%d',
       disable: %i[create update destroy destroy_all]
     )
-
-    property :id
-    property :name
-    property :method_name
   end
 end

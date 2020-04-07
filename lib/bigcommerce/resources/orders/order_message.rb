@@ -8,17 +8,5 @@ module Bigcommerce
       uri: 'orders/%d/messages/%d',
       disable: %i[create update destroy destroy_all]
     )
-
-    property :id
-    property :type
-    property :status
-    property :message
-    property :subject
-    property :customer
-    property :order_id
-    property :staff_id
-    property :is_flagged
-    property :customer_id
-    property :date_created
   end
 end

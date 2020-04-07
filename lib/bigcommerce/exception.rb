@@ -31,6 +31,7 @@ module Bigcommerce
       406 => Bigcommerce::NotAccepted,
       408 => Bigcommerce::TimeOut,
       409 => Bigcommerce::ResourceConflict,
+      422 => Bigcommerce::ResourceConflict,
       429 => Bigcommerce::TooManyRequests,
       500 => Bigcommerce::InternalServerError,
       502 => Bigcommerce::BadGateway,

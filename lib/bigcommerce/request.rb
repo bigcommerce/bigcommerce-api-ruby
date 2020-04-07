@@ -71,12 +71,12 @@ module Bigcommerce
       private
 
       def build_response_object(response)
-        json = parse response.body
-        if json.is_a? Array
-          json.map { |obj| new obj }
-        else
-          new json
-        end
+        # the resource information comes inside the data attribute
+        # but there is a meta attribute with useful information as well.
+        # I don't know the best way to handle this at the moment.
+        # since I don't need this information yet, I'll just ignore it
+        # and use only the data one
+        new parse(response.body)
       end
 
       def parse(json)

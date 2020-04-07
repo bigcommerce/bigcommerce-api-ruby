@@ -9,24 +9,6 @@ module Bigcommerce
   class Customer < Resource
     include Bigcommerce::ResourceActions.new uri: 'customers/%d'
 
-    property :id
-    property :_authentication
-    property :count
-    property :company
-    property :first_name
-    property :last_name
-    property :email
-    property :phone
-    property :date_created
-    property :date_modified
-    property :store_credit
-    property :registration_ip_address
-    property :customer_group_id
-    property :notes
-    property :addresses
-    property :tax_exempt_category
-    property :accepts_marketing
-
     def self.count(params = {})
       get 'customers/count', params
     end

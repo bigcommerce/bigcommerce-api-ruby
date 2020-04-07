@@ -9,13 +9,6 @@ module Bigcommerce
       disable: %i[create update destroy destroy_all]
     )
 
-    property :id
-    property :count
-    property :country
-    property :country_iso2
-    property :country_iso3
-    property :states
-
     def self.count(params = {})
       get 'countries/count', params
     end

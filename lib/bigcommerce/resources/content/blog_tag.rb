@@ -6,9 +6,6 @@ module Bigcommerce
   class BlogTag < Resource
     include Bigcommerce::Request.new 'blog/tags'
 
-    property :tag
-    property :post_ids
-
     def self.all(params = {})
       get path.build, params
     end

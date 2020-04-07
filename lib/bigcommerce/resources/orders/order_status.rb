@@ -9,9 +9,5 @@ module Bigcommerce
       uri: 'order_statuses/%d',
       disable: %i[create update destroy destroy_all]
     )
-
-    property :id
-    property :name
-    property :order
   end
 end
