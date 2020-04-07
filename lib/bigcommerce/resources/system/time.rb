@@ -6,8 +6,6 @@ module Bigcommerce
   class System < Resource
     include Bigcommerce::Request.new 'time'
 
-    property :time
-
     def self.time(params = {})
       get path.build, params
     end

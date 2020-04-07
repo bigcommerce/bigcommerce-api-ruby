@@ -8,12 +8,6 @@ module Bigcommerce
       uri: 'products/%d/custom_fields/%d'
     )
 
-    property :id
-    property :product_id
-    property :count
-    property :name
-    property :text
-
     def self.count(product_id, params = {})
       get "products/#{product_id}/custom_fields/count", params
     end

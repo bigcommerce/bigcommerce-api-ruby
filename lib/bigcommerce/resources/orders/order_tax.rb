@@ -8,17 +8,5 @@ module Bigcommerce
       uri: 'orders/%d/taxes/%d',
       disable: %i[create update destroy destroy_all]
     )
-
-    property :id
-    property :name
-    property :rate
-    property :tax_class, from: :class
-    property :order_id
-    property :priority
-    property :line_amount
-    property :tax_rate_id
-    property :tax_class_id
-    property :priority_amount
-    property :order_address_id
   end
 end

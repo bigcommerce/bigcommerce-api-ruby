@@ -5,17 +5,5 @@
 module Bigcommerce
   class Banner < Resource
     include Bigcommerce::ResourceActions.new uri: 'banners/%d'
-
-    property :id
-    property :name
-    property :content
-    property :page
-    property :catorbrandid
-    property :location
-    property :date_created
-    property :date_type
-    property :date_from
-    property :date_to
-    property :status
   end
 end

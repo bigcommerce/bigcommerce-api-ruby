@@ -9,15 +9,5 @@ module Bigcommerce
       uri: 'hooks/%d',
       disable: [:destroy_all]
     )
-
-    property :id
-    property :client_id
-    property :store_hash
-    property :scope
-    property :destination
-    property :headers
-    property :is_active
-    property :created_at
-    property :update_at
   end
 end
