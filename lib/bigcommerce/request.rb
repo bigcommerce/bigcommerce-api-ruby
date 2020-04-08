@@ -68,8 +68,6 @@ module Bigcommerce
         client.send(method, path.to_s, params)
       end
 
-      private
-
       def build_response_object(response)
         # the resource information comes inside the data attribute
         # but there is a meta attribute with useful information as well.
