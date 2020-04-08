@@ -18,6 +18,7 @@ module Bigcommerce
     # ex. foo/%d/bar/%d => foo/1/bar/2
     def build(keys = [])
       keys = [] if keys.nil?
+      keys = keys.to_i if keys.is_a? String
       keys = [keys] if keys.is_a? Numeric
       ids = uri.scan('%d').count + uri.scan('%s').count
       str = ids > keys.size ? uri.chomp('%d').chomp('%s').chomp('/') : uri
