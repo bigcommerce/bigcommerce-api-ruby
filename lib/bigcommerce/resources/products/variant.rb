@@ -4,14 +4,12 @@
 
 module Bigcommerce
   class Variant < Resource
-    include Bigcommerce::SubresourceActions.new uri: 'products/%d/variants/%d'
+    include Bigcommerce::ResourceActions.new uri: 'variants/%d'
 
-    def self.count_all(params = {})
-      get 'products/variants/count', params
-    end
-
-    def self.count(product_id, params = {})
-      get "products/#{product_id}/variants/count", params
+    def self.batch_update(params = [], connection: nil)
+      client = connection || Bigcommerce.api
+      response = client.send(:put, path.build, params)
+      build_response_object response
     end
   end
 end
