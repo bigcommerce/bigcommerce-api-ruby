@@ -75,7 +75,12 @@ module Bigcommerce
         # I don't know the best way to handle this at the moment.
         # since I don't need this information yet, I'll just ignore it
         # and use only the data one
-        new parse(response.body)
+        json = parse(response.body)
+        if json.is_a?(Array)
+          json.map { |obj| new obj }
+        else
+          new json
+        end
       end
 
       def parse(json)
