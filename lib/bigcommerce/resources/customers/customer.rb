@@ -44,7 +44,7 @@ module Bigcommerce
         'customer_id' => id
       }
 
-      JWT.encode(payload, config.client_secret, 'HS256')
+      JWT.encode(payload, config.client_secret, 'HS256', { typ: 'JWT' })
     end
   end
 end
