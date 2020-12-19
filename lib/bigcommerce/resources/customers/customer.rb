@@ -34,14 +34,15 @@ module Bigcommerce
     # Generate a token that can be used to log the customer into the storefront.
     # This requires your app to have the store_v2_customers_login scope and to
     # be installed in the store.
-    def login_token(config: Bigcommerce.config)
+    def login_token(config: Bigcommerce.config, redirect_to: '/')
       payload = {
         'iss' => config.client_id,
         'iat' => Time.now.to_i,
         'jti' => SecureRandom.uuid,
         'operation' => 'customer_login',
         'store_hash' => config.store_hash,
-        'customer_id' => id
+        'customer_id' => id,
+        'redirect_to' => redirect_to
       }
 
       JWT.encode(payload, config.client_secret, 'HS256', { typ: 'JWT' })
