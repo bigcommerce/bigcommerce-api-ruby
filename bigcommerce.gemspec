@@ -22,6 +22,6 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'faraday', '~> 0.11'
   s.add_dependency 'faraday_middleware', '~> 0.11'
-  s.add_dependency 'hashie', '~> 3.4'
-  s.add_dependency 'jwt', '~> 1.5.4'
+  s.add_dependency 'hashie', '>= 3.4', '~> 4'
+  s.add_dependency 'jwt', '>= 1.5.4', '~> 2'
 end
