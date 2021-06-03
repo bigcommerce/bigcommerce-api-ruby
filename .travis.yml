@@ -1,15 +1,20 @@
 language: ruby
 rvm:
   - ruby-head
-  - 2.0
-  - 2.1
-  - 2.2
-  - 2.3
-  - 2.4
+  - 2.5
+  - 2.6
+  - 2.7
 cache:
   bundler: true
 sudo: false
 matrix:
   allow_failures:
-    - rvm: ruby-head
+    - rvm: 
+      - 2.0
+      - 2.1
+      - 2.2
+      - 2.3
+      - 2.4
+      - 3.0
+      - ruby-head
   fast_finish: true
