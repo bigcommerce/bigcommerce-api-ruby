@@ -1,6 +1,7 @@
 ## Next Release
 Your contribution here.
 
+* [#167](https://github.com/bigcommerce/bigcommerce-api-ruby/pull/000): Changes handling of HTTP response headers to handle lowercased titles. - [@bc-zachary](https://github.com/bc-zachary).
 * [#000](https://github.com/bigcommerce/bigcommerce-api-ruby/pull/000): Brief description here. - [@username](https://github.com/username).
 
 ## 1.0.1

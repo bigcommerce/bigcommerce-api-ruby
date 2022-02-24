@@ -7,7 +7,7 @@ RSpec.describe Bigcommerce::HttpErrors do
 
   before do
     allow(env).to receive(:body) { body }
-    allow(env).to receive(:[]) { headers }
+    allow(env).to receive(:response_headers) { headers }
   end
 
   it '::ERRORS is not nil' do
@@ -32,6 +32,20 @@ RSpec.describe Bigcommerce::HttpErrors do
     context 'when have a body and response headers' do
       let(:body) { JSON.generate({ time: '1426184190' }) }
       let(:headers) { { 'X-Retry-After' => 1 } }
+      let(:code) { 429 }
+
+      it 'should parse out a retry-after header if present' do
+        begin
+          dummy_class.throw_http_exception!(code, env)
+        rescue Bigcommerce::TooManyRequests => e
+          expect(e.response_headers[:retry_after]).to eq 1
+        end
+      end
+    end
+
+    context 'when have a body and lowercase response headers' do
+      let(:body) { JSON.generate({ time: '1426184190' }) }
+      let(:headers) { { 'x-retry-after' => 1 } }
       let(:code) { 429 }
 
       it 'should parse out a retry-after header if present' do

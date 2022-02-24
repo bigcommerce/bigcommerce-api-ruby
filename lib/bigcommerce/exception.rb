@@ -1,6 +1,7 @@
 module Bigcommerce
   class HttpError < StandardError
     attr_accessor :response_headers
+
     def initialize(headers)
       @response_headers = headers
     end
@@ -41,17 +42,13 @@ module Bigcommerce
 
     def throw_http_exception!(code, env)
       return unless ERRORS.keys.include? code
-      response_headers = {}
-      unless env.body.empty?
-        response_headers = begin
-          JSON.parse(env.body, symbolize_names: true)
-        rescue StandardError
-          {}
-        end
+
+      response_headers = Faraday::Utils::Headers.new(env.response_headers)
+
+      unless response_headers['x-retry-after'].nil?
+        response_headers[:retry_after] = response_headers['x-retry-after'].to_i
       end
-      unless env[:response_headers] && env[:response_headers]['X-Retry-After'].nil?
-        response_headers[:retry_after] = env[:response_headers]['X-Retry-After'].to_i
-      end
+
       raise ERRORS[code].new(response_headers), env.body
     end
   end
