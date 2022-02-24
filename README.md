@@ -1,8 +1,9 @@
 # BigCommerce API Ruby
 
 [![Gem Version](https://badge.fury.io/rb/bigcommerce.svg)](https://rubygems.org/gems/bigcommerce)
-[![Build Status](https://travis-ci.org/bigcommerce/bigcommerce-api-ruby.svg?branch=master)](https://travis-ci.org/bigcommerce/bigcommerce-api-ruby)
-[![Dependency Status](https://gemnasium.com/bigcommerce/bigcommerce-api-ruby.svg?travis)](https://gemnasium.com/bigcommerce/bigcommerce-api-ruby)
+[![CircleCI](https://circleci.com/gh/bigcommerce/bigcommerce-api-ruby/tree/master.svg?style=svg)](https://circleci.com/gh/bigcommerce/bigcommerce-api-ruby/tree/master)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/d1ba1b74a2a74a26e8b4/test_coverage)](https://codeclimate.com/github/bigcommerce/bigcommerce-api-ruby/test_coverage)
+[![Maintainability](https://api.codeclimate.com/v1/badges/d1ba1b74a2a74a26e8b4/maintainability)](https://codeclimate.com/github/bigcommerce/bigcommerce-api-ruby/maintainability)
 
 This is the official BigCommerce API client to support our Stores API. You can find more information about becoming a BigCommerce developer here: [developer.bigcommerce.com](http://developer.bigcommerce.com).
 
@@ -21,7 +22,8 @@ gem 'bigcommerce', '~> 1.0'
 ```
 
 ## Requirements
-- Ruby 2.0.0 or newer. Please refer to the `.travis.yml` to see which versions we officially support.
+
+- Ruby 2.0.0 or newer (Ruby 2.7+ is preferred)
 
 ## Getting Started
 To make requests to our API, you must register as a developer and have your credentials ready.
@@ -174,3 +176,6 @@ Bigcommerce::System.raw_request(:get, 'time', connection: connection_legacy)
 
 ## Contributing
 See [CONTRIBUTING.md](CONTRIBUTING.md)
+
+## License
+See [LICENSE.md](LICENSE.md)
