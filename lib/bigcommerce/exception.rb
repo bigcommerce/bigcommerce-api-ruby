@@ -6,6 +6,7 @@ module Bigcommerce
 
     def initialize(headers)
       @response_headers = headers
+      super()
     end
   end
 
