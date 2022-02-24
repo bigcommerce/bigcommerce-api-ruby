@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Shipping Method
 # List of enabled shipping methods.
 # https://developer.bigcommerce.com/api/stores/v2/shipping/methods

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Blog Post
 # Content entries in the store's blog.
 # https://developer.bigcommerce.com/api/stores/v2/blog/posts

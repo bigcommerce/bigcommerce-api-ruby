@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe Bigcommerce::CustomerAddress do
   before(:each) { @address = Bigcommerce::CustomerAddress }
 

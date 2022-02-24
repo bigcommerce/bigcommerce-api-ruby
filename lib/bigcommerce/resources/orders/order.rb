@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Order
 # Purchases from a store.
 # https://developer.bigcommerce.com/api/stores/v2/orders

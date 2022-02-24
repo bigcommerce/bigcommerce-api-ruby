@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe Bigcommerce::Customer do
   describe '.count' do
     it 'should hit the correct path' do

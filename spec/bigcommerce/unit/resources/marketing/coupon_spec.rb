@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe Bigcommerce::Coupon do
   before(:each) { @coupon = Bigcommerce::Coupon }
 

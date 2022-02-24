@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe Bigcommerce::Redirect do
   before(:each) { @redirect = Bigcommerce::Redirect }
 

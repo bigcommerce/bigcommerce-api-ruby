@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe Bigcommerce::CustomField do
   before(:each) { @custom_field = Bigcommerce::CustomField }
 

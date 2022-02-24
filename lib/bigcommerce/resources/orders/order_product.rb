@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Order Product
 # Product line items associated with an order.
 # https://developer.bigcommerce.com/api/stores/v2/orders/products

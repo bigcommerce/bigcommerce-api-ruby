@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Time
 # Timestamp ping to check the system status.
 # https://developer.bigcommerce.com/api/stores/v2/time

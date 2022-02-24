@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 RSpec.describe Bigcommerce::OrderProduct do
   before(:each) { @order_product = Bigcommerce::OrderProduct }
-  
+
   let(:params) { 1 }
 
   describe '.count' do

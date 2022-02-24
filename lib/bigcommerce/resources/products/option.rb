@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Option
 # Shared attributes that control value facets on a product.
 # https://developer.bigcommerce.com/api/stores/v2/options

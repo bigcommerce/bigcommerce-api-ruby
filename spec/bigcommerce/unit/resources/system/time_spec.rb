@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe Bigcommerce::System do
   before(:each) { @system = Bigcommerce::System }
 

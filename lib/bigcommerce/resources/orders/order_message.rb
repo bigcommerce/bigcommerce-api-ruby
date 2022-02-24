@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Order Message
 # Messages associated with an order.
 # https://developer.bigcommerce.com/api/stores/v2/orders/messages

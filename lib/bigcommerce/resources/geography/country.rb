@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Country
 # Countries and territories, identified by their ISO 3166 country codes.
 # https://developer.bigcommerce.com/api/stores/v2/countries

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Order Status
 # Statuses that can be assigned to orders. Each status represents a state in
 # the fulfilment workflow.

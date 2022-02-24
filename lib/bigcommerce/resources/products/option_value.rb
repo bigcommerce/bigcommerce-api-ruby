@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Option Value
 # Values that can be selected for an option.
 # https://developer.bigcommerce.com/api/stores/v2/options/values

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe Bigcommerce::State do
   before(:each) { @state = Bigcommerce::State }
 

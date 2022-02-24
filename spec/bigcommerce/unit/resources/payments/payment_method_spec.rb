@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe Bigcommerce::PaymentMethod do
   before(:each) { @payment_method = Bigcommerce::PaymentMethod }
 

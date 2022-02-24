@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe Bigcommerce::Brand do
   before(:each) { @brand = Bigcommerce::Brand }
 

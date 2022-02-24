@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Product Video
 # Embedded videos displayed on product listings.
 # https://developer.bigcommerce.com/api/stores/v2/products/videos

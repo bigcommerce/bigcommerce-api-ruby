@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Coupon
 # Category or product discounts that can be applied to orders for customers
 # who enter a given code.

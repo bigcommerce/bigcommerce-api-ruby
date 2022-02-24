@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe Bigcommerce::ConfigurableField do
   before(:each) { @configurable_field = Bigcommerce::ConfigurableField }
 

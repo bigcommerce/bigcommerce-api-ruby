@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Redirect
 # Redirects are used to create custom URL paths that map to resources on the
 # storefront (such as products, categories, brands, etc.) or manually defined

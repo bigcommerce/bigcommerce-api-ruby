@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Tax Class
 # Tax classes are used to apply different tax rates for specific types
 # of products and orders.

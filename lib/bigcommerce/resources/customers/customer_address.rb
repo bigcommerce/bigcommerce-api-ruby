@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Customer Address
 # Postal addresses belonging to a customer.
 # https://developer.bigcommerce.com/api/stores/v2/customers/addresses

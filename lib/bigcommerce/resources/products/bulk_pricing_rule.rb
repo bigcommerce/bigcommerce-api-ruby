@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Bulk Pricing Rule
 # Bulk pricing rules applied to a product.
 # https://developer.bigcommerce.com/api/stores/v2/products/discount_rules

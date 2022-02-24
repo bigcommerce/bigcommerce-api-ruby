@@ -42,13 +42,15 @@ module Bigcommerce
       509 => Bigcommerce::BandwidthLimitExceeded
     }.freeze
 
+    X_RETRY_AFTER_HEADER_KEY = 'x-retry-after'
+
     def throw_http_exception!(code, env)
       return unless ERRORS.key?(code)
 
       response_headers = Faraday::Utils::Headers.new(env.response_headers)
 
-      unless response_headers['x-retry-after'].nil?
-        response_headers[:retry_after] = response_headers['x-retry-after'].to_i
+      unless response_headers[X_RETRY_AFTER_HEADER_KEY].nil?
+        response_headers[:retry_after] = response_headers[X_RETRY_AFTER_HEADER_KEY].to_i
       end
 
       raise ERRORS[code].new(response_headers), env.body

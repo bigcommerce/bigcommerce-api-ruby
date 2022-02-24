@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Product Rule
 # Rules that modify the default behaviour of products.
 # https://developer.bigcommerce.com/api/stores/v2/products/rules

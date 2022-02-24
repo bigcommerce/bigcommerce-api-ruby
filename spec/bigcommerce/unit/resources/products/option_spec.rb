@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe Bigcommerce::Option do
   before(:each) { @option = Bigcommerce::Option }
 

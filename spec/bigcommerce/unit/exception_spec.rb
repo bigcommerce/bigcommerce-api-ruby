@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe Bigcommerce::HttpErrors do
   let(:dummy_class) { Class.new { extend Bigcommerce::HttpErrors } }
   let(:code) { 200 }
