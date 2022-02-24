@@ -1,10 +1,15 @@
 AllCops:
+  TargetRubyVersion: 2.6
+  NewCops: enable
+  SuggestExtensions: false
   Exclude:
     - spec/**/*
     - .bundle/**/*
     - bin/**/*
     - vendor/**/*
     - examples/**/*
+require:
+  - rubocop-performance
 
 Layout/LineLength:
   Max: 120
@@ -22,5 +27,33 @@ Style/Documentation:
 Style/FormatStringToken:
   Enabled: false
 
+Naming/VariableNumber:
+  Enabled: false
+
+########################################################################################################################
+# TO FIX
+########################################################################################################################
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Layout/EmptyLineAfterGuardClause:
+  Enabled: false
+
+Lint/MissingSuper:
+  Enabled: false
+
+Performance/MethodObjectAsBlock:
+  Exclude:
+    - lib/bigcommerce.rb
+
+Lint/NonDeterministicRequireOrder:
+  Exclude:
+    - lib/bigcommerce.rb
+
+# we should deprecate Ruby < 2.7 support ASAP
 Gemspec/RequiredRubyVersion:
   Enabled: false
+
+Style/ExplicitBlockArgument:
+  Exclude:
+    - lib/bigcommerce.rb

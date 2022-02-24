@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Bigcommerce
   module Middleware
     class Auth < Faraday::Middleware

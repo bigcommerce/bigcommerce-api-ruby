@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe Bigcommerce do
   let(:middleware) do
     api.instance_variable_get('@builder').instance_variable_get('@handlers')
