@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Order Shipment
 # Shipping package consignments tracked from an order.
 # https://developer.bigcommerce.com/api/stores/v2/orders/shipments

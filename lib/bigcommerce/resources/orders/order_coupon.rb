@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Order Coupon
 # Coupons applied to an order.
 # https://developer.bigcommerce.com/api/stores/v2/orders/coupons

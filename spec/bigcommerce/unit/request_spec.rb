@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe Bigcommerce::Request do
   before do
     module Bigcommerce

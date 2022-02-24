@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe Bigcommerce::ProductReview do
   before(:each) { @product_review = Bigcommerce::ProductReview }
 

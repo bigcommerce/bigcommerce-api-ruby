@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Configurable Field
 # Configurable fields associated with a product.
 # https://developer.bigcommerce.com/api/stores/v2/products/configurable_fields

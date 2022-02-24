@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Custom Field
 # Custom fields associated with a product.
 # https://developer.bigcommerce.com/api/stores/v2/products/custom_fields

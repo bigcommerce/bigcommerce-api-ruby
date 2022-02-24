@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe Bigcommerce::ProductRule do
   before(:each) { @rule = Bigcommerce::ProductRule }
 

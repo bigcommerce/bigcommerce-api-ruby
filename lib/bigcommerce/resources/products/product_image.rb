@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Product Image
 # Images associated with a product.
 # https://developer.bigcommerce.com/api/stores/v2/products/images

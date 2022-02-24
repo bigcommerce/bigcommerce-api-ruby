@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Google Product Search Mapping
 # Google Product Search mappings for a product.
 # https://developer.bigcommerce.com/api/stores/v2/products/googleproductsearch

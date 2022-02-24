@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Product
 # Catalog of saleable items in the store.
 # https://developer.bigcommerce.com/api/stores/v2/products

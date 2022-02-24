@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Product Option
 # Options associated directly with a product.
 # https://developer.bigcommerce.com/api/stores/v2/products/options

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Brand
 # Brand facets for identifying and categorising products according
 # to their manufacturer or company metonym.

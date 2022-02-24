@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # State
 # States and subdivisions belonging to countries.
 # https://developer.bigcommerce.com/api/stores/v2/countries/states

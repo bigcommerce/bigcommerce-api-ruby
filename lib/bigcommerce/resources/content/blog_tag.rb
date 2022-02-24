@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Blog Tag
 # Index of tags used on the store's blog.
 # https://developer.bigcommerce.com/api/stores/v2/blog/tags

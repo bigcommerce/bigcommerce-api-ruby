@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Option Set
 # A reusable set of option facets that can be applied to products.
 # https://developer.bigcommerce.com/api/stores/v2/options_sets

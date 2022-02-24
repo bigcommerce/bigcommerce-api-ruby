@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe Bigcommerce::Sku do
   before(:each) { @sku = Bigcommerce::Sku }
 

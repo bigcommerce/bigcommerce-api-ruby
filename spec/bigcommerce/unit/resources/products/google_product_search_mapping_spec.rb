@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe Bigcommerce::GoogleProductSearchMapping do
   before(:each) { @mapping = Bigcommerce::GoogleProductSearchMapping }
 

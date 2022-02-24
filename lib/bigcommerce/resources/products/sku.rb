@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # SKU
 # Stock Keeping Unit identifiers associated with products.
 # https://developer.bigcommerce.com/api/stores/v2/products/skus

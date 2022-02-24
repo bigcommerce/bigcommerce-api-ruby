@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Customer Group
 # Groups of customers who share the same level of access and discounts
 # at a store.

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Webhook
 # Register and manage webhooks that connect events from a store to
 # external URLs.

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'bigcommerce/request'
 require 'bigcommerce/resource_actions'
 require 'bigcommerce/subresource_actions'

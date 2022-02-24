@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Payment Method
 # Enabled payment methods.
 # https://developer.bigcommerce.com/api/stores/v2/payments/methods

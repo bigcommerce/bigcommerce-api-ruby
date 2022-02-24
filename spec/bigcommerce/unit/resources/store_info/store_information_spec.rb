@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe Bigcommerce::StoreInfo do
   before(:each) { @store_info = Bigcommerce::StoreInfo }
 

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe Bigcommerce::ProductVideo do
   before(:each) { @video = Bigcommerce::ProductVideo }
 

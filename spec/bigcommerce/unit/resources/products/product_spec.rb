@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe Bigcommerce::Product do
   before(:each) { @product = Bigcommerce::Product }
 

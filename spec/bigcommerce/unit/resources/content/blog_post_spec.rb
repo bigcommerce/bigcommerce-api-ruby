@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe Bigcommerce::BlogPost do
   before(:each) { @blog_post = Bigcommerce::BlogPost }
 

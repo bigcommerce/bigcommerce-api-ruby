@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Option Set Option
 # Options belonging to an option set.
 # https://developer.bigcommerce.com/api/stores/v2/option_sets/options

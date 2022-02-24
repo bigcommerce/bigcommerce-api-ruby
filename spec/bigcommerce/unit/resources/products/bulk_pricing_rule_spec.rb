@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe Bigcommerce::BulkPricingRule do
   before(:each) { @bulk_pricing_rule = Bigcommerce::BulkPricingRule }
 

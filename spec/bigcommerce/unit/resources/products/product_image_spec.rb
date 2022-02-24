@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe Bigcommerce::ProductImage do
   before(:each) { @image = Bigcommerce::ProductImage }
 

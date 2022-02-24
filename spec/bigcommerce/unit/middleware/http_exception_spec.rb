@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe Bigcommerce::Middleware::HttpException do
   let(:env) { Hashie::Mash.new(status: status, body: body, response_headers: {}) }
   let(:status) { 200 }

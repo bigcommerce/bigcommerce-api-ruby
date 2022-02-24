@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Order Shipping Addresses
 # Shipping addresses associated with an order.
 # https://developer.bigcommerce.com/api/stores/v2/orders/shipping_addresses
