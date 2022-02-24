@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Bigcommerce
   class HttpError < StandardError
     attr_accessor :response_headers
@@ -41,7 +43,7 @@ module Bigcommerce
     }.freeze
 
     def throw_http_exception!(code, env)
-      return unless ERRORS.keys.include? code
+      return unless ERRORS.key?(code)
 
       response_headers = Faraday::Utils::Headers.new(env.response_headers)
 

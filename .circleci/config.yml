@@ -1,0 +1,86 @@
+version: 2.1
+
+orbs:
+  ci: bigcommerce/internal@volatile
+  ruby: bigcommerce/internal-ruby@volatile
+
+defaults: &defaults
+  notify_failure: false
+
+ruby_2_6_defaults: &ruby_2_6_defaults
+  <<: *defaults
+  e:
+    name: ruby/ruby
+    ruby-version: '2.6'
+
+ruby_2_7_defaults: &ruby_2_7_defaults
+  <<: *defaults
+  e:
+    name: ruby/ruby
+    ruby-version: '2.7'
+
+ruby_3_0_defaults: &ruby_3_0_defaults
+  <<: *defaults
+  e:
+    name: ruby/ruby
+    ruby-version: '3.0'
+
+ruby_3_1_defaults: &ruby_3_1_defaults
+  <<: *defaults
+  e:
+    name: ruby/ruby
+    ruby-version: '3.1'
+
+workflows:
+  version: 2
+  ruby_2_6:
+    jobs:
+      - ruby/bundle-audit:
+          <<: *ruby_2_6_defaults
+          name: ruby-2_6-bundle_audit
+      - ruby/rubocop:
+          <<: *ruby_2_6_defaults
+          name: ruby-2_6-rubocop
+      - ruby/rspec-unit:
+          <<: *ruby_2_6_defaults
+          name: ruby-2_6-rspec_unit
+          db: false
+          code-climate: false
+  ruby_2_7:
+    jobs:
+      - ruby/bundle-audit:
+          <<: *ruby_2_7_defaults
+          name: ruby-2_7-bundle_audit
+      - ruby/rubocop:
+          <<: *ruby_2_7_defaults
+          name: ruby-2_7-rubocop
+      - ruby/rspec-unit:
+          <<: *ruby_2_7_defaults
+          name: ruby-2_7-rspec_unit
+          db: false
+          code-climate: false
+  ruby_3_0:
+    jobs:
+      - ruby/bundle-audit:
+          <<: *ruby_3_0_defaults
+          name: ruby-3_0-bundle_audit
+      - ruby/rubocop:
+          <<: *ruby_3_0_defaults
+          name: ruby-3_0-rubocop
+      - ruby/rspec-unit:
+          <<: *ruby_3_0_defaults
+          name: ruby-3_0-rspec_unit
+          db: false
+  ruby_3_1:
+    jobs:
+      - ruby/bundle-audit:
+          <<: *ruby_3_1_defaults
+          name: ruby-3_1-bundle_audit
+      - ruby/rubocop:
+          <<: *ruby_3_1_defaults
+          name: ruby-3_1-rubocop
+      - ruby/rspec-unit:
+          <<: *ruby_3_1_defaults
+          name: ruby-3_1-rspec_unit
+          db: false
+          code-climate: false
