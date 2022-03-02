@@ -1,6 +1,7 @@
 ## Next Release
 Your contribution here.
 
+* [#170](https://github.com/bigcommerce/bigcommerce-api-ruby/pull/170): Fix various Rubocop warnings and declare dotenv as a dev dependency - [@splittingred](https://github.com/splittingred)
 * [#169](https://github.com/bigcommerce/bigcommerce-api-ruby/pull/169): Add frozen_string_literal magic comment to all files - [@splittingred](https://github.com/splittingred)
 * [#168](https://github.com/bigcommerce/bigcommerce-api-ruby/pull/168): Move to CircleCI off of TravisCI - [@splittingred](https://github.com/splittingred)
 * [#168](https://github.com/bigcommerce/bigcommerce-api-ruby/pull/168): Explicitly declare development dependencies in gemspec - [@splittingred](https://github.com/splittingred)

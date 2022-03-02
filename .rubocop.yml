@@ -33,24 +33,7 @@ Naming/VariableNumber:
 ########################################################################################################################
 # TO FIX
 ########################################################################################################################
-Layout/EmptyLineAfterGuardClause:
-  Enabled: false
-
-Lint/MissingSuper:
-  Enabled: false
-
-Performance/MethodObjectAsBlock:
-  Exclude:
-    - lib/bigcommerce.rb
-
-Lint/NonDeterministicRequireOrder:
-  Exclude:
-    - lib/bigcommerce.rb
 
 # we should deprecate Ruby < 2.7 support ASAP
 Gemspec/RequiredRubyVersion:
   Enabled: false
-
-Style/ExplicitBlockArgument:
-  Exclude:
-    - lib/bigcommerce.rb

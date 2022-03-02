@@ -2,6 +2,8 @@
 
 module Bigcommerce
   class ResourceActions < Module
+    # @!attribute [r] options
+    #   @return [Hash] Options passed to this module
     attr_reader :options
 
     def initialize(options = {})
@@ -11,6 +13,7 @@ module Bigcommerce
           mod.options
         end
       end
+      super()
     end
 
     def included(base)
@@ -28,6 +31,7 @@ module Bigcommerce
 
       def find(resource_id, params = {})
         raise ArgumentError if resource_id.nil?
+
         get path.build(resource_id), params
       end
 
@@ -37,11 +41,13 @@ module Bigcommerce
 
       def update(resource_id, params = {})
         raise ArgumentError if resource_id.nil?
+
         put path.build(resource_id), params
       end
 
       def destroy(resource_id, params = {})
         raise ArgumentError if resource_id.nil?
+
         delete path.build(resource_id), params
       end
 
