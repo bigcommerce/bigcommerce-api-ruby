@@ -69,6 +69,15 @@ module Bigcommerce
     property :shipping_cost_tax_class_id
     property :wrapping_cost_tax_class_id
     property :count
+    property :cart_id
+    property :channel_id
+    property :custom_status
+    property :external_id
+    property :external_merchant_id
+    property :store_default_currency_code
+    property :store_default_to_transactional_exchange_rate
+    property :tax_provider_id
+    
 
     def self.count(params = {})
       get 'orders/count', params
