@@ -1,6 +1,10 @@
 ## Next Release
 Your contribution here.
 
+* [#000](https://github.com/bigcommerce/bigcommerce-api-ruby/pull/000): Brief description here. - [@username](https://github.com/username).
+
+## 1.0.2
+
 * [#173](https://github.com/bigcommerce/bigcommerce-api-ruby/pull/173): Loosen Faraday dependency to ~> 1.1.0 - [@bc-johnhebron](https://github.com/bc-johnhebron).
 * [#159](https://github.com/bigcommerce/bigcommerce-api-ruby/pull/159): Added new missing fields for an order - [@ranjeetkumarkanaily](https://github.com/ranjeetkumarkanaily).
 * [#171](https://github.com/bigcommerce/bigcommerce-api-ruby/pull/171): Fix various Rubocop warnings and declare dotenv as a dev dependency - [@splittingred](https://github.com/splittingred).
@@ -8,7 +12,6 @@ Your contribution here.
 * [#169](https://github.com/bigcommerce/bigcommerce-api-ruby/pull/169): Move to CircleCI off of TravisCI - [@splittingred](https://github.com/splittingred).
 * [#168](https://github.com/bigcommerce/bigcommerce-api-ruby/pull/168): Explicitly declare development dependencies in gemspec - [@splittingred](https://github.com/splittingred).
 * [#167](https://github.com/bigcommerce/bigcommerce-api-ruby/pull/167): Changes handling of HTTP response headers to handle lowercased titles. - [@bc-zachary](https://github.com/bc-zachary).
-* [#000](https://github.com/bigcommerce/bigcommerce-api-ruby/pull/000): Brief description here. - [@username](https://github.com/username).
 
 ## 1.0.1
 
