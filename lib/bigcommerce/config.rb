@@ -22,7 +22,7 @@ module Bigcommerce
     # @return [String]
     #
     def base_url
-      ENV[BC_API_ENDPOINT_ENV_KEY].to_s.empty? ? DEFAULTS[:base_url] : ENV[BC_API_ENDPOINT_ENV_KEY]
+      ENV[BC_API_ENDPOINT_ENV_KEY].to_s.empty? ? DEFAULTS[:base_url] : ENV.fetch(BC_API_ENDPOINT_ENV_KEY, nil)
     end
   end
 end

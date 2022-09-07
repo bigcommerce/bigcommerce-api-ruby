@@ -77,7 +77,6 @@ module Bigcommerce
     property :store_default_currency_code
     property :store_default_to_transactional_exchange_rate
     property :tax_provider_id
-    
 
     def self.count(params = {})
       get 'orders/count', params
