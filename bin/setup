@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+set -euo pipefail
+IFS=$'\n\t'
+set -vx
+
+bundle install
+bundle exec rspec -p
+bundle exec rubocop -P
+bundle audit update
+bundle audit

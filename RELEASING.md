@@ -1,6 +1,7 @@
 # Releasing Bigcommerce API Client
 
-There're no particular rules about when to release the Bigcommerce API client. Release bug fixes frequently, features not so frequently, and breaking API changes rarely.
+There are no particular rules about when to release the Bigcommerce API client. Release bug fixes frequently, features
+not so frequently, and breaking API changes rarely.
 
 ### Before A Release
 
@@ -11,7 +12,8 @@ bundle install
 bundle exec rake
 ```
 
-This will ensure both style and that all the specs pass locally. Next, check that the last build succeeded in [CircleCI](https://app.circleci.com/pipelines/github/bigcommerce/bigcommerce-api-ruby) for all supported platforms.
+This will ensure both style and that all the specs pass locally. Next, check that the last build succeeded 
+in [CircleCI](https://app.circleci.com/pipelines/github/bigcommerce/bigcommerce-api-ruby) for all supported platforms.
 
 Increment the version, modify [lib/bigcommerce/version.rb](lib/bigcommerce/version.rb).
 

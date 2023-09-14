@@ -27,8 +27,7 @@ git checkout -b my-feature-branch
 Ensure that you can build the project and run tests.
 
 ```
-bundle install
-bundle exec rake
+bin/setup
 ```
 
 #### Installing the gem locally (useful to run examples)
@@ -86,7 +85,8 @@ git push origin my-feature-branch
 
 #### Make a Pull Request
 
-Go to https://github.com/contributor/bigcommerce-api-ruby and select your feature branch. Click the 'Pull Request' button and fill out the form. Pull requests are usually reviewed within a few days.
+Go to https://github.com/contributor/bigcommerce-api-ruby and select your feature branch. Click the 'Pull Request'
+button and fill out the form. Pull requests are usually reviewed within a few days.
 
 #### Rebase
 
@@ -115,4 +115,5 @@ git push origin my-feature-branch -f
 
 #### Check on Your Pull Request
 
-Go back to your pull request after a few minutes and see whether it passed muster with Travis-CI. Everything should look green, otherwise fix issues and amend your commit as described above.
+Go back to your pull request after a few minutes and see whether it passed muster with CircleCI. Everything should
+look green, otherwise fix issues and amend your commit as described above.
