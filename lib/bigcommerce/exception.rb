@@ -18,6 +18,7 @@ module Bigcommerce
   class NotAccepted < HttpError; end
   class TimeOut < HttpError; end
   class ResourceConflict < HttpError; end
+  class LockedStatus < HttpError; end
   class TooManyRequests < HttpError; end
   class InternalServerError < HttpError; end
   class BadGateway < HttpError; end
@@ -35,6 +36,7 @@ module Bigcommerce
       406 => Bigcommerce::NotAccepted,
       408 => Bigcommerce::TimeOut,
       409 => Bigcommerce::ResourceConflict,
+      423 => Bigcommerce::LockedStatus,
       429 => Bigcommerce::TooManyRequests,
       500 => Bigcommerce::InternalServerError,
       502 => Bigcommerce::BadGateway,
