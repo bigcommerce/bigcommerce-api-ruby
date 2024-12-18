@@ -11,6 +11,8 @@ module Bigcommerce
   class Customer < Resource
     include Bigcommerce::ResourceActions.new uri: 'customers/%d'
 
+    PERMITTED_OPTIONAL_CLAIMS = %w[channel_id request_ip].freeze
+
     property :id
     property :_authentication
     property :count
@@ -37,7 +39,7 @@ module Bigcommerce
     # Generate a token that can be used to log the customer into the storefront.
     # This requires your app to have the store_v2_customers_login scope and to
     # be installed in the store.
-    def login_token(config: Bigcommerce.config, redirect_to: '/')
+    def login_token(config: Bigcommerce.config, redirect_to: '/', optional_claims: {})
       payload = {
         'iss' => config.client_id,
         'iat' => Time.now.to_i,
@@ -47,6 +49,9 @@ module Bigcommerce
         'customer_id' => id,
         'redirect_to' => redirect_to
       }
+
+      optional_claims = optional_claims.slice(*PERMITTED_OPTIONAL_CLAIMS)
+      payload.merge!(optional_claims) if optional_claims.any?
 
       JWT.encode(payload, config.client_secret, 'HS256', { typ: 'JWT' })
     end
