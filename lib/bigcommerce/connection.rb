@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'faraday/gzip'
-
 module Bigcommerce
   module Connection
     LEGACY_AUTH_MODE = 'legacy'
