@@ -19,8 +19,8 @@ Gem::Specification.new do |s|
   s.require_paths = ['lib']
   s.files = Dir['README.md', 'lib/**/*', 'bigcommerce.gemspec']
 
-  s.add_dependency 'faraday', '~> 1.1.0'
-  s.add_dependency 'faraday_middleware', '~> 1.0'
+  s.add_dependency 'faraday', '~> 2.12.2'
+  s.add_dependency 'faraday-gzip', '~> 3'
   s.add_dependency 'hashie', '>= 3.4', '~> 4'
   s.add_dependency 'jwt', '>= 1.5.4', '~> 2'
 end
