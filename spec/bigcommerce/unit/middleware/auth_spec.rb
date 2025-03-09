@@ -4,7 +4,7 @@ require 'securerandom'
 
 RSpec.describe Bigcommerce::Middleware::Auth do
   let(:api) { Bigcommerce::Middleware::Auth.new(app, options) }
-  let(:app) { double(:app) }
+  let(:app) { double(:app, call: double(:response, on_complete: nil)) }
   let(:client_id) { SecureRandom.uuid }
   let(:client_token) { SecureRandom.uuid }
   let(:options) do

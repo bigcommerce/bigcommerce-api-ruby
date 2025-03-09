@@ -1,7 +1,5 @@
 # BigCommerce API Ruby
 
-[![Gem Version](https://badge.fury.io/rb/bigcommerce.svg)](https://rubygems.org/gems/bigcommerce)
-
 [![CI](https://github.com/saragabrielinc/bigcommerce-api-ruby/actions/workflows/main.yml/badge.svg)](https://github.com/saragabrielinc/bigcommerce-api-ruby/actions/workflows/main.yml)
 
 This is a fork of the official BigCommerce API client, since the original project is no longer maintained.

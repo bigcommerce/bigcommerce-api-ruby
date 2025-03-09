@@ -14,14 +14,14 @@ module Bigcommerce
       ssl_options = config.ssl || {}
       Faraday.new(url: config.api_url, ssl: ssl_options) do |conn|
         conn.request :json
+        conn.request :gzip
         conn.headers = HEADERS
         if config.auth == LEGACY_AUTH_MODE
-          conn.use Faraday::Request::BasicAuthentication, config.username, config.api_key
+          conn.request :authorization, :basic, config.username, config.api_key
         else
           conn.use Bigcommerce::Middleware::Auth, config
         end
         conn.use Bigcommerce::Middleware::HttpException
-        conn.use FaradayMiddleware::Gzip
         conn.adapter Faraday.default_adapter
       end
     end

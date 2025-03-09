@@ -4,7 +4,7 @@ require 'bigcommerce/exception'
 
 module Bigcommerce
   module Middleware
-    class HttpException < Faraday::Response::Middleware
+    class HttpException < Faraday::Middleware
       include Bigcommerce::HttpErrors
 
       def on_complete(env)
