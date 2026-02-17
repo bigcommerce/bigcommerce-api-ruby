@@ -7,9 +7,7 @@ module Bigcommerce
       X_AUTH_TOKEN_HEADER = 'X-Auth-Token'
 
       def initialize(app, options = {})
-        @app = app
-        @options = options
-        super(app)
+        super
       end
 
       def call(env)

@@ -31,6 +31,12 @@ ruby_3_2_defaults: &ruby_3_2_defaults
     name: ruby/ruby
     ruby-version: '3.2'
 
+ruby_3_4_defaults: &ruby_3_4_defaults
+  <<: *defaults
+  e:
+    name: ruby/ruby
+    ruby-version: '3.4'
+
 workflows:
   version: 2
   ruby_2_7:
@@ -82,5 +88,18 @@ workflows:
       - ruby/rspec-unit:
           <<: *ruby_3_2_defaults
           name: ruby-3_2-rspec_unit
+          db: false
+          code-climate: false
+  ruby_3_4:
+    jobs:
+      - ruby/bundle-audit:
+          <<: *ruby_3_4_defaults
+          name: ruby-3_4-bundle_audit
+      - ruby/rubocop:
+          <<: *ruby_3_4_defaults
+          name: ruby-3_4-rubocop
+      - ruby/rspec-unit:
+          <<: *ruby_3_4_defaults
+          name: ruby-3_4-rspec_unit
           db: false
           code-climate: false

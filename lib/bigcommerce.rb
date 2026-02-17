@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'hashie'
-require 'faraday_middleware'
+require 'faraday'
 require_relative 'bigcommerce/version'
 require_relative 'bigcommerce/config'
 require_relative 'bigcommerce/connection'
