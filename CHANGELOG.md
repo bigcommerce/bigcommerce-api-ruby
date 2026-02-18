@@ -3,6 +3,10 @@ Your contribution here.
 
 * [#000](https://github.com/bigcommerce/bigcommerce-api-ruby/pull/000): Brief description here. - [@username](https://github.com/username).
 
+## 2.0.0
+
+* [#186](https://github.com/bigcommerce/bigcommerce-api-ruby/pull/186): Update to Faraday 2.14 and add support for Ruby 3.4 - [@markcmurphy](https://github.com/markcmurphy).
+  
 ## 1.1.0
 * [#174](https://github.com/bigcommerce/bigcommerce-api-ruby/pull/174): Drop support for ruby 2.6; Add support for Ruby 3.2 - [@j05h](https://github.com/j05h).
 
