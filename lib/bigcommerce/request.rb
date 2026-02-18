@@ -27,7 +27,7 @@ module Bigcommerce
 
       def delete(path, params = {})
         response = raw_request(:delete, path, params)
-        response.body
+        decode_body(response.body, response.headers)
       end
 
       def post(path, params = {})
@@ -42,7 +42,11 @@ module Bigcommerce
 
       def raw_request(method, path, params = {})
         client = params.delete(:connection) || Bigcommerce.api
-        client.send(method, path.to_s, params)
+        response = client.send(method, path.to_s, params)
+        return response unless response.respond_to?(:body) && response.respond_to?(:body=)
+
+        response.body = decode_body(response.body, response.respond_to?(:headers) ? response.headers : {})
+        response
       end
 
       private

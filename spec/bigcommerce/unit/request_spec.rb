@@ -20,6 +20,14 @@ RSpec.describe Bigcommerce::Request do
   end
 
   describe 'ClassMethods' do
+    def gzip_payload(payload)
+      io = StringIO.new
+      gz = Zlib::GzipWriter.new(io)
+      gz.write(payload)
+      gz.close
+      io.string
+    end
+
     before do
       double Bigcommerce.api
     end
@@ -39,9 +47,20 @@ RSpec.describe Bigcommerce::Request do
       it 'should call raw_request' do
         response = double
         allow(response).to receive(:body) { '' }
+        allow(response).to receive(:headers) { {} }
         allow(@klass).to receive(:raw_request) { response }
         expect(@klass).to receive(:raw_request).with(:delete, @klass.path, {})
         @klass.delete(@klass.path)
+      end
+
+      it 'decodes gzip encoded response bodies' do
+        payload = '{"ok":true}'
+        response = double
+        allow(response).to receive(:body) { gzip_payload(payload) }
+        allow(response).to receive(:headers) { { 'content-encoding' => 'gzip' } }
+        allow(@klass).to receive(:raw_request).and_return(response)
+
+        expect(@klass.delete(@klass.path)).to eq(payload)
       end
     end
 
@@ -79,9 +98,29 @@ RSpec.describe Bigcommerce::Request do
         expect(@api).to receive(:get).with('path/1', {})
         @klass.raw_request(:get, 'path/1')
       end
+
+      it 'decodes gzip encoded response bodies' do
+        payload = '{"ok":true}'
+        response = Struct.new(:body, :headers).new(
+          gzip_payload(payload),
+          { 'content-encoding' => 'gzip' }
+        )
+        allow(@api).to receive(:get).and_return(response)
+
+        result = @klass.raw_request(:get, 'path/1')
+        expect(result.body).to eq(payload)
+      end
     end
 
     describe 'private methods' do
+      def gzip_payload(payload)
+        io = StringIO.new
+        gz = Zlib::GzipWriter.new(io)
+        gz.write(payload)
+        gz.close
+        io.string
+      end
+
       describe '.build_response_object' do
         before do
           module Bigcommerce
@@ -122,14 +161,6 @@ RSpec.describe Bigcommerce::Request do
 
         describe 'gzip encoded json object' do
           let(:json) { "{\"time\":1426184190}" }
-
-          def gzip_payload(payload)
-            io = StringIO.new
-            gz = Zlib::GzipWriter.new(io)
-            gz.write(payload)
-            gz.close
-            io.string
-          end
 
           it 'should decode and build an object' do
             response = double
