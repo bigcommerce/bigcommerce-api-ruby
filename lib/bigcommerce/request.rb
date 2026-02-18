@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 require 'json'
+require 'stringio'
+require 'zlib'
 
 module Bigcommerce
   class Request < Module
@@ -46,7 +48,7 @@ module Bigcommerce
       private
 
       def build_response_object(response)
-        json = parse response.body
+        json = parse(response.body, response.headers)
         if json.is_a? Array
           json.map { |obj| new obj }
         else
@@ -58,10 +60,22 @@ module Bigcommerce
       # @return [Hash]
       # @return [Array]
       #
-      def parse(json)
+      def parse(json, headers = {})
         return [] if json.empty?
 
-        JSON.parse(json, symbolize_names: true)
+        JSON.parse(decode_body(json, headers), symbolize_names: true)
+      end
+
+      def decode_body(body, headers = {})
+        payload = body.to_s.dup.force_encoding(Encoding::BINARY)
+        return payload if payload.empty?
+
+        content_encoding = headers['content-encoding'] || headers[:content_encoding]
+        return payload unless content_encoding.to_s.downcase.include?('gzip') || payload.start_with?("\x1F\x8B".b)
+
+        Zlib::GzipReader.new(StringIO.new(payload)).read
+      rescue Zlib::Error
+        payload
       end
     end
   end

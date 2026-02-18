@@ -1,5 +1,8 @@
 # frozen_string_literal: true
 
+require 'stringio'
+require 'zlib'
+
 RSpec.describe Bigcommerce::Request do
   before do
     module Bigcommerce
@@ -98,6 +101,7 @@ RSpec.describe Bigcommerce::Request do
           it 'should build an array of objects' do
             response = double
             allow(response).to receive(:body) { json }
+            allow(response).to receive(:headers) { {} }
             objs = @klass_with_init.send(:build_response_object, response)
             expect(objs).to be_kind_of Array
             objs.each do |obj|
@@ -110,6 +114,27 @@ RSpec.describe Bigcommerce::Request do
           it 'should build an object' do
             response = double
             allow(response).to receive(:body) { json }
+            allow(response).to receive(:headers) { {} }
+            objs = @klass_with_init.send(:build_response_object, response)
+            expect(objs).to be_kind_of Bigcommerce::DummyClass
+          end
+        end
+
+        describe 'gzip encoded json object' do
+          let(:json) { "{\"time\":1426184190}" }
+
+          def gzip_payload(payload)
+            io = StringIO.new
+            gz = Zlib::GzipWriter.new(io)
+            gz.write(payload)
+            gz.close
+            io.string
+          end
+
+          it 'should decode and build an object' do
+            response = double
+            allow(response).to receive(:body) { gzip_payload(json) }
+            allow(response).to receive(:headers) { { 'content-encoding' => 'gzip' } }
             objs = @klass_with_init.send(:build_response_object, response)
             expect(objs).to be_kind_of Bigcommerce::DummyClass
           end
