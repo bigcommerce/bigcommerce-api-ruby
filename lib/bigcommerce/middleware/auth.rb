@@ -11,9 +11,15 @@ module Bigcommerce
       end
 
       def call(env)
-        env[:request_headers][X_AUTH_CLIENT_HEADER] = @options[:client_id]
-        env[:request_headers][X_AUTH_TOKEN_HEADER] = @options[:access_token]
+        env[:request_headers][X_AUTH_CLIENT_HEADER] = option_value(:client_id)
+        env[:request_headers][X_AUTH_TOKEN_HEADER] = option_value(:access_token)
         @app.call env
+      end
+
+      private
+
+      def option_value(key)
+        @options[key] || @options[key.to_s]
       end
     end
   end
