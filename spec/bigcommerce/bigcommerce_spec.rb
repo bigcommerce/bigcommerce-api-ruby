@@ -29,6 +29,10 @@ RSpec.describe Bigcommerce do
       it 'should have the correct auth middleware' do
         expect(middleware).to include(Faraday::Request::Authorization)
       end
+
+      it 'should include gzip middleware' do
+        expect(middleware.map(&:klass)).to include(Faraday::Gzip::Middleware)
+      end
     end
 
     context 'when not using legacy' do
@@ -41,6 +45,10 @@ RSpec.describe Bigcommerce do
 
       it 'should have the correct auth middleware' do
         expect(middleware).to include(Bigcommerce::Middleware::Auth)
+      end
+
+      it 'should include gzip middleware' do
+        expect(middleware.map(&:klass)).to include(Faraday::Gzip::Middleware)
       end
     end
   end

@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 require 'json'
-require 'stringio'
-require 'zlib'
 
 module Bigcommerce
   class Request < Module
@@ -27,7 +25,7 @@ module Bigcommerce
 
       def delete(path, params = {})
         response = raw_request(:delete, path, params)
-        decode_body(response.body, response.headers)
+        response.body
       end
 
       def post(path, params = {})
@@ -42,17 +40,13 @@ module Bigcommerce
 
       def raw_request(method, path, params = {})
         client = params.delete(:connection) || Bigcommerce.api
-        response = client.send(method, path.to_s, params)
-        return response unless response.respond_to?(:body) && response.respond_to?(:body=)
-
-        response.body = decode_body(response.body, response.respond_to?(:headers) ? response.headers : {})
-        response
+        client.send(method, path.to_s, params)
       end
 
       private
 
       def build_response_object(response)
-        json = parse(response.body, response.headers)
+        json = parse(response.body)
         if json.is_a? Array
           json.map { |obj| new obj }
         else
@@ -64,22 +58,10 @@ module Bigcommerce
       # @return [Hash]
       # @return [Array]
       #
-      def parse(json, headers = {})
+      def parse(json)
         return [] if json.empty?
 
-        JSON.parse(decode_body(json, headers), symbolize_names: true)
-      end
-
-      def decode_body(body, headers = {})
-        payload = body.to_s.dup.force_encoding(Encoding::BINARY)
-        return payload if payload.empty?
-
-        content_encoding = headers['content-encoding'] || headers[:content_encoding]
-        return payload unless content_encoding.to_s.downcase.include?('gzip') || payload.start_with?("\x1F\x8B".b)
-
-        Zlib::GzipReader.new(StringIO.new(payload)).read
-      rescue Zlib::Error
-        payload
+        JSON.parse(json, symbolize_names: true)
       end
     end
   end

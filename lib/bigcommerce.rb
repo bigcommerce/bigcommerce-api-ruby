@@ -2,6 +2,7 @@
 
 require 'hashie'
 require 'faraday'
+require 'faraday/gzip'
 require_relative 'bigcommerce/version'
 require_relative 'bigcommerce/config'
 require_relative 'bigcommerce/connection'

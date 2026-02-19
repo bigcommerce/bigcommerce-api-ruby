@@ -6,10 +6,6 @@ module Bigcommerce
       X_AUTH_CLIENT_HEADER = 'X-Auth-Client'
       X_AUTH_TOKEN_HEADER = 'X-Auth-Token'
 
-      def initialize(app, options = {})
-        super
-      end
-
       def call(env)
         env[:request_headers][X_AUTH_CLIENT_HEADER] = option_value(:client_id)
         env[:request_headers][X_AUTH_TOKEN_HEADER] = option_value(:access_token)
@@ -19,7 +15,9 @@ module Bigcommerce
       private
 
       def option_value(key)
-        @options[key] || @options[key.to_s]
+        return @options[key] if @options.key?(key)
+
+        @options[key.to_s]
       end
     end
   end
