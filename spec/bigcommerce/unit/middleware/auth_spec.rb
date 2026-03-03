@@ -27,5 +27,25 @@ RSpec.describe Bigcommerce::Middleware::Auth do
       expect(app).to receive(:call).with(expected_hash)
       subject
     end
+
+    context 'when options use string keys' do
+      let(:options) do
+        {
+          'client_id' => client_id,
+          'access_token' => client_token
+        }
+      end
+
+      it 'sets the correct headers' do
+        expected_hash = {
+          request_headers: {
+            'X-Auth-Client' => client_id,
+            'X-Auth-Token' => client_token
+          }
+        }
+        expect(app).to receive(:call).with(expected_hash)
+        subject
+      end
+    end
   end
 end
