@@ -6,10 +6,10 @@ For reference on the individual resources and the schema of the objects, please 
 
 ## Configuration
 #### [Private Apps](configuration/legacy_auth.rb)
-Public apps (also known as Single-Click Apps) must use OAuth authentication.
+To develop a custom integration for one store, your app needs to use Basic Authentication.
 
 #### [Public Apps](configuration/oauth.rb)
-To develop a custom integration for one store, your app needs to use Basic Authentication.
+Public apps (also known as Single-Click Apps) must use OAuth authentication.
 
 ## Content
 #### [Blog Posts](content/blog_post.rb)

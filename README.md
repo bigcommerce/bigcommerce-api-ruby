@@ -31,7 +31,7 @@ To make requests to our API, you must register as a developer and have your cred
 
 Also very important: For the OAuth authentication mechanism, the resources to which you have acccess depend on the
 scopes that the merchant has granted to your application. For more information about Store API scopes, 
-see: [OAuth Scopes](https://developer.bigcommerce.com/api/scopes).
+see: [OAuth Scopes](https://developer.bigcommerce.com/docs/start/authentication/api-accounts#oauth-scopes).
 
 ## Authentication
 We currently have two different authentication schemes that you can select, depending on your use case.
