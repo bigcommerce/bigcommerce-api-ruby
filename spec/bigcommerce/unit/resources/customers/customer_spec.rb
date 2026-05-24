@@ -33,5 +33,18 @@ RSpec.describe Bigcommerce::Customer do
       expect(payload['iat']).to be <= Time.now.to_i
       expect(payload['jti']).to_not be_empty
     end
+    context 'optional keys are included with the JWT is present' do
+      let(:channel_id) { String(Random.rand(1000)) }
+      let(:request_ip) { '127.0.0.1' }
+
+      subject { customer.login_token(optional_claims: { 'channel_id' => channel_id, 'request_ip' => request_ip, 'bogus' => 'claim' }) }
+
+      it 'encodes the JWT with optional claims' do
+        payload = JWT.decode(subject, client_secret, true, { :algorithm => 'HS256' })[0]
+        expect(payload['channel_id']).to eq(channel_id)
+        expect(payload['request_ip']).to eq(request_ip)
+        expect(payload['bogus']).to be_nil
+      end
+    end
   end
 end
