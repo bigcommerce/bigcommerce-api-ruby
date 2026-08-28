@@ -33,5 +33,13 @@ RSpec.describe Bigcommerce::Customer do
       expect(payload['iat']).to be <= Time.now.to_i
       expect(payload['jti']).to_not be_empty
     end
+
+    # Regression test for CVE-2026-45363 / GHSA-c32j-vqhx-rx3x, fixed in jwt 3.2.0.
+    context 'with jwt >= 3.2.0', if: Gem.loaded_specs['jwt'].version >= Gem::Version.new('3.2.0') do
+      it 'should reject empty/nil HMAC keys' do
+        expect { JWT.decode(subject, '', true, { algorithm: 'HS256' }) }.to raise_error(JWT::DecodeError)
+        expect { JWT.decode(subject, nil, true, { algorithm: 'HS256' }) }.to raise_error(JWT::DecodeError)
+      end
+    end
   end
 end
