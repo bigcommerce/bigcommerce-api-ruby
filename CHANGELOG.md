@@ -1,7 +1,7 @@
 ## Next Release
 Your contribution here.
 
-* [#000](https://github.com/bigcommerce/bigcommerce-api-ruby/pull/000): Brief description here. - [@username](https://github.com/username).
+* [#189](https://github.com/bigcommerce/bigcommerce-api-ruby/pull/189): Allow jwt v3 - [@zackgp](https://github.com/zackgp).
 
 ## 2.0.0
 
